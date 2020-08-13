@@ -1,6 +1,7 @@
 // grid dummy data
 var dummyData = {
     "Writing":"<ol style=\"text-align: left;\">"
+    +"<h2>Blog</h2>"
     +"<li><a href=\"https://www.linkedin.com/pulse/my-data-story-dr-jayanti-prasad/\" target=\"dynamic\"> My data story</li>"
     +"<li><a href=\"https://www.linkedin.com/pulse/data-science-jayanti-prasad-ph-d-/\" target=\"dynamic\"> Data Science </a></li>"
     +"<li><a href=\"https://www.linkedin.com/pulse/covid-19-big-picture-jayanti-prasad-ph-d-/\" target=\"dynamic\"> Covid-19: The Big picture </a> </li>"
@@ -28,7 +29,7 @@ var dummyData = {
     +"NLP at frontier </a></li>"
     +"<li><a href=\"https://www.linkedin.com/pulse/your-business-ready-use-ai-dr-jayanti-prasad/\" target=\"dynamic\">"
     +" Is your business ready for the use of AI ?</a></li>"
-    +"</ol>",
+    +"</ol><br><br><br>",
     "Medium":"https://medium.com/@prasad.jayanti",
     "Contact":"prasad.jayanti@gmail.com",
     "About":"<h2> Short Biography </h2> <p style=\"text-align: left\">"
@@ -147,10 +148,7 @@ var dummyData = {
 +"<a href=\"https://iopscience.iop.org/article/10.1088/1475-7516/2018/02/043/meta\" target=\"dynamic\"> JCAP  (2018)  02 043, </a> "
 +"[<a href=\"https://arxiv.org/abs/1710.11109\" target=\"dynamic\"> arXiv:1710.11109 [astro-ph.CO]] </a><br>"
 +"<i>Revisiting CMB constraints on Warm Inflation </i></li>"
-+""
 +"</ol>"
-+"</div>"
-+""
 +"<h3> Some other important Publications (with LIGO): </h3>"
 +"<ol style=\"text-align: left;\">"
 +""
@@ -164,9 +162,9 @@ var dummyData = {
 +"B.P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration), 2017 <br>"
 +"<a href=\"https://www.nature.com/nature/journal/v551/n7678/full/nature24471.html\" target=\"dynamic\"> Nature 551, 8588 (02 November 2017) </a>  [<A HREF=\"https://arxiv.org/abs/1710.05835\">arXiv:1710.05835 [astro-ph.CO]]</A>"
 +"<br> <i> A gravitational-wave standard siren measurement of the Hubble constant. </a></li>"
-+""
++"</ol>"
 +"For my compleate list of publications please click <a href=\"docs/jayanti-pub-2020.pdf\" target=\"dynamic\"> Here </a>"
-+"</ol>",
++"<br><br><br><br><hr></div>",
 "Presentations":"<ul style=\"text-align: left;\">"
 +"<h2> General Cosmology </h2>"
 +"<ul style=\"text-align: left;\">"
@@ -196,7 +194,7 @@ var dummyData = {
 +"<li><a href=\"docs/talks/talk-cms.pdf\" target=\"dynamic\"> GW (CMS) </a> </li>"
 +"<li><a href=\"docs/talks/talk-ibb.pdf\" target=\"dynamic\"> GW (IBB) </a> </li>"
 +"<li><a href=\"docs/talks/talk-mit.pdf\" target=\"dynamic\"> GW (MIT) </a> </li>"
-+"</ul>",
++"</ul><br><br><br><br>",
 "Reports":"<ol style=\"text-align: left;\">"
 +"<li> <a href=\"docs/jayanti-phd-thesis.pdf\" target=\"dynamic\"> Ph.D Thesis </a></li>"
 +"<li> <a href=\"docs/notes/jp-cosmo-notes.pdf\" target=\"dynamic\"> Cosmology Notes </a></li>"
