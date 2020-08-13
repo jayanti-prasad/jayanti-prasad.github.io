@@ -42,7 +42,7 @@
 	left: 0;
 	width: 300px;
 	height: calc(100vh - 120px);
-	background: #1c1d22;
+	background: #808B96;
 }
 
 .menu__wrap {
@@ -85,7 +85,7 @@
 	position: relative;
 	display: block;
 	padding: 1em 2.5em 1em 1.5em;
-	color: #bdbdbd;
+	color: #1A5276;
 	-webkit-transition: color 0.1s;
 	transition: color 0.1s;
 }

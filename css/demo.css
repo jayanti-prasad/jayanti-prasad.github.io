@@ -37,20 +37,20 @@ body {
 	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 	overflow: hidden;
 	margin: 0;
-	color: #cecece;
-	background: #2a2b30;
+	color: #2874A6;
+	background: #CCD1D1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
 	text-decoration: none;
-	color: #fff;
+	color: #34495E;
 	outline: none;
 }
 
 a:hover {
-	color: #ddd;
+	color: #1D8348;
 }
 
 .container {
@@ -90,7 +90,7 @@ a:hover {
 	text-indent: 3px;
 	letter-spacing: 3px;
 	text-transform: uppercase;
-	color: #5c5edc;
+	color: #BFC9CA;
 }
 
 .bp-tooltip:after {
