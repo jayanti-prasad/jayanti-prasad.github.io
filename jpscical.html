@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>JP's &copy;  Scientific Calculator </title>
+<script type="text/javascript" src="js/mathfunc.js"></script>
+<style type="text/css">
+input{
+  width:80px;
+  height:30px
+  font-size:10pt; 
+  color: black; 
+  background-color:white;  
+}
+
+table{
+width: 173;
+border: 2;
+cellspacing: 2;
+cellpadding: 2;
+height:130; 
+}
+</style>
+</head>
+<!body oncontextmenu="return false;" background="black">
+<body>
+ <center>
+ <font size=2 color="red"> JP's<sup> &copy; </sup> Scientific Calculator </font>
+ <form>
+ <table width="210" border="2" cellspacing="1" cellpadding="1" bgcolor="#003366">
+ <tr>
+ <td align="center">
+ <table>
+ <tr>
+ </tr>
+ <tr>
+ <td colspan="3">  <input name="display" style="width:245px;height:30px;color:blue;background-color:yellow;font-size:15pt;"  value="0"> </td>
+ <td> <input type="button" value="Enter" name="enter"  onClick="if (checkNum(this.form.display.value)){compute(this.form) }"> </td> 
+ <td> <input type="button" value="Clear"  onClick="this.form.display.value=0"> </td> 	
+</tr>
+<tr>
+ <td> <input type="button" value="exp"  onClick="if (checkNum(this.form.display.value)) { exp(this.form) }"> </td>
+ <td> <input type="button" value="7"    onClick="addChar(this.form.display, '7')">  </td> 
+ <td> <input type="button" value="8"    onClick="addChar(this.form.display, '8')">  </td> 
+ <td> <input type="button" value="9"    onClick="addChar(this.form.display, '9')"> </td>
+ <td> <input type="button" value="/"    onClick="addChar(this.form.display, '/')">  </td> 
+</tr>
+<tr>  
+<td> <input type="button" value="ln"   onClick="if (checkNum(this.form.display.value)) { ln(this.form) }"> </td>
+<td> <input type="button" value="4"  onClick="addChar(this.form.display, '4')"> </td> 
+<td> <input type="button" value="5"  onClick="addChar(this.form.display, '5')"> </td>
+<td> <input type="button" value="6"  onClick="addChar(this.form.display, '6')"> </td> 
+<td> <input type="button" value="*"  onClick="addChar(this.form.display, '*')">  </td> 
+<td></td> 
+</tr> 
+<tr> 
+<td><input type="button" value="sqrt" onClick="if (checkNum(this.form.display.value)) {sqrt(this.form) }"> </td> 
+<td><input type="button" value="1"    onClick="addChar(this.form.display, '1')"> </td> 
+<td><input type="button" value="2"    onClick="addChar(this.form.display, '2')"> </td>
+<td><input type="button" value="3"    onClick="addChar(this.form.display, '3')"> </td>  
+<td> <input type="button" value="-"    onClick="addChar(this.form.display, '-')"></td> 
+</tr>
+<tr>
+<td><input type="button" value="sq"   onClick="if (checkNum(this.form.display.value)){ square(this.form) }"> </td>
+<td><input type="button" value="0"    onClick="addChar(this.form.display, '0')"></td>  
+<td><input type="button" value="."    onClick="addChar(this.form.display, '.')"></td>  
+<td><input type="button" value="+/-"  onClick="changeSign(this.form.display)"></td>
+<td><input type="button" value="+"    onClick="addChar(this.form.display, '+')"></td>
+</tr>
+<tr>
+<td><input type="button" value="("    onClick="addChar(this.form.display, '(')">  </td> 
+<td><input type="button" value="cos"   onClick="if (checkNum(this.form.display.value)){cos(this.form) }"> </td>
+<td><input type="button" value="sin"   onClick="if (checkNum(this.form.display.value)){sin(this.form) }"> </td>
+<td><input type="button" value="tan"   onClick="if (checkNum(this.form.display.value)){tan(this.form) }"> </td>
+<td><input type="button" value=")"     onClick="addChar(this.form.display, ')')"> </td> 
+</tr>
+<tr>
+<td><input type="button" value="!"    onClick="if (checkNum(this.form.display.value)){fact(this.form) }">  </td> 
+<td><input type="button" value="acos" onClick="if (checkNum(this.form.display.value)){acos(this.form) }"> </td>
+<td><input type="button" value="asin"  onClick="if (checkNum(this.form.display.value)){asin(this.form) }"> </td>
+<td><input type="button" value="atan"   onClick="if (checkNum(this.form.display.value)){atan(this.form) }"> </td>
+<td><input type="button" value="Random"  onClick="if (checkNum(this.form.display.value)){ran(this.form) }"> </td> 
+</tr>
+<tr><td><input type="button" value="^"   onClick="addChar(this.form.display, '^')"></td>
+<td> <input type="button" value="1/x"   onClick="if (checkNum(this.form.display.value)){inver(this.form) }"> </td>
+<td> <input type="button" value="round" onClick="if (checkNum(this.form.display.value)){round(this.form) }"></td>
+<td> <input type="button" value="%"  onClick="if (checkNum(this.form.display.value)){percent(this.form) }"></td>
+<td> <input type="button" value="abs"  onClick="if (checkNum(this.form.display.value)){abs(this.form) }"></td>
+<tr>  
+<td> <input type="button" value=" BkSpac"  onClick="deleteChar(this.form.display)"> </td>
+<td> <input type="button" value="c"     onClick="addChar(this.form.display, '3.0E8')"
+	onmouseover="addChar(this.form.display1,'Speed of light  [mt/sec]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="e"   onClick="addChar(this.form.display, '1.60217646E-19')"
+	onmouseover="addChar(this.form.display1,'Charge of electron [coulombs]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="h"   onClick="addChar(this.form.display, '6.626068E-34')"
+onmouseover="addChar(this.form.display1,'Planck Constant  [Jule second]')" onmouseout="this.form.display1.value =0"></td>
+<td> <input type="button" value="G"  onClick="addChar(this.form.display, '6.67E11')"
+onmouseover="addChar(this.form.display1,'Newton gravitational constant [mt/kg/second sq]')" onmouseout="this.form.display1.value =0"> </td>
+</tr>
+<tr>
+<td> <input type="button" value="k"   onClick="addChar(this.form.display,'1.3806503E-23')"
+onmouseover="addChar(this.form.display1,'Boltzman constant  [Jule/Kelvin]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="m_e"  onClick="addChar(this.form.display, '9.10938188E-31')"
+onmouseover="addChar(this.form.display1,'Mass of electron  [Kg]')" onmouseout="this.form.display1.value =0"></td>
+<td> <input type="button" value="m_p"  onClick="addChar(this.form.display, '1.67262158E-27')"
+onmouseover="addChar(this.form.display1,'Mass of proton  [Kg]')" onmouseout="this.form.display1.value =0"> </td>
+<td><input  type="button" value="&pi;"   onClick="addChar(this.form.display,  '3.141592653')"> </td>
+<td> <input type="button" value="&sigma;"  onClick="addChar(this.form.display,  '5.670400E-4')"
+onmouseover="addChar(this.form.display1,'Stefan-Boltzmann constant [Watt/mt sq/Kelvin^4]')" onmouseout="this.form.display1.value =0"> </td>
+</tr>
+<tr>
+<td> <input type="button" value="AU"  onClick="addChar(this.form.display,'1.49598E11')" 
+	onmouseover="addChar(this.form.display1,'Astronomical Unit [mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="lyr"  onClick="addChar(this.form.display, '9.4605284E15')"
+onmouseover="addChar(this.form.display1,'Light Year  [mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="pc"  onClick="addChar(this.form.display, '3.08568025E16')"
+onmouseover="addChar(this.form.display1,'Parsec [mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="Yr"  onClick="addChar(this.form.display,  '3.1556926E7')"
+onmouseover="addChar(this.form.display1,'Year  [sec]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="M_Sun"  onClick="addChar(this.form.display,  '1.98892E30')"
+onmouseover="addChar(this.form.display1,'Solar Mass  [kg]')" onmouseout="this.form.display1.value =0"> </td>
+</tr>
+
+<tr>
+<td> <input type="button" value="M_Moon"  onClick="addChar(this.form.display,'7.34767309E22')"
+onmouseover="addChar(this.form.display1,'Mass of Moon [Kg]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="M_Earth"  onClick="addChar(this.form.display, '5.972E24')"
+onmouseover="addChar(this.form.display1,'Mass of Earth [Kg]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="M_Jup"  onClick="addChar(this.form.display, '1.898E27')"
+onmouseover="addChar(this.form.display1,'Mass of Jupiter  [Kg]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="R_Earth"   onClick="addChar(this.form.display,  '6.371E6')"
+onmouseover="addChar(this.form.display1,'Radius of Earth [Mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="D_EM"  onClick="addChar(this.form.display,  '3.844E8')"
+onmouseover="addChar(this.form.display1,'Earth-Moon Distance [Mt]')" onmouseout="this.form.display1.value =0"> </td>
+</tr>
+<tr>
+<td> <input type="button" value="&epsilon;_0"  onClick="addChar(this.form.display,'8.854187817E-12')"
+onmouseover="addChar(this.form.display1,'Permittivity of vacuum [F/mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="&mu;_0"  onClick="addChar(this.form.display, '1.25663706E-6')"
+onmouseover="addChar(this.form.display1,'Permeability of vacuum [N/A sqt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="Ry"  onClick="addChar(this.form.display, '1.0973731534E7 ')"
+onmouseover="addChar(this.form.display1,'Rydbergy  constant  [/mt]')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="N_A"   onClick="addChar(this.form.display,  '6.0221367E23')"
+onmouseover="addChar(this.form.display1,'Avagadro Number')" onmouseout="this.form.display1.value =0"> </td>
+<td> <input type="button" value="R"  onClick="addChar(this.form.display,  '8.31451')"
+onmouseover="addChar(this.form.display1,'Molar gas constant  [J/mol/Kelvin]')" onmouseout="this.form.display1.value =0"> </td>
+</tr>
+<tr> <td colspan="5"> 
+ <input name="display1" style="width:418px;height:30px;color:blue;font-style:normal;font-size:10pt"  value="0"> </td>
+</tr>
+</table>
+</table>
+</FORM>
+<input type="button" value="Close" onClick="javascript:self.close()">
+</center>
+</body>
+</html>
+
