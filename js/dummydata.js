@@ -29,7 +29,11 @@ var dummyData = {
     +"NLP at frontier </a></li>"
     +"<li><a href=\"https://www.linkedin.com/pulse/your-business-ready-use-ai-dr-jayanti-prasad/\" target=\"dynamic\">"
     +" Is your business ready for the use of AI ?</a></li>"
-    +"</ol><br><br><br>",
+    +"<h2> Articles </h2>"
+    +"<li><a href=\"docs/articles/cosmo_rev_v3.pdf\" target=\"dynamics\"> The state of the Universe </a> </li>"
+    +"<li><a href=\"docs/articles/e_is_equal_mc2.pdf\" target=\"dynamics\"> E=mc<super>2</super> </a> </li>"
+    +"</ol>"
+    +"<br><br><br>",
     "Medium":"https://medium.com/@prasad.jayanti",
     "Contact":"prasad.jayanti@gmail.com",
     "About":"<h2> Short Biography </h2> <p style=\"text-align: left\">"
