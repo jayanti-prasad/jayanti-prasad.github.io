@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jayanti Prasad's Virtual Home </title>
+	<meta name="description" content="Introduction : A common gateway to my world" />
+	<meta name="keywords" content="blueprint, template, html, css, menu, responsive, mobile-friendly" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- demo styles -->
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<!-- menu styles -->
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr-custom.js"></script>
+</head>
+
+<body>
+	
+<!-- Main container -->
+<div class="container">
+<!-- Blueprint header -->
+<header class="bp-header cf">
+<div class="dummy-logo">
+      <img src="jp.jpg" width=80px> 
+	<div class="dummy-icon foodicon foodicon--coconut"></div>
+	<h2 class="dummy-heading">Jayanti Prasad</h2>
+</div>
+			
+<div class="bp-header__main">
+<span class="bp-header__present">Jayanti Prasad Ph.D   </span>
+<span class="bp-tooltip bp-icon bp-icon--about" data-content="Please click on the menu items on the left"></span></span>			
+
+<a name="home"> <h1 class="bp-header__title">Welcome !</h1></a>
+
+<nav class="bp-nav">
+<a href="https://www.linkedin.com/in/jayanti-prasad-ph-d-0869a1136/" target="dynamic"><span><img src="img/linkedin.jpg" style="width:40px;height:40px"> </span></a>
+<a href="https://github.com/jayanti-prasad" target="dynamic"> <span> <img src="img/github.png" style="width:40px;height:40px"></span></a>					
+<a href="https://medium.com/@prasad.jayanti" target="dynamic"><span> <img src="img/medium.jpg" style="width:40px;height:40px"></span></a>
+<a href="index.html"><span> <img src="img/home.png" style="width:40px;height:40px"></span></a>
+</nav>
+</div>
+</header>
+		
+<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+<nav id="ml-menu" class="menu">
+<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+<div class="menu__wrap">
+				
+<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="About">
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#about">About</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-2" href="#">Science</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Technology</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#">Learning</a></li>
+					
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#contact">Contact</a></li>
+</ul>
+				
+<!-- Submenu 1 -->
+<ul data-menu="submenu-1" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="About">
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#astro">Publications</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#"> Presentations </a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Blog</a></li>
+</ul>
+
+				
+
+<!-- Submenu 2 -->
+<ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Grains">
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#medium">Machine Learning</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" href="#">High Performance Computing</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1" aria-owns="submenu-3-1" href="#">Promo Packs</a></li></ul>
+				
+
+</div>
+</nav>
+		
+<div class="content">
+<p class="menu__item">This is my personal home page and it has information about my professional activities. Please visit the 
+section you are interesting in by clicking on the menu panel at the left. You can also visit my social media pages by clicking on the icons at the rop right corner.</p>
+<!-- Ajax loaded content here -->
+</div>
+	
+</div>
+	
+<!-- /view -->
+	<script src="js/classie.js"></script>
+	<script src="js/dummydata.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	(function() {
+		var menuEl = document.getElementById('ml-menu'),
+			mlmenu = new MLMenu(menuEl, {
+				// breadcrumbsCtrl : true, // show breadcrumbs
+				// initialBreadcrumb : 'all', // initial breadcrumb text
+				backCtrl : false, // show back button
+				// itemsDelayInterval : 60, // delay between each menu item sliding animation
+				onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			});
+
+		// mobile menu toggle
+		var openMenuCtrl = document.querySelector('.action--open'),
+			closeMenuCtrl = document.querySelector('.action--close');
+
+		openMenuCtrl.addEventListener('click', openMenu);
+		closeMenuCtrl.addEventListener('click', closeMenu);
+
+		function openMenu() {
+			classie.add(menuEl, 'menu--open');
+			closeMenuCtrl.focus();
+		}
+
+		function closeMenu() {
+			classie.remove(menuEl, 'menu--open');
+			openMenuCtrl.focus();
+		}
+
+		// simulate grid content loading
+		var gridWrapper = document.querySelector('.content');
+
+		function loadDummyData(ev, itemName) {
+			ev.preventDefault();
+
+			closeMenu();
+			gridWrapper.innerHTML = '';
+			classie.add(gridWrapper, 'content--loading');
+			setTimeout(function() {
+				classie.remove(gridWrapper, 'content--loading');
+				gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
+			}, 700);
+		}
+	})();
+	</script>
+</body>
+
+</html>
