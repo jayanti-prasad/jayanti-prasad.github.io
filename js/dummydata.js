@@ -62,7 +62,7 @@ var dummyData = {
     +" I resigned from the Embold Technology in late 2019 to work on some"
     +" Freelancing projects. I was one of the invited speakers of the <a href=\"https://bigdat2020.irdta.eu/\" target=\"dynamic\"> \"Big Data 2020\" </a> "
     +" meeting which took place in Ancona (Italy) between 13th and 18th January 2020. Since August 2020, I have been"
-    +" working with <a href=\"https://www.disys.com/\" target=\"dynamic\">Digital Intelligence Systems (DISYS)</a> as a data scientist.</p> <hr>",
+    +" working with <a href=\"https://www.disys.com/\" target=\"dynamic\">Digital Intelligence Systems (DISYS)</a> as a data scientist.</p> <br><br> <hr><br><br><br>",
     "Publications": "<h2> Publications (Astronomy & Astrophysics) </h2>"
 +" <ol style=\"text-align: left;\">"
 +" <br><li> Bagla, J. S., <b>Prasad, Jayanti </b> and  Ray, Suryadeep (2005) <br>"
