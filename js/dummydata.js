@@ -173,7 +173,7 @@ var dummyData = {
 +"B.P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration), 2017 <br>"
 +"<a href=\"https://www.nature.com/nature/journal/v551/n7678/full/nature24471.html\" target=\"dynamic\"> Nature 551, 8588 (02 November 2017) </a>  [<A HREF=\"https://arxiv.org/abs/1710.05835\">arXiv:1710.05835 [astro-ph.CO]]</A>"
 +"<br> <i> A gravitational-wave standard siren measurement of the Hubble constant. </a></li>"
-+"</ol>"
++"</ol><br><br><hr><br>"
 +"For my compleate list of publications please click <a href=\"docs/jayanti-pub-2020.pdf\" target=\"dynamic\"> Here </a>"
 +"<br><br><br><br><hr></div>",
 "Presentations":"<ul style=\"text-align: left;\">"
