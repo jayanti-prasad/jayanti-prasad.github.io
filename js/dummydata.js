@@ -173,6 +173,9 @@ var dummyData = {
 +"B.P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration), 2017 <br>"
 +"<a href=\"https://www.nature.com/nature/journal/v551/n7678/full/nature24471.html\" target=\"dynamic\"> Nature 551, 8588 (02 November 2017) </a>  [<A HREF=\"https://arxiv.org/abs/1710.05835\">arXiv:1710.05835 [astro-ph.CO]]</A>"
 +"<br> <i> A gravitational-wave standard siren measurement of the Hubble constant. </a></li>"
++"<br><li>"
++"B.P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration), 2017 <br>"
++"<a href=\"docs/papers/LSC-Papers/GW150914/andp201600209.pdf\" target=\"dynamic\"> Ann. Phys. (Berlin) 529, No. 1–2, 1600209 (2017) </a> The basic physics of the binary black hole merger GW150914.</li>"
 +"</ol><br><br><hr><br>"
 +"For my compleate list of publications please click <a href=\"docs/jayanti-pub-2020.pdf\" target=\"dynamic\"> Here </a>"
 +"<br><br><br><br><hr></div>",
