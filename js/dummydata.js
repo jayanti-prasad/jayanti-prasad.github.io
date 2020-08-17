@@ -29,9 +29,14 @@ var dummyData = {
     +"NLP at frontier </a></li>"
     +"<li><a href=\"https://www.linkedin.com/pulse/your-business-ready-use-ai-dr-jayanti-prasad/\" target=\"dynamic\">"
     +" Is your business ready for the use of AI ?</a></li>"
-    +"<h2> Articles </h2>"
+    +"<h2> Articles (General) </h2>"
     +"<li><a href=\"docs/articles/cosmo_rev_v3.pdf\" target=\"dynamics\"> The state of the Universe </a> </li>"
     +"<li><a href=\"docs/articles/e_is_equal_mc2.pdf\" target=\"dynamics\"> E=mc<super>2</super> </a> </li>"
+    +"<h2> Articles (Machine Learning) </h2>"
+    +"<li><a href=\"https://medium.com/@prasad.jayanti/first-step-towards-machine-learning-17f2f51b96d8\" target=\"dynamic\">First step towards machine learning </a> </li>"
+    +"<li><a href=\"https://medium.com/@prasad.jayanti/first-step-towards-deep-learning-5cd830f2013b\" target=\"dynamic\"> First step towards deep learning</a> </li>"
+    +"<li><a href=\"https://medium.com/@prasad.jayanti/why-wee-need-so-many-performance-metrics-in-hypothesis-testing-9d880458b62\" target=\"dynamic\">Why we need so many performance metrics in hypothesis testing ? </a> </li>"
+    +"<li><a href=\"https://medium.com/datadriveninvestor/5-machine-learning-classifiers-you-must-know-925655c75e02\" target=\"dynamic\">5 Machine Learning Classifiers you must know </a> </li>"
     +"</ol>"
     +"<br><br><br>",
     "Medium":"https://medium.com/@prasad.jayanti",
