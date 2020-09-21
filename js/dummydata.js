@@ -225,6 +225,16 @@ var dummyData = {
 +"<li> <a href=\"docs/notes/matched_filtering.pdf\" target=\"dynamic\"> Matched Filtering  </a></li>"
 +"<li> <a href=\"docs/notes/mem.pdf\" target=\"dynamic\"> Maximum Entropy  </a></li>"
 +"<li> <a href=\"docs/notes/pulsars.pdf\" target=\"dynamic\"> Radio Pulsars  </a></li>"
++"</ol>",
+"Resources":"<ol style=\"text-align: left;\">"
++"<li><a href=\"https://ischoolonline.berkeley.edu/data-science/what-is-data-science/\" target=\"dynamic\"> What is data science</a> </li>"
++"<li><a href=\"https://blogs.oracle.com/datascience/introduction-to-correlation\" target=\"dynamic\"> Introduction to Correlation</a> </li>"
++"<li><a href=\"https://ourcodingclub.github.io/tutorials/pandas-time-series/\" target=\"dynamic\"> Time Series analysis with Pandas</a> </li>"
++"<li><a href=\"https://adataanalyst.com/machine-learning/comprehensive-guide-feature-engineering/\" target=\"dynamic\">The Comprehensive Guide for Feature Engineering </a> </li>"
++"<li><a href=\"https://docs.microsoft.com/en-gb/azure/machine-learning/how-to-select-algorithms\" target=\"dynamic\"> How to select algorithms for Azure Machine Learning</a> </li>"
++"<li><a href=\"https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html\" target=\"dynamic\">Decision Trees for Classification: A Machine Learning Algorithm</a> </li>"
++"<li><a href=\"https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/\" target=\"dynamic\"> Probability and Statistics [MITOPEN COURSE]</a> </li>"
++"<li><a href=\"https://livebook.manning.com/book/real-world-natural-language-processing/chapter-1/v-2/25\" target=\"dynamic\"> Introduction to NLP </a> </li>"
 +"</ol>"
 }
 
