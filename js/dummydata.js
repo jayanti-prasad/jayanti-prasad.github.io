@@ -245,5 +245,7 @@ var dummyData = {
 +"<li><a href=\"https://www.oreilly.com/library/view/generative-deep-learning/9781492041931/ch01.html\" target=\"dynamic\"> Generative Deep Learning by David Foster</a> </li>"
 +"<li><a href=\"https://cs231n.github.io/linear-classify/\" target=\"dynamic\"> Convolutional neural networks for visual recognition</a> </li>"
 +"</ol>"
++"<br><br> <hr><br><br><br>"
+
 }
 
