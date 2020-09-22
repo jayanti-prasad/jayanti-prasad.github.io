@@ -235,6 +235,15 @@ var dummyData = {
 +"<li><a href=\"https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html\" target=\"dynamic\">Decision Trees for Classification: A Machine Learning Algorithm</a> </li>"
 +"<li><a href=\"https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/\" target=\"dynamic\"> Probability and Statistics [MITOPEN COURSE]</a> </li>"
 +"<li><a href=\"https://livebook.manning.com/book/real-world-natural-language-processing/chapter-1/v-2/25\" target=\"dynamic\"> Introduction to NLP </a> </li>"
++"<li><a href=\"https://www.nltk.org/book/ch01.html\" target=\"dynamic\"> Language Processing and Python </a> </li>"
++"<li><a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\" target=\"dynamic\"> Understanding LSTM  </a> </li>"
++"<li><a href=\"http://jalammar.github.io/illustrated-bert/\" target=\"dynamic\"> Illustrated Bert  </a> </li>"
++"<li><a href=\"https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html\" target=\"dynamic\"> Attention Attention </a> </li>"
++"<li><a href=\"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432#\" target=\"dynamic\"> Precision-Recall Plot Is More Informative than the ROC </a> </li>"
++"<li><a href=\"http://www.marekrei.com/blog/74-summaries-of-machine-learning-and-nlp-research/\" target=\"dynamic\">74 Summaries of Machine Learning and NLP Research</a> </li>"
++"<li><a href=\"http://www.marekrei.com/blog/paper-summaries/\" target=\"dynamic\">57 Summaries of Machine Learning and NLP Research</a> </li>"
++"<li><a href=\"https://www.oreilly.com/library/view/generative-deep-learning/9781492041931/ch01.html\" target=\"dynamic\"> Generative Deep Learning by David Foster</a> </li>"
++"<li><a href=\"https://cs231n.github.io/linear-classify/\" target=\"dynamic\"> Convolutional neural networks for visual recognition</a> </li>"
 +"</ol>"
 }
 
