@@ -265,6 +265,11 @@ var dummyData = {
 +"<li><a href=\"https://www.asimovinstitute.org/neural-network-zoo/\" target=\"dynamic\">Neural Network Zoo </a> </li>"
 +"<li><a href=\"https://rdipietro.github.io/friendly-intro-to-cross-entropy-loss/\" target=\"dynamic\">A Friendly Introduction to Cross-Entropy Loss </a> </li>"
 +"<li><a href=\"https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html\" target=\"dynamic\">Transformer: A Novel Neural Network Architecture for Language Understanding</a> </li>"
++"<li><a href=\"https://towardsdatascience.com/stl-decomposition-how-to-do-it-from-scratch-b686711986ec\" target=\"dynamic\">STL decomposition : How to do it from Scratch?</a> </li>"
++"<li><a href=\"https://blog.statsbot.co/time-series-anomaly-detection-algorithms-1cef5519aef2\" target=\"dynamic\">Time Series Anomaly Detection Algorithms</a> </li>"
++"<li><a href=\"https://towardsdatascience.com/time-series-of-price-anomaly-detection-13586cd5ff46\" target=\"dynamic\">Time Series of Price Anomaly Detection</a> </li>"
++"<li><a href=\"https://towardsdatascience.com/anomaly-detection-with-isolation-forest-visualization-23cd75c281e2\" target=\"dynamic\">Anomaly Detection with Isolation Forest & Visualization</a> </li>"
++"<li><a href=\"https://towardsdatascience.com/anomaly-detection-with-time-series-forecasting-c34c6d04b24a\" target=\"dynamic\"></a>Anomaly Detection with Time Series Forecasting </li>"
 +"</ol>"
 +"<br><br> <hr><br><br><br>"
 
