@@ -1,6 +1,6 @@
 function  menu_bar(){
  
- var menu='<ul id=\"mb2\"> <li><a href=\"index.html\"> Home  </a> </li>'
+ var menu='<ul id=\"mb2\"> <li><a href=\"https://jayanti-prasad.github.io/wp-2017/\"> Home  </a> </li>'
  +'<li><a href=\"research.html\"> Research</a>'
  +'<ul> <li><a href="">Cosmology</a>'
  +'<ul><li> <a href=\"nbody.html\">LSS </a></li>'
