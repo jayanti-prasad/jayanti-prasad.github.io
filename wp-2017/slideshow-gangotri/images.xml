@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This is the full list of specific particularities which you can set for each image. Next to each property is the corresponding overall setting of the Banner.
+When you specify one of these properties as an XML attribute for each image, the corresponding overall setting of the Banner will be ignored.
+
+Particular Property				Overall Property
+_____________________________________________________________
+effect							imageEffects -> type
+zoompercent						imageEffects -> zoomPercent
+dur								imageEffects -> duration
+direction						imageEffects -> direction
+hzoompos						imageEffects -> hZoomPos
+vzoompos						imageEffects -> vZoomPos
+hpos							textOptions -> hPos
+vpos							textOptions -> vPos
+width							textOptions -> width
+height							textOptions -> height
+slide							textEffects -> slide
+appear							textEffects -> appear
+func							textEffects -> function
+type							textBackground -> type
+transition (a transition ID from the transitions list)
+duration (duration for each image but change the value of autoTiming to false in settings.xml file)
+-->
+
+<slideshow>
+	<photo image="images/image_101.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="left" vzoompos="right">
+	<![CDATA[<head> New Tehri Guest House</head> <body> Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+	
+	<photo image="images/image_102.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="center" vzoompos="center">
+	<![CDATA[<head> Rahul & Me </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+	
+	<photo image="images/image_103.jpg" duration="4" effect="kenburns" direction="right"> 
+	<![CDATA[<head>Bhagirathi Valley </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+	
+	<photo image="images/image_104.jpg"  duration="4" effect="kenburns" direction="top">
+	<![CDATA[<head>Bhagirathi Valley  </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+	
+	<photo image="images/image_105.jpg" duration="4" effect="kenburns" direction="bottom">
+	<![CDATA[<head> On the way towards Gomukh </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+		
+	<photo image="images/image_106.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+	<![CDATA[<head>On the way towards Gomukh </head><body> Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_107.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+	<![CDATA[<head> On the way towards Gomukh </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+       <photo image="images/image_108.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="left" vzoompos="right">
+        <![CDATA[<head> Gangotri Waterfall </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_109.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="center" vzoompos="center">
+        <![CDATA[<head> Rahul & Me </head><body><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_110.jpg" duration="4" effect="kenburns" direction="right">
+        <![CDATA[<head> Me </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_111.jpg"  duration="4" effect="kenburns" direction="bottom">
+        <![CDATA[<head> Me</head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_112.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>With team members !</head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_113.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head> Bhagirathi Valley</head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_114.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Gangotri</head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_115.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="center" vzoompos="center">
+        <![CDATA[<head> Gangotri</head><body><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_116.jpg"  duration="4" effect="kenburns" direction="right">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_117.jpg"  duration="4" effect="kenburns" direction="top">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_118.jpg"  duration="4" effect="kenburns" direction="bottom">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_119.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_120.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek  </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_121.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_122.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_123.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_124.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>The Trek </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_125.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="center" vzoompos="center">
+        <![CDATA[<head> The Trek </head><body><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_126.jpg"  duration="4" effect="kenburns" direction="right">
+        <![CDATA[<head>The Trek  </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_127.jpg"  duration="4" effect="kenburns" direction="top">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_128.jpg"  duration="4" effect="kenburns" direction="bottom">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_129.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_130.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_131.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+         <photo image="images/image_132.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_133.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_134.jpg" duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="right" vzoompos="left">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_135.jpg"  duration="4" effect="zoom" zoompercent="200" direction="out" hzoompos="center" vzoompos="center">
+        <![CDATA[<head> Bhojwasa </head><body><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_136.jpg"  duration="4" effect="kenburns" direction="right">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_137.jpg"  duration="4" effect="kenburns" direction="top">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+        <photo image="images/image_138.jpg"  duration="4" effect="kenburns" direction="bottom">
+        <![CDATA[<head>Bhojwasa </head><body>Gangotri-Gomukh Trekking (May-June 2011) </body>]]></photo>
+
+
+
+
+</slideshow>

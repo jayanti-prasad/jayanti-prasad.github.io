@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Multimedia page  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+
+
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> Multimedia</a>   </h1>
+<hr>
+<br><br><br>
+<p>
+Welcome to my multimedia  page ! Here I plan to put some  useful stuff which can be used 
+to edit/create documents, pictures, audio, movies.  Here you will find things like how to join multiple pdf files ?
+How to add watermarks or text on pictures  ? How to make avi movies from  jpg or
+png pcitures ? I will describe only those tools which are free under open source policy like
+gunplot, pgplot, image magic, gimp, mplayer etc.  
+</p>
+
+<h3> Joining multiple pdf files </h3>
+In order to do that you will need ghost view (gv) which is avaliable from gnu (most probably it
+will be already there on your linux system). Now we want to join pdf files file1.pdf file2.pdf 
+and want to make combined file joined.pdf. This can be done using the following command:
+<pre>
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=joined.pdf file1.pdf file2.pdf 
+</pre>
+There is no limitation on the number of files.
+
+<h3>  </h3>
+
+For my image-magic notes click <a href="docs/image-magic-tricks.txt"> here </a>.
+
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

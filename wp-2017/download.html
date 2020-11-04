@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Programs for download </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link rel="stylesheet" href="jpstyle.css">
+<script type="text/javascript" src="basiccalendar.js"></script>
+<script type="text/javascript">
+  <!--
+      function alertUserRight(){
+      alert("You are right !");
+      }
+      function alertUserWrong(){
+      alert("You are Wrong !");
+      }
+      
+      function displaymessage(message){
+      alert(message);
+      }
+ // -->
+ </script>
+
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+</head>
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> Download Center  </a>   </h1>
+<ul id="mb3">
+<li> <a href="#gsl"> GSL</a> </li>
+<li> <a href="#matrix" target="dyanmic"> MATRIX </a> </li>
+<li> <a href="#fftw"> FFTW  </a> </li>
+<li> <a href="#cosmomc"> COSMOMC </a> </li>
+</ul>
+<hr>
+<br><br><br>
+
+
+
+<hr>
+<h2> Scientific Packages developed by Me </h2>
+
+<p> Download Flagcal <a href="http://www.iucaa.ernet.in/~jayanti/flagcal.html"> here </a> </p>
+
+<h2><a name="gs">  GSL </a> </h2>
+<ol>
+<li> <a href="codes/gsl/uran.c">Generating Unoform Random numbers using GSL <a></li> 
+<li> <a href="codes/gsl/gran.c">Generating Gaussian Random numbers using GSL  <a></li> 
+<li> <a href="codes/gsl/histogram.c">Binning of data for histogram using GSL  <a></li> 
+<li> <a href="codes/plothist.c">A PGPLOT program for plotting Histogram   <a></li> 
+<li> <a href="codes/invert_upper_trinagualr.f90"> computing the  inverse of an Upper Trinagular Matrix using LAPACK/BLAS </a>
+<li> <a href="codes/compute_inverse.f90"> computing the inverse of a general squre matrix using LAPACK/BLAS </a>
+<li> <a href="codes/compute_det.c"> A program to compute the determinant of a matrix using GSL </a>
+<Li> <a href="codes/compute_eign.c"> A program to compute the eign values & eign vectors of a matrix using GSL </a>
+<lI> <a href="codes/passgen.c"> A simple C program to generate passwords !</a> 
+</ol>
+
+<h3> <a name="matrix"> Matrix Operations </a> </h3>
+<p> Here are some of the programs I written to find determinat, eign values, svd decomposition and inverse of square matrices.
+ In most cases the input and output is in the form of '.mat' files, which are basically ascii files with first
+ row having the number of rows/colums the matrix have followed by the rows. These programs use gsl and lapack/blas and
+ you will need to find out how to link those on your computer.</a>
+<ol>
+<li><a href="codes/matrix/compute_det.c"> Compute Determinant </a></li> 
+<li><a href="codes/matrix/compute_eign.c"> Compute Eign Values </a></li> 
+<li><a href="codes/matrix/compute_inverse.f90"> Compute Inverse </a></li> 
+<li><a href="codes/matrix/compute_multi.c"> Matrix Multiplication</a></li>
+<lI> <a href="codes/matrix/compute_svd.c"> SVD Decomposition </a> </li>
+</ol>
+
+<h3> <a name="fftw"> FFTW </a> </h3>
+<p> Fast Fourier Transformation in West (FFTW) is a powerful FFT package which is quite useful in problems related to 
+signal processing and data analysis. Here I have put some example programs in C for one, two and three dimensional
+Fourier transformation of the data (real in my case). Every example program not only produces a Fourier transformation 
+(output file out_*d.out), it also does the inverse fourier transformation (output file rec_*d.out) in order to check 
+the answers. You can plot the output files and input files using GNU plot. In the present case the data is created 
+with a signal which has two harmonics which can be directly seen by plotting the output file. <p> 
+
+<p> Apart from three examples programs, there is a  program for computing the frequency spectrum of the FFT and one 
+program for creating the input data for  example programs. You can download all the programs <a href="codes/fftw-examples.tar.gz"> here </a> 
+or download the individual programs below. </p>
+<ol>
+<li> <a href="codes/fftw/example_dft_1d.c">  One dimensional FFTW </a> </li> 
+<li> <a href="codes/fftw/example_dft_2d.c">  Two dimensional FFTW </a> </li> 
+<li> <a href="codes/fftw/example_dft_3d.c">  Three dimensional FFTW </a></li> 
+<li> <a href="codes/fftw/create_data.c"> Program for creating input data </a> </li>
+<li> <a href="codes/fftw/modes.c"> Program for creating FFT frequncy spectrum </a> </li>
+</ol>
+
+<h3> Other Donwloads </h3>
+<ol>
+<li> <a href="http://www.ma.utexas.edu/CNA/NMC6/nmc6-fortran90.html" target="dynamic">
+Numerical Mathematics and Computing </a>
+<LI><A HREF="https://people.sc.fsu.edu/~jburkardt/f_src/f_src.html" TARGET="DYNAMIC">
+Source Codes in
+Fortran90 
+</A>
+
+</ol>
+
+
+<h3><a name="cosmomc"> COSMOMC </a> </h3>
+<p> Download a Makefile for cosmomc from <a href="http://www.iucaa.ernet.in/~jayanti/codes/Makefile_COSMOMC"> here </a> </p>
+</div>
+
+<div class="container">
+  <p>
+ <a href="http://validator.w3.org/check?uri=referer" target="dynamic"><img
+      src="http://www.w3.org/Icons/valid-html401"
+      alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p><script type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+</body>
+</html>
+
+
+
+
+

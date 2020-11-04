@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's pthreads page </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> Posix Threads  or <i> pthreads </i>  </a>   </h1>
+<hr>
+<br><br><br>
+<p>Welcome to my pthreads page ! Here you can read about the basic philosophy of pthreads, which is one of the most effective 
+libraries (API) used for shared memory programming.  Apart from discussing the basic elements of 
+pthreads programming, I will also show some real examples with explanations and present some exercise also.
+You can read about what shared memory programming is and how it is different from distributed memory programming (MPI)
+on my other pages. Here I just want to tell you that for shared memory programming you do not need a cluster and
+you can do it on your laptop/desktop and get the performance immediately. </p>
+<p>
+The fundamental building blocks  of a Linux system are <i> processes </i> which includes <i> threads </i> and 
+other lightweight processes. The maximum number of processes which can run on a Linux system is fixed and depend on the 
+amount of memory available.  The creation and maintenance of a full process with its own address space takes up 
+a lot of time in terms of milliseconds, However, since threads run within the same address space as the parent 
+process, and therefore require much less time in creation. Basically, the main difference between processes and 
+threads is that threads share memory space but processes do not.
+</p>
+
+<p>In place discussing the elements of pthreads first I think it may be more useful to walk through a real pthreads example </p>
+
+
+<pre>
+     1  /*----------------------------------------------------------------------
+     2   * This program demonstartes the structure of a typical pthreads program.
+     3
+     4   *  We create threads and pass a pointer to the function we want to execute
+     5   in parallel.
+     6
+     7   *  The data needed by the function can be passed in the form of a structure or
+     8   can be declared global.  However, at lest we need to pass the id of the
+     9   thread to the function so that data portioning can be done.
+    10
+    11   * In this program a message 'Hello World' passed from the main program to every thread.
+    12
+    13   Jayanti Prasad, October 29, 2011
+    14   Suggestions & Comments :prasad.jayanti@gmail.com
+    15   for detail : http://www.iucaa.ernet.in/~jayanti/
+    16   --------------------------------------------------------------------------*/
+
+    17  #include&lt;stdio.h&gt;
+    18  #include&lt;stdlib.h&gt;
+    19  #include&lt;math.h&gt;
+    20  #include &lt;pthread.h&gt;
+
+    21  #define MAX_LEN 100
+
+
+    22  /* This is the structure we will use to pass data to every thread */
+
+    23  typedef struct{
+    24    int thread_id;
+    25    int num_threads;
+    26    char message[MAX_LEN];
+
+    27  } thread_data;
+
+
+    28  /* This is the function which will be executed by every thread */
+
+    29  void *thread_function(void *arg){
+    30    thread_data *p = (thread_data *)arg;
+    31    int my_id = p-&gt;thread_id;
+    32    int numthreads = p-&gt;num_threads;
+    33
+    34    fprintf(stdout,"%s from thread %d\n",p-&gt;message,my_id);
+    35
+    36  }
+
+    37  /* This is the main program which takes the number of threads as command line */
+
+    38  int main (int argc, char *argv[] ){
+    39    pthread_t *thread_id;
+    40    /* This is defined in pthread.h */
+    41    thread_data *q;
+    42    int i,num_pthreads;
+    43    char message[MAX_LEN]="Hello World !";
+    44
+    45    if (argc &lt; 2){
+    46      fprintf(stderr,"./hello_pthread <num threads>\n");
+    47      return(-1);
+    48    }
+    49
+    50    num_pthreads = atoi(argv[1]);
+    51
+    52    /* We have to create data array for every thread */
+    53    q = (thread_data *)malloc(num_pthreads*sizeof(thread_data));
+    54
+
+    55    /* This is pthread construct for the identification of threads*/
+    56
+    57    thread_id =(pthread_t *)malloc(num_pthreads*sizeof(pthread_t));
+    58
+    59    for(i=0; i &gt; num_pthreads; i++){
+    60      /* Firstly pack the data to be sent to threads */
+    61      q[i].thread_id = i;
+    62      q[i].num_threads = num_pthreads;
+    63      sprintf(q[i].message,"%s",message);
+    64
+    65      /* Now create the thread */
+    66
+    67      pthread_create(&thread_id[i],NULL,thread_function,(void *)(q+i));
+    68
+    69      /* We pass the function to be executed in the third argument and
+    70         data to be passed, which should at lest have thread id, at the
+    71         last argument*/
+    72    }
+    73
+
+    74    /* When things are done we can join the threads */
+    75
+    76    for(i=0; i &lt; num_pthreads; i++){
+    77      pthread_join(thread_id[i],NULL) ;
+    78    }
+    79
+    80    return (0);
+    81  }
+</pre>
+<p>
+This program may look very intimidating, however, if you have patience and walk through me then 
+after understanding this program you should be able to write a useful pthreads program, not just a hello world 
+program ! Note the followings in the program.
+</p>
+<P>
+<ol>
+<li>  Include the  header file &lt;pthread.h&gt; (see line 20).</li>
+<li>  Define an array "thread_id" of the pthreads construct type "pthread_t" and the size of
+the array should be equal to the number of threads you want to use (see line 39 and 57) . </li>
+<li>  Create a 'C' "structure" to pass the data to the function you want threads to execute concurrently (see line 23 to 27).</li> 
+<li> Write a function which you want  threads to execute concurrently of void type and arguments also with void type (see line 29 to 36). </p>
+<li> Now create the threads using a for loop  (see the for loop starting at line 59 and ending at line 72).</li>
+<li> Line 67 shows how thread are created by calling a function "pthread_create". Basically, this function has four arguments.
+  The first argument identifies the thread, third one passes the function and the last one the data (in the form of a structure).
+  Note that every threads gets a different peace of data.</li> 
+<li> One threads are done we can join them (see the for loop from line 76 to 78). </li>
+</ol>
+</p>
+<p>
+The above program  passes a message, id of the thread and the number of the thread to the function which every thread 
+has to execute concurrently. Note that in this case there is no return value of the function, however, when we have the 
+return value also, then can be get back using either global variables or can through the data structure. 
+In fact we can do data splitting inside function also using the id of threads.  
+</p>
+
+
+</div>
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

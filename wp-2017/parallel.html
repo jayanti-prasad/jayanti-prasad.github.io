@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Parallel programming page  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+
+
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> Parallel Programming  </a>   </h1>
+<hr>
+<br>
+Click <a href="docs/parallel-computation.pdf"> here </a> for my presenation on parallel computation. 
+<br><br>
+<p>
+People want to do parallel programming for two simple reasons: they
+want to run their existing codes quickly and they want to try out new problems which benefit from parallel programming. 
+In order to understand what parallel programming is and how it works let me give some 
+background of how compuatation is done. 
+</p>
+<p>
+In general,  the centeral processing unit (CPU) receives instructions (and data) from the main memory or RAM
+(which can be 32 bits or 64 bits long), decodes and executes these instruction and
+writes back the result in the main memory.  This cycle is repeated again and again. 
+By increasing the size of the instructions, and/or increasing 
+the clock speed one can execute more number of instructions per unit time (cycle). 
+The rate with which the data can be fetched from the main memory (RAM) is quite low as 
+compared to  the rate with which the processor can execute the instructions so 
+there are three extra layers of fast  memories are located 
+in between the processor and the main memory, called <b> caches </b>.
+These caches are named as  L1, L2, L3 etc.  L1 is the fastest 
+and is closest to the processor,  however, it is the smallest (few kb). The higher 
+caches are larger in the size but they are slow. 
+Here, it is important to mention that the main memory or the RAM needs to be refreshed 
+(called dynamic or DRAM) periodically in order to hold the data. 
+However, there is no such requirement for the cache (which is a static memory). Any way
+large cache and memory size is as important as the high clock speed as far as performance of 
+a computer is concerned. One of the main tasks of a programmer is to make sure that the use of
+the RAM and caches is done economically.
+</p>
+<p>
+In order to increase the performance of a processing unit a large number of transistors can be
+cramped in a small chip (at present there are typically half a billion transistors on a chip  !)
+however, it leads to over heating of the chip. One of the founders of intel, Gordon Moore predicted
+that  the transistor density in a typical chip will double in every 18 months. This  has been true 
+for the last four decades. Anyway, now it seems that we have reached the limit. Another way
+to boost the performance of a computing unit is to increase the clock speed.
+Increasing the clock speed not only demands for fast memories, it has a fundamental limit also
+which comes from special theory or relativity. 
+For a clock the maximum distance over which communication can be established is given by
+the speed of light multiplied by the clock rate. For a 3 GHZ clock it comes about 10 cm that means
+in a single processor cycle the signal can cross only 10 cm distance which is not good enough 
+for making practical devices.
+</p>
+
+<p>
+As is clear from the above discussion that there are practical constraints in making 
+very high performance single processing units.  However, by combining more than one 
+processing units together, one can achieve the same level of performance which one gets
+from a single high performance unit and that also at far lesser cost. On the basis
+of the fact whether these processing units are sharing the same main memory or not one uses 
+one of the two models of parallel programming named shared memory programming and
+distributed memory programming respectively.
+At present is has become a common fashion to have more than one processing units or cores 
+on a chip (like intel Core CPUs) which share a large global memory. 
+However, they have smaller private caches also.
+The computers which have processing units with shared memory are called SMP (symmetrical memory processors) 
+machines. By the way you can notice that most of these SMPs do not have large 
+clock speed (generally it is less than 3 GHZ). Apart from SMPs, one can have a 
+large number of processing units with dedicated memories connected with very 
+fast network (see figure below). Such systems are called clusters and  programming on 
+these is accomplished with shared memory models in which explicit communication is needed.
+At present the best deal is to mix the shared memory and the distributed memory programming by connecting a large 
+number of multi-core processors using a fast network. 
+At present the main tools (which I know)  available for the  distributed and shared 
+memory programming are as follows:
+</p>
+<h3> Distributed  memory programming </h3>
+<ul>
+<li> <a href="mpi.html"> MPI </a> </li>
+</ul>
+
+<center>
+	<img src="clusters.jpg">
+</center>
+
+
+
+<h3> Shared Memory programming </h3>
+<ul>
+<li><a href="openmp.html"> OpneMP </a> </li>
+<li><a href="pthreads.html"> pthreads </a> </li>
+<li><a href="itbb.html"> intel threading building blocks (itbb) </a></li>
+<li> java threads </li>
+</ul>
+<center>
+<img src="shared.jpg">
+</center>
+
+<center>
+	<img src="multicore.jpg"> <br>
+Reference: Rauber and Runger 2010, Springer (<i>  Parallel Programming For Multicore and Cluster Systems </i>)
+
+</center>
+
+<center>
+<img src="http://www.amd.com/PublishingImages/Public/Graphic_ChartsDiagrams/375WJPEG/28840.jpg">
+<br> AMD Opetron (Quad Core) as shown on AMD website 
+</center>
+
+
+
+
+</div>
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

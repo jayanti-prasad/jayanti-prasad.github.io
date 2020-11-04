@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's MPI  page </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+
+
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> MPI  </a>   </h1>
+<hr>
+<br><br><br>
+<p>
+Welcome to my Message Passing Interface (MPI) page. MPI is one of the most common libraries (API)  used for parallel 
+programming on clusters and distributed systems of computers. In a cluster or distributed system of computers every processor
+has its own memory and  if any other processor which is connected to it by high speed network wants to get some
+variable then that is done using <i> message passing </i> for which  MPI is used. Writing and running an MPI program is 
+quite tricky in comparison of to an OpenMP program. One of the main reasons behind this is that the programs are run 
+& executed differently on different systems. In fact in some cases there are dedicated compilers (well not exactly) for that.
+Here, I will present compilation and execution example for the NCRA cluster (hp). In place of going too much in explaining
+what MPI is and what MPI does let me give you the hello world ! program. 
+</p>
+<h4> Example 1 </h4>
+<pre>
+#include&lt;stdio.h&gt;
+#include&lt;mpi.h&gt;
+
+int main(int argc, char *argv[]){
+int rank, size, len;
+ char name[MPI_MAX_PROCESSOR_NAME];
+
+ MPI_Init(&amp;argc, &amp;argv);
+
+ MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+ MPI_Comm_size(MPI_COMM_WORLD, &amp;size);
+
+ MPI_Get_processor_name(name, &amp;len);
+ printf ("Hello world! I'm %d of %d on %s\n", rank, size, name);
+ MPI_Finalize();
+
+ return(0);
+
+}
+</pre>
+<p>
+Copy this program in a file named hello_world.c or <a href="codes/mpi_hello.c"> download </a> and compile it in the
+following way (on NCRA hp cluster may be on node 1) 
+</p>
+<pre>
+mpicc hello_world.c
+</pre>
+create a new file and write the name of machines (n1,n2 etc.) in that file and save that as HOST.LIST and after that
+execute your a.out  as
+<pre>
+mpirun -hostfile HOST.LIST ./a.out
+</pre>
+If you are lucky you will get something like 
+<pre>
+Hello world! I'm 2 of 3 on n3
+Hello world! I'm 0 of 3 on n1
+Hello world! I'm 1 of 3 on n2
+</pre>
+by the way my HOST.LIST file was as
+<pre>
+n1
+n2
+n3
+</pre>
+
+<p>
+Note that it is not necessary to use a dedicated MPI compiler like "mpicc" or "mpif90" for compiling a MPI code,
+any other compiler will do the job.  However, you will need to note that following things. 
+Give the location of the directory where you have "mpi.h" using "-I" commmand. For example, 
+if you have that in "/data/mpi/include" and your compiler is "gcc" then use the following:
+</p>
+<pre>
+gcc hello.c -I/data/mpi/include
+</pre>
+<p> The above is not enough. In this case you will need to give the path of your MPI library (if it is not
+in the path). For example, if that is in "/data/mpi/lib" use: 
+</p>
+<pre>
+gcc hello.c -I/data/mpi/include -L/data/mpi/lib -lmpi -lm 
+</pre>
+<p> It still may not work and you may need to linke other libraries also like "libgfortran" or any other 
+related to your compiler or you may need to link other libraries in MPI libraries which are specific to 
+various compiler. In any case you can always run your MPI program without having root password or taking 
+any help from system admin. You can install your own copy of MPI in your home area. I have done it and it works !
+Below is the my mpi compilation on IUCAA's cetus cluster with 
+</p>
+<pre>
+/data1/pdf/cjayanti/intel/Compiler/11.1/073/bin/intel64/ifort -I/opt/hpmpi/include/   -L/opt/hpmpi/lib/linux_amd64 -lmpi  test.f90 
+</pre>
+
+<p>
+If you are not able to run your hello world program  then stop here and check with your system admin otherwise move 
+forward.
+</p>
+<p>
+Every MPI program must use "mpi.h" header which basically define various MPI functions and variables. If you are not 
+using a compiler which is made for mpi like mpicc you may need to link available libraries when you compile and/or run 
+your executable. One very important thing to note is that in order to run your MPI program you must have permission 
+to login from one machine to another on the cluster without any need of password. If you do not know know that ask some 
+expert.  Now let me explain the hello world program.
+</p>
+<p>
+Every MPI program must begin with calling the function <b>  MPI_Init </b> which interpret various options you 
+may give at run time and if the call is successful it returns 0. The call  <b> MPI_Comm_rank </b> gives back 
+an integer "rank" which is the unique identification number of every processor which can be used to distribute
+the job. The processors with rank 0 is called the master node and play an important role in coordinating 
+other processors. The third call <b>  MPI_Comm_size </b> returns an integer (size) which gives us the total number 
+of processors being used (basically the number of processors we have put in our HOST.LIST file).  The next call
+<b>  MPI_Get_processor_name </b> returns us the names of processors. The last call of any MPI program is always
+<b>  MPI_Finalize() </b>. At this stage we do not need to bother about <b> MPI_COMM_WORLD </b> (which provides the
+space of processors which can communicate) and the variable <b> status </b> which tells us abut the success and
+failure of the call. By the way these two variables will be present in almost all the calls.
+</p> 
+
+<h4> Example 2 </h4>
+<p>
+The following program (<a href="codes/mpi_pi.c"> download </a>) computes the value of pi by numerically integrating 1/(1+x<sup>2</sup>) between 0 and 1 
+</p>
+<pre>
+
+#include<stdio.h>
+#include<mpi.h>
+#include<math.h>
+
+/*  
+ -   This program computes the value of pi by integrating 
+     1/(1+x^2) over the limit [0-1]
+
+-    You can use either the Trapazoidal rule or the Mid Point rule for 
+     integration by uncommneting the respective line.
+
+-    This is a demonstration program so ignore accuracy if you do not get the 
+     expected result debug ! the program.   
+
+                      -- Jayanti Prasad 
+*/
+
+
+double func(double x);
+double TrapzoidRule(int, double, double);
+double MidpointRule(int, double, double);
+
+int main(int argc, char ** argv){
+  int mynode,totalnodes;
+  const double global_a=0.0;
+  const double global_b=1.0;
+  double local_a,local_b,local_sum,answer;
+  int level=20;
+  double t1,t2; 
+  
+  MPI_Init(&argc,&argv);
+
+  MPI_Comm_size(MPI_COMM_WORLD,&totalnodes);
+  MPI_Comm_rank(MPI_COMM_WORLD,&mynode); 
+  
+  local_a=global_a+mynode*(global_b-global_a)/totalnodes;
+  local_b=global_a+(mynode+1)*(global_b-global_a)/totalnodes;
+  
+  //local_sum=TrapzoidRule(level,local_a,local_b);
+  local_sum=MidpointRule(level,local_a,local_b);
+  
+  MPI_Reduce(&local_sum,&answer,1,MPI_DOUBLE,
+	     MPI_SUM,0,MPI_COMM_WORLD);
+  
+  if(mynode==0){
+    printf("The answer is:%2.14f\n",answer);
+  }
+  
+  MPI_Finalize();
+  
+  return(0); 
+  
+}// end of main 
+
+double func(double x){
+   double y;
+   y=4.0/(1.0+x*x); 
+   
+   return(y);
+}// end of func 
+
+double TrapzoidRule(int level, double a, double b){
+  int i,j,nsteps;
+  double h, sum;
+  j= (int) pow(2.0,level);
+  nsteps= j-1;
+  
+   h=(b-a)/j;
+   sum=0.0;
+  
+   for(i=1; i<=nsteps;i++)
+     sum+=func(a+i*h);
+   sum*=2;
+   
+   sum+=func(a)+func(b);
+   sum*=0.5*h;
+   return (sum);
+}
+
+double MidpointRule(int level, double a, double b){
+  int i,j,nsteps;
+  double h, sum; 
+  j = (int) pow(2.0,level);
+  nsteps= j-1;
+  
+  h=(b-a)/j;
+  sum=0.0;
+  for(i=0; i <= nsteps;i++)
+    sum+=func(a+(i+0.5)*h);
+  sum*=h;
+  return sum;
+}
+</pre>
+
+
+
+
+</div>
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

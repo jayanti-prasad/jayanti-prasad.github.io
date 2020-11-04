@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Help  page  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> JP's Help and FAQ page ! </a>   </h1>
+<ul id="mb3">
+<li> <a href="#lsf">LSF </a> </li>
+<li> <a href="#ssh"> SSH Login without password  </a> </li>
+<li> <a href="#lib"> Libraries  </a> </li>
+<li> <a href="#pics"> Image Editing </a> </li>
+<li> <a href="#vdo"> Video Editing </a> </li>
+<li> <a href="#pdf"> Pdf/PS  Editing </a> </li>
+</ul>
+<br>
+<br> 
+<hr>
+<p>
+Many people come to me to fix this or that problem in computation. Mostly those problems are related to
+installing or running a software package. I have found that in most cases the problems arise 
+due to poor understanding of some basic things.  In what follows, I will discuss a few things 
+which if you understand clearly can make your life easy.
+</p>
+
+<h2> <a name="lsf"> LSF  </a> </h2>
+
+<p> For LSF healp  see <a href="docs/README.lsf" target="dynamic"> this </a>. </p>
+
+
+
+
+
+<h2> <a name="ssh"> SSH Login without password  </a> </h2>
+
+<p>
+There are many situations in which you want to login a machine B (Linux) from machine A (Linux) using 
+ssh without giving password. This may be necessary also for program like Mesaage Passing Intercae (MPI).
+You can achive this in three simple steps:
+</p>
+
+<p>
+Generate ssh keys in machine A
+</p>
+<pre>
+jayanti@machineA$ ssh-keygen
+</pre>
+<p> which will create a file 'id_rsa.pub' inside the directory '.ssh'. In second step you have to copy the id_rsa.pub file from machine A to .ssh/authorized_keys of machine B </p>
+<pre>
+scp ~/.ssh/id_rsa.pub  jayanti@machineB:~/.ssh/authorized_keys 
+</pre>
+<p>
+In the last step you can login to machine B from A without password.
+</p>
+<pre>
+jayanti@machineA$ ssh jayanti@machineB
+</pre>
+
+<h2> <a name="lib"> Static  and Dynamic libraries (On a Linux System) </a> </h2>
+
+<p>
+On a Linux system most software packages are installed in the form of <i> libraries </i> which are
+either dynamic (<b>.so </b>files or "shared  objects") or static libraries (<b>.a </b> files).
+Here I do not want to discuss about what static and dynamic libraries are, I just want to answer the 
+following questions:
+<ol>
+<li> Why to create libraries ?
+<li> How to create libraries ? 
+<li> How to use libraries ?
+<li> What are <i> header </i> files and how to use them ?
+</ol>
+
+<h3> 1. Why to create libraries ? </h3>
+<P>
+In every software package, which is distributed in the form of a source code (FORTRAN or C files), 
+there are a large number of files which contain programs for doing many things.
+In most cases there are programs in a code which can be used in some other codes also and it makes sense to pack them 
+into a single library file which can be easily used by other codes. <b> By creating a 
+library we can pack a large number of program files in a single library file </b>.
+
+<h3> 2. How to create libraries ?  </h3>
+
+For example, we have two files named <b>sum.c </b> and <b>diff.c </b> in which we have programs to compute 
+sum and difference of numbers, we can pack these in a single library file in the following way.
+</p>
+
+<pre>
+gcc -c sum.c 
+gcc -c diff.c 
+</pre>
+
+<p> 
+This will create two files named <b>sum.o</b> and <b>diff.o </b>from which we can create a static library file named <b>libmymath.a </b> in 
+the following way:
+</p>
+
+<pre>
+ar rc  libmymath.a sum.o diff.o
+</pre>
+
+<p>
+This will create a library file named <b>libmymath.a </b>
+</p>
+
+<p> Shared/dynamic libraries can be created in the following way </p>
+<pre>
+gcc -Wall -g  -shared -Wl,-soname,libtest.so.0 -o libtest.so.0 sum.o diff.o   
+</pre>
+
+
+<p> For example download <a href="codes/library_example.tar.gz"> this </a> .tar.gz  file. </p> 
+
+<h3> 3. How to use libraries ? </h3>
+<p>
+We can write the following main program <b> main.c </b> which uses  the function <b> sum </b> and <b> diff </b> which are packed 
+in the library <b>libmymath.a </b>.
+</p>
+<pre>
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int sum (int, int);
+int diff(int, int);
+
+int main(int argc, char *argv[]){
+    int a, b, c, d;
+    printf("give two number \n");
+    scanf("%d %d",&a,&b);
+
+    c=sum(a,b);
+    d=diff(a,b);
+
+    printf("sum=%d. diff=%d\n",c,d);
+
+   return(0);
+}
+</pre>
+<p>
+Now there are the following two way to use the library. In the first case we use:
+</p>
+<pre>
+gcc main.c libmymath.a -lm 
+</pre>
+<p> This is not the common way by which libraries are used. In general we use the <b> PATH </b> 
+of the directory where the library file is and then use <b> -lnameoflib </b>. For example, 
+in the present case we can use: </p>
+<pre>
+gcc main.c -L/PATH  -lmymath
+</pre>
+<p>
+Note that in the present case the name of the library is <b>libmymath.a</b> so we use <b> -lmymath </b>.
+We add a <b>-</b> sign and replace <b>lib</b> by <b>l</b> and do not use <b>.a</b>.
+</p>
+
+<p>
+I have my <b> GSL </b> library named <b> libgsl.a </b> in the directory <b>/data/software/gsl/lib/ </b>
+so I should use </p>
+<pre>
+gcc main.c -L/data/software/gsl/lib -lgsl 
+</pre>
+<p> to use the gsl library. Note that you may be having your own compilation options do not forget them.</p>
+
+
+<P>
+Another most standard way to use library is to put the path of your library in your <b>.bashrc </b> file.
+For example in the case of my GSL, I can put the following two lines in my <b>.bashrc </b> file:
+</p>
+
+<pre>
+LD_LIBRRAY_PATH=$LD_LIBRRAY_PATH:/data/software/gsl/lib
+export LD_LIBRRAY_PATH
+</pre>
+
+<p>and after that I must do: </p>
+<pre>
+source .bashrc
+</pre>
+
+<p> After doing all this now I do not have to  give the full path of the library and I can use </p>
+<pre>
+gcc main.c  -lgsl 
+</pre>
+
+<p>
+Note that sometime it may happen that the name of the library you want to use does not
+start from <b>lib </b>. In that situation you must give the full name of the library at the
+time of compiling/running the program. For example if you have a library like <b> lapack_LINUX.a </b>
+you can use that in the following way:
+</p>
+<pre>
+gfortran test.f90 PATH/lapack_LINUX.a
+</pre>
+<p> where path may be like <i> /data1/software/lapack/lapack-3.3.1 </i> </p>
+
+
+<p> In order to know all the libraries installed on your Linux computer and their version run: </p>
+<pre>
+/sbin/ldconfig -p
+</pre>
+
+
+<p>
+In order to know which of the libraries are used by a binary executable use the command <b> ldd </b>.  
+For example the following command tells us which of the libraries are used by the command <b> ls </b>
+</p>
+<pre>
+ldd /bin/ls
+</pre>
+
+<p> A very good introduction of libraries is given <a href="http://tldp.org/HOWTO/Program-Library-HOWTO/introduction.html" target="dynamic"> here </a> . </p>
+
+
+<h3> 4. What are <i> header </i> files and how to use them ? </h3>
+<p>
+In general with every software package there are header files or <b>.h </b> which contains the 
+values of parameters, variable definition and specification for <b> functions </b> and we must 
+give the path of these files using the <b> -I </b> files. In the case of my <b> GSL </b> I must use:
+</p>
+
+<pre>
+gcc main.c -L/data/software/gsl/lib -lgsl  -I/data/software/gsl/include 
+</pre>
+
+<p> After knowing all this, there is no reason for you not being able to use a library, if you know
+where your library files (<b> .a</b>) and header files (<b>.h </b>)  are. </p>
+
+<p> I will add  more about libraries later on, however, in case you have any problem, mail me at
+[prasad.jayanti@gmail.com]
+</p>
+
+
+<h2> <a name="pics">  How to create banners using Image Magic </a> </h2>
+<p>  In order to create a simple banner do the following :</p>
+<pre>
+convert -size 650x100 -background  transparent -fill blue \
+ -pointsize 64 -gravity center 'label:JP Media & Art Work' logo.png
+ </pre>
+<p> Note the following things :
+<ol>
+<li> '\' is for line break
+<li>  '-size 650x100'  is used to set the size of the banner 
+<lI> '-background  transparent' is used to set the  background 
+<Li> '-pointsize 64' for setting the font size
+<li>'-gravity center' is used to position the text 
+</ol>
+</p>
+<p>If you want to write a full paragraph with line breaks, do the following: </p>
+<pre>
+convert -size 600x180 -background  transparent -fill blue \
+ -pointsize 32 -gravity center  caption:'Sometime sky becomes
+   so dark\n  I cannot see  stars and lose track \n  when you
+     recognize me \n I know I have not gone too far' poem1.png
+</pre>
+<p> here '\n' is used for line  break. If you want to change the color of background and text you can do that using: </p> 
+<pre>
+convert -size 650x100 -background  gray  -fill blue  -pointsize \
+   64 -gravity center 'label:JP Media & Art Work'  logo.png
+
+</pre>
+
+For my image-magic notes click <a href="docs/image-magic-tricks.txt"> here </a>.
+
+<h2> <a name="vdo">  Video editing with mencoder </a> </h2>
+<ol>
+<li> Deleting section from a video </li>
+<pre>
+mencoder video3.avi -ofps 25 -o clip1.avi -oac lavc -ovc lavc -vf scale=320:240 -ss 59 -endpos 15
+</pre>
+<li>Joining clips together </li>
+<pre>
+mencoder clip1.avi clip2.avi clip3.avi -o result.avi -oac lavc -ovc lavc
+</pre>
+<li> Extracing audio from video </li>
+<pre>
+ffmpeg -i uttarakhand...Paradise_on_Earth.mp4 -f mp3 -ab 192000 -vn music.mp3
+</pre>
+<li> Adding audio to video </li>
+mencoder -ovc copy -audiofile music.mp3 -oac copy Gangotri-Gomukh-Slide-Show.mp4 -of mpeg -o Gangotri-Gomukh-Slide-Show-with-Audio.mp4
+</ol>
+
+
+<h3> Joining multiple pdf files </h3>
+In order to do that you will need ghost view (gv) which is avaliable from gnu (most probably it
+will be already there on your linux system). Now we want to join pdf files file1.pdf file2.pdf
+and want to make combined file joined.pdf. This can be done using the following command:
+<pre>
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=joined.pdf file1.pdf file2.pdf
+</pre>
+There is no limitation on the number of files.
+
+<h3>Remove pages from PDF files on Linux </h3>
+The following command will remove pages from 10-25.
+<pre>
+pdftk old.pdf cat 1-9 26-end output new.pdf
+</pre>
+
+Another command is :
+<pre>
+ gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dFirstPage=m -dLastPage=n -sOutputFile=output.pdf input.pdf 
+</pre>
+
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+
+
+
+</body>
+</html>

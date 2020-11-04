@@ -1,0 +1,161 @@
+#-------------------------------------------------------------------------------
+#  This code needs the followings:
+#  (1) GSL
+#  (2) CFITSIO
+#  (3) LAPACK/BLAS
+#  (4) WMAP Likelihood code
+#  (5) CAMB 
+#  (6) WMAP Seven year data
+#  (7) Data provided with COSMOMC
+#  (8) ifort
+#  (9) MPI Libraries 
+#  (10)libgfortran 
+#
+# define your system and specify the options for 
+# that by adding a new section below.
+#
+# This Makefile does not assume that you have camb at ../camb,
+# that can be anywhere.
+#
+# The Likelihood code can also be anywhere. Not only that, 
+# the likelihood code and WMAP Seven year data need not to be togather.   
+
+# Note that inside the WMAP likelihood code program you must give the
+# path for WMAP data in file 'WMAP_7yr_options.F90'
+#  
+# You must give the absolute path of the data directory provided with 
+# cosmomc in file 'settings.f90'
+#
+# If you get error message when compileing, please rename  some files as  
+# '.f90' to '.F90' which may resolve the issue.
+#
+# So far I have not been able to compile the code with 'mpif90'
+# with 'OpenMP' option enables so I always use 'ifort'
+#
+#  Unresolved issues :
+#  (1) I am not able to get 800 % CPU use with 8 OpenMP threads. 
+#
+#                                 Jayanti Prasad, Sept 15, 2011
+# 
+#-------------------------------------------------------------------
+
+SYSTYPE="IUCAA_CETUS"
+#SYSTYPE="IUCAA_CRAY"
+
+ifeq ($(SYSTYPE),"IUCAA_CETUS")
+mpi=/opt/hpmpi
+F90C = ifort -I$(mpi)/include/ -openmp
+cfitsio=/data1/pdf/cjayanti/Software/cfitsio
+LAPACKDIR=/data1/pdf/cjayanti/Software/lapack-3.2.2
+GSLPATH=/data1/pdf/cjayanti/Software/gsl
+GCC=/usr/lib/gcc/x86_64-redhat-linux/4.1.2/
+CAMB=/data1/pdf/cjayanti/Research/CMBR/COSMOMC/camb
+WMAP=/data1/pdf/cjayanti/Research/CMBR/COSMOMC/likelihood_v4
+endif
+
+#   Do not change anything below ! 
+#   
+
+##Uncomment the next line to include dr7 LRG
+EXTDATA = 
+#EXTDATA = LRG
+
+CFITSLIB=-lcfitsio
+
+MPILIB = $(mpi)/lib/linux_amd64
+IFLAG = -I
+INCLUDE= -I. -I$(CFITSIO)/include #-I$(mpi)/include 
+
+FFLAGS =  -O2  -DESCAPEBACKSLASH -DMPI  -L/usr/lib/gcc/x86_64-redhat-linux/4.1.2/ -lgfortran -L$(MPILIB) -lmpi
+LAPACKL = -L$(CFITSIO)/lib $(CFITSLIB) $(LAPACKDIR)/lapack_LINUX.a  $(LAPACKDIR)/blas_LINUX.a  -L$(GCC) -lgfortran 
+
+PROPOSE = propose.o
+CLSFILE = CMB_Cls_simple.o
+
+#Can use params_H if you prefer more generic parameters
+PARAMETERIZATION = params_CMB.o
+
+F90FLAGS = -DMATRIX_SINGLE $(FFLAGS) $(IFLAG)../camb $(INCLUDE)
+LINKFLAGS = -L$(CAMB) -lcamb $(LAPACKL) 
+
+DISTFILES = utils.o ParamNames.o Matrix_utils.o settings.o GetDist.o
+
+OBJFILES= utils.o ParamNames.o Matrix_utils.o settings.o IO.o cmbtypes.o Planck_like.o \
+	cmbdata.o WeakLen.o bbn.o bao.o lrggettheory.o mpk.o supernovae.o HST.o SDSSLy-a-v3.o \
+	$(CLSFILE) paramdef.o $(PROPOSE) $(PARAMETERIZATION) calclike.o \
+	conjgrad_wrapper.o EstCovmat.o postprocess.o MCMC.o driver.o
+
+
+ifeq ($(EXTDATA),LRG)
+F90FLAGS += -DDR71RG
+OBJFILES += bsplinepk.o
+GSLINC = -I$(GSLPATH)/include
+LINKFLAGS += -L$(GSLPATH)/lib -lgsl -lgslcblas
+endif
+
+ifneq ($(WMAP),)
+F90FLAGS += $(IFLAG)$(cfitsio)/include $(IFLAG)$(WMAP)
+LINKFLAGS +=  -L$(cfitsio)/lib -L$(WMAP) -lcfitsio
+OBJFILES += $(WMAP)/read_fits.o $(WMAP)/healpix_types.o $(WMAP)/WMAP_7yr_options.o  $(WMAP)/WMAP_7yr_util.o $(WMAP)/WMAP_7yr_tt_pixlike.o $(WMAP)/WMAP_7yr_teeebb_pixlike.o $(WMAP)/WMAP_7yr_likelihood.o $(WMAP)/WMAP_7yr_gibbs.o $(WMAP)/WMAP_7yr_tt_beam_ptsrc_chisq.o $(WMAP)/br_mod_dist.o  
+else
+F90FLAGS += -DNOWMAP
+endif
+
+default: cosmomc
+
+all : cosmomc getdist
+
+utils.o: $(CAMB)/libcamb.a
+settings.o: utils.o
+cmbtypes.o: settings.o
+Planck_like.o: cmbtypes.o
+cmbdata.o: Planck_like.o $(WMAPOBJS)
+WeakLen.o: cmbtypes.o
+bao.o: cmbtypes.o
+mpk.o: cmbtypes.o lrggettheory.o
+HST.o: cmbtypes.o
+supernovae.o: cmbtypes.o
+SDSSLy-a-v3.o: cmbtypes.o
+$(CLSFILE): cmbtypes.o mpk.o HST.o bao.o IO.o
+paramdef.o: $(CLSFILE)
+$(PROPOSE): paramdef.o
+$(PARAMETERIZATION): paramdef.o
+calclike.o: $(PARAMETERIZATION)
+conjgrad_wrapper.o: calclike.o
+EstCovmat.o: conjgrad_wrapper.o
+postprocess.o: calclike.o
+MCMC.o: calclike.o
+driver.o: MCMC.o
+
+export FFLAGS
+export F90C
+
+.f.o:
+	f77 $(F90FLAGS) -c $<
+
+%.o: %.c
+	$(CC) $(GSLINC) -c $*.c
+
+%.o: %.f90
+	$(F90C) $(F90FLAGS) -c $*.f90
+
+%.o: %.F90
+	$(F90C) $(F90FLAGS) -c $*.F90
+
+
+cosmomc: camb $(OBJFILES)
+	$(F90C) -o ../cosmomc $(WMAP)/read_archive_map.F90 $(OBJFILES) $(LINKFLAGS) $(F90FLAGS)
+
+
+clean: cleancosmomc
+	rm -f $(CAMB)/*.o $(CAMB)/*.obj $(CAMB)/*.mod
+
+cleancosmomc:
+	rm -f *.o *.mod *.d *.pc *.obj ../core 
+
+
+getdist: camb $(DISTFILES)
+	$(F90C) -o ../getdist $(DISTFILES) $(LINKFLAGS) $(F90FLAGS) 
+
+camb:
+	cd $(CAMB) && $(MAKE) --file=Makefile_main libcamb.a

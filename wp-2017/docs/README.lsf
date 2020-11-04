@@ -1,0 +1,56 @@
+Some Useful LSF Commands
+-------------------------
+
+These are some of the most useful LSF commands which I have collected from internet. All the commands come with
+help/man page so you can find about their detail use in those pages. Some of the commands may not work for
+your Linux cluster. The commands in group A are mostly for monitoring the health of your system and in Group B are 
+for monitoring and managing your job.
+
+Jayanti Prasad
+February 22, 2014 
+--------------------------------
+
+Group A:
+
+(1) lsid       : Display the LSF release version, the name of the local load sharing cluster, and the name of its master LIM host.
+(2) lsclusters :  Display general configuration information about LSF clusters.
+(3) lsinfo     : Display information about the LSF configuration, including available resources, host types and host models.
+(4) lshosts    : Display information about LSF host configuration, including host type, host model, CPU normalization factor, 
+                 number of CPUs, maximum memory, and available resources.
+(5) lsplace    : Query LIM daemon for a placement decision. This command is normally used in an argument to select hosts for other commands.
+(6) lsrtasks   : Display or update the user's remote or local task lists. These task lists are maintained by LSF on a per user basis 
+                 to store the resource requirements of tasks. Default: display the task list in multi-column format.
+(7) lsrun      : Submit a task to the LSF system for execution, possibly on a remote host.
+(8) lsgrun     : Execute a task on the specified group of hosts.
+(9) lsload     : Display load information on hosts, in order of increasing load.
+(10)lsmon      : Full screen LSF monitoring utility displaying dynamic load information of hosts. 
+               lsmon supports all the lsload options, plus the additional -i and -L options. It also has run-time options.
+
+Group (B)
+
+(1) bsub   :     Submit a batch job to the LSF system 
+(2) bkill  :     Kill a running job 
+(3) bjobs  :     See the status of jobs in the LSF queue 
+(4) bpeek  :     Access the output and error files of a job 
+(5) bhist  :     History of one or more LSF jobs 
+(6) bqueues:     Information about LSF batch queues 
+(7) bhosts :     Display information about the server hosts in the LSF Batch system. 
+(8) bhpart :     Display information about host partitions in the LSF Batch system. 
+(9) bparams:     Display information about the configurable LSF Batch system parameters. By default only display the most 'interesting' parameters. 
+(10 busers :     Display information about LSF Batch users and user groups. 
+(11)bugroup:     Display LSF Batch user or host group membership. If a group member is a group itself (subgroup), then a slash '/' is appended to its name. 
+(12)bmodify:     Modify the options of a previously submitted job. bmodify uses a subset of the bsub options. To reset an option
+                to its default value, use the option string followed by 'n'.  
+(13)bstop :      Suspend  one or more unfinished batch jobs.  		
+(14)bresume:     Resume one or more unfinished batch jobs. 
+(15)bchkpnt:  Checkpoint one or more unfinished (running or suspended) jobs. The job must have been submitted with bsub -k. 
+(16)brestart: Submit a job to be restarted from the checkpoint files in the specified directory. brestart uses a subset of the bsub options. 
+(17)bmig   : Migrate one or more unfinished (running or suspended) jobs to another host. The job must have been submitted with -r or -k options to bsub. 
+(18)btop and bbot: Move a pending job to the top (beginning) or bottom (end) of its queue. This only effects the user's own jobs. 
+(19)bswitch: Switch one or more unfinished (running or suspended) jobs from one queue to another. 
+(20)bcal:  Display information about the calendars in the LSF JobScheduler system. 
+(21)bdel: Delete one or more unfinished batch jobs. This command must be used to remove a calendar-driven job from the LSF 
+           JobScheduler system. bkill kills the current run of the job, while bdel removes the job completely. 
+	   Running bdel on a job that is not calendar-driven is equivalent to bkill. 
+ 	   
+

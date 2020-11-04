@@ -1,0 +1,11 @@
+barrier_omp.c
+compute_pi_omp.c
+critical_omp.c
+first_private_omp.c
+hello_world_omp.c
+last_private_omp.c
+matrix_vector_omp.c
+nbody_kernal_omp.c
+prime_number_omp.c
+scalar_product_omp.c
+schedule_omp.c

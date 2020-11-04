@@ -1,0 +1,517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Cuda </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> CUDA  </a>   </h1>
+<hr>
+<br><br><br>
+<p>
+CUDA (Compute Unified Device Architecture) is a parallel computing architecture 
+developed by NVIDIA which is used to write programs for CUDA enabales GPUs
+in a language which is not very different from ANSI C. 
+In fact apart from few new  constructs and extra functions, cuda programs look 
+exactly like C programs. Before going to discuss how to write a CUDA program,
+it is useful to become familer with the GPU you have and the CUDA installation 
+on your system.
+</p>
+<p>
+In order to know which NVIDIA GPU you have type of the following command on your shell:
+</p>
+<pre>
+nvidia-smi -lso
+</pre>
+<p>
+You can find out about  more options for <b>nvidia-smi</b> using the following command:
+</p>
+<pre>
+nvidia-smi --help 
+</pre>
+<p> If nothing work just type: </p>
+<pre>
+nvidia-smi -q
+</pre>
+<p> This should give you something like </P>
+<pre>
+==============NVSMI LOG==============
+
+Timestamp                       : Tue Dec 10 16:43:07 2013
+
+Driver Version                  : 280.13
+
+Attached GPUs                   : 1
+
+GPU 0000:08:00.0
+    Product Name                : Tesla C2050
+    Display Mode                : Disabled
+    Persistence Mode            : Disabled
+    Driver Model
+        Current                 : N/A
+        Pending                 : N/A
+    Serial Number               : 0320711012310
+    GPU UUID                    : GPU-a1e8d98e02f605fb-d559360b-351c613f-13630b4b-4cf5ad65c453037037f0b6f9
+    Inforom Version
+        OEM Object              : 1.0
+        ECC Object              : 1.0
+        Power Management Object : 1.0
+    PCI
+        Bus                     : 8
+        Device                  : 0
+        Domain                  : 0
+        Device Id               : 06D110DE
+        Bus Id                  : 0000:08:00.0
+    Fan Speed                   : 30 %
+    Memory Usage
+        Total                   : 2687 Mb
+        Used                    : 5 Mb
+        Free                    : 2681 Mb
+    Compute Mode                : Default
+    Utilization
+        Gpu                     : Unknown Error
+        Memory                  : Unknown Error
+    Ecc Mode
+        Current                 : Enabled
+        Pending                 : Enabled
+    ECC Errors
+        Volatile
+            Single Bit            
+                Device Memory   : 0
+                Register File   : 0
+                L1 Cache        : 0
+                L2 Cache        : 0
+                Total           : 0
+            Double Bit            
+                Device Memory   : 0
+                Register File   : 0
+                L1 Cache        : 0
+                L2 Cache        : 0
+                Total           : 0
+        Aggregate
+            Single Bit            
+                Device Memory   : N/A
+                Register File   : N/A
+                L1 Cache        : N/A
+                L2 Cache        : N/A
+                Total           : 0
+            Double Bit            
+                Device Memory   : N/A
+                Register File   : N/A
+                L1 Cache        : N/A
+                L2 Cache        : N/A
+                Total           : 0
+    Temperature
+        Gpu                     : 70 C
+    Power Readings
+        Power State             : P12
+        Power Management        : N/A
+        Power Draw              : N/A
+        Power Limit             : N/A
+    Clocks
+        Graphics                : 50 MHz
+        SM                      : 101 MHz
+        Memory                  : 135 MHz
+
+</pre>
+
+<P> when you run a cuda program many of the parameters given above change. Particularly the Gpu temperature
+and the memory use which should be a confirmation that the Gpu is doing the job. </p> 
+
+
+<p>
+Note the following main points if you are planning to write your own cuda programs.
+<ol>
+<li>
+You should name your source file something.cu e.g., hello.cu
+<li>
+You should compile your program with the compiler <b> nvcc </b> which comes 
+with cuda (will most likely  be in cuda_dir/bin/).
+<li>
+You must have cuda library in your path (set that according to your SHELL).
+<li>
+You must include &lt;cuda.h&gt; in your source code. 
+</ol>
+<p>
+Before compiling the hello world !  or any other program, it may be useful to know all the 
+details of the GPU/GPUs you have by runing this program(<a href="codes/mygpu.cu">  download </a>).
+</p>
+<h4> Example 0: </h4>
+
+<pre>
+#include &lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;cuda.h&gt;
+
+int main( void ) {
+    cudaDeviceProp prop;
+    int count;
+ 
+    cudaGetDeviceCount( &count);
+
+    for (int i=0; i&lt; count; i++) {
+       cudaGetDeviceProperties( &prop, i);
+
+       printf( " --- General Information for device %d ---\n", i );
+       printf( "Name: %s\n", prop.name );
+       printf( "Compute capability: %d.%d\n", prop.major, prop.minor );
+       printf( "Clock rate: %d\n", prop.clockRate );
+       printf( "Device copy overlap: " );
+       
+       if (prop.deviceOverlap)
+             printf( "Enabled\n" );
+       else
+             printf( "Disabled\n" );
+       printf( "Kernel execition timeout : " );
+
+
+       if (prop.kernelExecTimeoutEnabled)
+             printf( "Enabled\n" );
+       else
+             printf( "Disabled\n" );
+    
+       printf( " --- Memory Information for device %d ---\n", i );
+       printf( "Total global mem: %ld\n", prop.totalGlobalMem );
+       printf( "Total constant Mem: %ld\n", prop.totalConstMem );
+       printf( "Max mem pitch: %ld\n", prop.memPitch );
+       printf( "Texture Alignment: %ld\n", prop.textureAlignment );
+       printf( " --- MP Information for device %d ---\n", i );
+       printf( "Multiprocessor count: %d\n",
+       prop.multiProcessorCount );
+       printf( "Shared mem per mp: %ld\n", prop.sharedMemPerBlock );
+       printf( "Registers per mp: %d\n", prop.regsPerBlock );
+       printf( "Threads in warp: %d\n", prop.warpSize );
+       printf( "Max threads per block: %d\n",
+       prop.maxThreadsPerBlock );
+       printf( "Max thread dimensions: (%d, %d, %d)\n",
+       prop.maxThreadsDim[0], prop.maxThreadsDim[1],
+       prop.maxThreadsDim[2] );
+       printf( "Max grid dimensions: (%d, %d, %d)\n",
+       prop.maxGridSize[0], prop.maxGridSize[1],
+       prop.maxGridSize[2] );
+       printf( "\n" );
+   }
+}
+      
+
+</pre>
+<p>Run this program as follows : </p>
+<pre>
+nvcc mygpu.cu 
+./a.out 
+</pre>
+<p>If everything goes fine then you will get the following output: </p>
+<pre>
+--- General Information for device 0 ---
+Name: Quadro FX 3700
+Compute capability: 1.1
+Clock rate: 1242000
+Device copy overlap: Enabled
+Kernel execition timeout : Disabled
+ --- Memory Information for device 0 ---
+Total global mem: 536150016
+Total constant Mem: 65536
+Max mem pitch: 262144
+Texture Alignment: 256
+ --- MP Information for device 0 ---
+Multiprocessor count: 14
+Shared mem per mp: 16384
+Registers per mp: 8192
+Threads in warp: 32
+Max threads per block: 512
+Max thread dimensions: (512, 512, 64)
+Max grid dimensions: (65535, 65535, 1)
+</pre>
+
+
+<p>
+Once we know where CUDA is inatlled and which GPU we have, it is time to try out something
+real. Below I am giving a program to compute the value of Pi using CUDA. Follow the comments
+and run the program.
+</p>
+
+<h4> Example 1 :</h4>
+Try out the following cuda program (<a href="codes/compute_pi.cu"> download </a>).
+<pre>
+
+/*------------------- Parallel Programming with CUDA : Demo 1 -------------&gt;&gt;&gt;
+
+ This program computes the value of pi by integrating 1/(1+x^2) between limits [0,1]
+ and demonstrate the use of cuda.
+
+ In the present example cuda threads are in the form of a three dimensional block
+ of size 4 X 4 X 4 and which is a member of a grid of size 1 X 1 X 1.
+
+ Total number of cuda threads (nthreads) = number of grids X number of threads in a block.
+
+ User has to specify the number of point (npoints) used for the integration at run time.
+
+ This program contains two parts : one computes (which runs on the device i.e., GPU)
+ and another sends/receives the data (runs on the host i.e., the CPU).
+
+ The number of computations done by a thread = npoints/nthreads
+
+ Each thread computes a local sum and finally all local sums are added in the local sum of
+ the thread with id 0
+
+
+Important CUDA concepts used in the program:
+
+ 1. cudaMalloc : used to assign memory on the device i.e., GPU
+ 2. cudaMemcpy : used to copy the value of a variable from the GPU memory space to CPU
+ 3. dim3 : this is type of grid and blocks and can be used to specify the dimensionality
+ 4. cuda calling fashion:
+
+  compute &lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;(local_sum,nval,BLOCK_SIZE);
+
+  by using &lt;&lt;&lt;&gt;&gt;&gt; we can tell the GPU that how many grid or blocks should be used
+  to arrange cuda threads.
+
+
+CUDA Philosophy:
+  People who are familiar with shared memory programming (pthread,opneMP) can recall that
+  there is just one memory space which is shared by all the threads. In case of CUDA
+  there are two memory spaces, one for the host (CPU) and another for the device (GPU).
+  Programmer has to copy the values of variables from one space to another using cudaMemcpy
+  function.
+
+
+  I think this should be good enough for you to get started with cuda !
+
+  You can talk to me if you are further interested in learning cuda like me.
+
+                              Jayanti Prasad (prasad.jayanti@gmail.com)
+                              Jan 21, 2011
+
+&lt;&lt;&lt;------------------------------------------------------------------------------------*/
+
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;math.h&gt;
+#include&lt;cuda.h&gt;
+
+#define BLOCK_SIZE 4 
+
+__global__ void compute(float *local_sum, float nval, int threadDim){
+  
+  int i,tidx,tidy,tidz,myid,nthreads;   
+  float x,sum,h,tmp;
+  
+  tidx = threadIdx.x;
+  tidy = threadIdx.y;
+  tidz = threadIdx.z;
+  
+  myid = tidz + threadDim*(tidy+threadDim*tidx);
+  nthreads = threadDim * threadDim * threadDim;
+  
+  h = 1.0/nval; 
+  sum = 0.0;
+  x = 0.0;
+  
+  local_sum[myid] = 0.0;
+  
+  for(i= myid + 1; i  &lt;= nval; i+= nthreads)
+    {
+      x = h * ( (float)i - 0.5 );
+      sum += (4.0 /(1.0 + x*x));
+    }
+  
+  local_sum[myid] = h * sum;
+  
+  __syncthreads();
+  
+  if( myid == 0 )
+    {
+      tmp = 0.0f;
+      for(i = 0; i  &lt; nthreads;i++)
+	tmp  += local_sum[i];
+      local_sum[0] = tmp;
+    }
+}
+// this was the device part 
+
+int main (int argc, char *argv[])
+{
+  float *local_sum; // for devive return variable 
+  float *global_sum; // this is for the host (CPU)
+  int   nval; // this is for device 
+  int   numThread = BLOCK_SIZE*BLOCK_SIZE;
+  
+  nval = atoi(argv[1]); 
+  
+  global_sum  = (float*) malloc( sizeof(float));
+
+  cudaMalloc( (void**)&local_sum, numThread * sizeof(float));
+  
+  dim3 dimGrid(1,1,1);  
+  
+  dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE,BLOCK_SIZE);
+  
+  compute &lt;&lt;&lt;dimGrid, dimBlock &gt;&gt;&gt;(local_sum,nval,BLOCK_SIZE);
+  
+  cudaMemcpy((void*)global_sum, (void*)local_sum, sizeof(float),cudaMemcpyDeviceToHost );
+  
+  printf( "PI = %2.14f for %d # points\n", *global_sum,nval);
+  
+  cudaFree(local_sum);
+  
+  free(global_sum);
+  
+  return(0); 
+  
+}
+
+</pre>
+
+<h4> Example 2  </h4>
+(<a href="codes/cuda_example1.cu"> download </a>)
+<pre>
+/*------------------------------------------------------------------
+                        CUDA Example 2
+This program compute the sum of two vectrors of size N.
+The work is distributed amoung cuda threads which are arranged in blocks.
+Every block belongs to some grid and every thread belong to some block.
+For simplicity I consider one dimensional grid only. However, blocks are
+three dimenional. The number of blocks are computed on the basis of the
+size of the blocks and the size of the problem.
+
+number of blocks (dimensionality of 1 d grid)=probelem size (N)/
+number of threads in a blocks. 
+
+make sure you get an integer when divide your problem size by the number
+of threads in a block. If you are not getting an integer, change the BLOCK_SIZE
+accordingly.
+
+Note that in any case you should not have more than 512 threads in a block.
+
+This program has been tested on Nvidia Quadro FX 3700 and found to be working fine.
+However, timing has not been checked.
+                  -- Jayanti Prasad (prasad.jayanti@gmail.com)
+                     Wed May  4 11:54:40 IST 2011 
+-------------------------------------------------------------------*/
+#include<stdio.h>
+#include<cuda.h>
+
+#define BLOCK_SIZE 8
+
+__global__ void VecAdd(float *A, float *B, float *C, int N){
+
+  int tid=threadIdx.x + blockDim.x*(threadIdx.y+blockDim.y * threadIdx.z); 
+  int bid=blockIdx.x  + gridDim.x * blockIdx.y; 
+ 
+  int nthreads = blockDim.x * blockDim.y * blockDim.z;
+  int nblocks  = gridDim.x * gridDim.y; 
+
+  int id      = tid + nthreads * bid;  
+  int i;
+
+  for(i=id; i &lt; N; i+=nthreads*nblocks){
+    C[i] = A[i] + B[i];
+  }
+   __syncthreads();
+}
+
+int main(int argc, char *argv[]){
+  int i, N,grsz,blsz=BLOCK_SIZE;
+  float *h_A,*h_B,*d_A,*d_B,*d_C,*h_C;
+
+  if (argc &lt; 2){
+   fprintf(stderr,"./a.out  N [=512,1024 etc.]\n");
+   return(-1);
+  }
+
+  N =  atoi(argv[1]);
+
+  grsz = (int) N/(blsz*blsz*blsz); 
+
+  printf("number grids = %d\n",grsz); 
+
+  size_t size = N * sizeof(float);
+  
+  h_A = (float *)malloc(size);
+  h_B = (float *)malloc(size);
+  h_C = (float *)malloc(size);
+  
+  cudaMalloc(&d_A,size);
+  cudaMalloc(&d_B,size);
+  cudaMalloc(&d_C,size);
+  
+  for(i=0; i &lt; N; i++){
+    h_A[i] = (float) i;
+    h_B[i] = (float) i+1.0;
+    h_C[i] = 0.0;
+  }
+
+  cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice); 
+  cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
+  
+  dim3 dimGrid(grsz); // 1 blocks
+  dim3 dimBlock(blsz,blsz,blsz);  
+
+  VecAdd &lt;&lt;&lt;dimGrid,dimBlock &gt;&gt;&gt;(d_A, d_B, d_C, N);
+  
+  cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
+
+  for(i=0; i &lt; N; i++){
+    fprintf(stdout,"A=%6.2f B=%6.2f A+B = %6.2f\n",h_A[i],h_B[i],h_C[i]);
+  }
+  cudaFree(d_A); 
+  cudaFree(d_B);
+  cudaFree(d_C);
+  
+  return(0);
+}
+
+
+</pre>
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

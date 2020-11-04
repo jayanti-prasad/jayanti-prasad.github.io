@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Scripting  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre { 
+color: blue;
+background:#FFF8C6 ; 
+margin-left:24px;
+font-family: monospace; 
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+
+
+</style>
+
+
+
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3', 'mbh') ">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> Scripting  </a>   </h1>
+<ul id="mb3">
+<li><a href="#grep">grep </a></li>
+<li><a href="#sed">sed </a> </li>
+<li><a href="#awk">awk </a> </li>
+<li><a href="#perl">perl </a> </li>
+</ul>
+<hr>
+<br><br><br>
+
+<p>
+Here I will discuss some scripting languages which I am familiar with. I generally do 
+stuff with <b> sed </b> and <b> awk </b> when it is simple and use <b> perl </b> when 
+I  find that the task is complex. I start with <b> grep </b> which is a quite powerful
+tool as far as searching is concerned. Note that at the beginning of code &gt is not the 
+part of code. 
+</p>
+
+<h2><a name="grep"> grep </a>   </h2>
+<p>
+<b> grep </b> is a very powerful tool for searching patterns. If we want to print all the lines
+from a file named &quot file.txt &quot which have the word &quot foo &quot we use the following: 
+</p>
+<pre>
+&gt grep "foo" file.txt 
+</pre>
+
+<h2><a name="sed"> sed </a>   </h2>
+<p>
+<b> sed</b>  is an acronym for stream-editor. It can be used to do cool things with a string of 
+characters, which may come from a file or from the terminal output of a linux command or an 
+executable. The  main things for which people use sed are as follows:
+</p>
+<ol>
+<li> Replaces an old pattern of characters by a new one. 
+<pre>
+&gt echo "sed is hot " | sed s/hot/cool/ 
+</pre>
+<p>
+replaces &quot hot &quot by &quot cool &quot .  In the above &quot s &quot stands for
+substitution. If we want to replace &quot hot &quot by &quot cool &quot 
+in a file named &quot file.txt &quot we use the following:
+</p>
+<pre>
+&gt cat file.txt | sed s/hot/cool/
+</pre>
+<p>
+Note that for global replacement (replacing everywhere) we use the option &quot g &quot 
+</p>
+<pre>
+&gt echo "sed is hot " | sed s/hot/cool/g
+</pre>
+<p> Note that the above commands will write the output on the terminal without changing the input file. However,
+we can direct the output in a new file:
+</p>
+<pre>
+&gt cat file.txt | sed s/hot/cool/g &gt file1.txt 
+</pre>
+<p>
+will replace everywhere &quot hot &quot by &quot cool &quot in the file &quot file.txt &quot and will write 
+output in a new file &quot file1.txt &quot .
+</p> 
+<p>
+There is a particular way for writing patterns and is universally followed by almost all scripting languages. 
+The patterns written in this way are called &quot regular expression &quot or <b> regexp </b>. A regexp starts and end with 
+a delimiter. In this tutorial we will be using &quot / &quot delimiters. 
+I have a file called &quot mb.js &quot which I can see using Linux command &quot ls &quot .
+I want to see &quot mc &quot in place of &quot mb  &quot for which I do the following:
+</p>  
+<pre>
+&gt  ls -l *.* | sed s/mb/mc/
+</pre>
+<p>
+If we use sed with option &quot -n &quot it does not print anything
+</p>
+<pre>
+&gt cat file.txt | sed -n s/hot/cool/
+</pre>
+<p>
+however, if we use the option &quot p &quot it prints only the lines in which the pattern was found
+</p>
+<pre>
+&gt cat file.txt | sed -n s/hot/cool/p
+</pre>
+<li> Delete a pattern
+<p>
+In order to delete the word &quot foo &quot from a file &quot file.txt &quot we use the following:
+</p>
+<pre>
+&gt cat file.txt | sed /foo/d 
+</pre>
+<p>
+please note that &quot cat &quot is not a part of <b> sed </b>, it is a linux command to see the 
+content of a file without opening it in an  editor like &quot vi &quot and &quot | &quot is called &quot pipe &quot
+which is used to combine more than one linux commands.
+</p>
+</ol>
+
+For more detail visit <a href="http://www.gnu.org/software/sed/manual/sed.html" target="dynamic"> here </a>
+or <a href="http://www.grymoire.com/Unix/Sed.html" taget="dynamic">  here </a>.
+
+
+<h2> <a name="awk"> awk </a> </h2>
+<p>
+<b> awk </b> is an amazing tool which can be used to manipulate string of characters which may be in
+the form of content of a file or terminal output. Some of the most interesting things about awk
+are that it recognizes rows and columns in a file and is compatible with the syntax of the <b>c</b> programming.
+In order to print the third column of a multicolum file named &quot file.txt &quot we use the following:
+</p>
+<pre>
+&gt cat file.txt | awk '{print $3}' 
+</pre>
+or
+<pre>
+&gt cat file.txt | awk '{printf(&quot %s\n&quot,$3)}' 
+</pre>
+<p>
+note that here we have used the syntax of <b> c </b> which makes awk very powerful. For example,
+we can print the average of third and four columns using the following:
+</p>
+<pre>
+&gt cat file.txt | awk '{printf(&quot %2.6f\n&quot,($3+$4)/2)}' 
+</pre>
+
+<p> using &quot $ &quot we can get any we wish and do things with that, however, there is a way to address 
+rows also. For that there is a key work &quot NR &quot. This following piece of code will not print
+the third column of the file, it will print line (row) numbers also
+<pre>
+&gt cat file.txt | awk '{printf(&quot %d %s\n &quot,NR,$3)}'
+</pre>
+<p>
+sometime we can do great things by conditional use of awk. For example, the following piece of
+code prints the square toot of the third column when it is positive
+</p>
+<pre>
+&gt cat file.txt | awk '{if($3 > 0.0) printf(&quot %2.6f \n &quot,sqrt($3))}'
+</pre>
+<p>
+between single quotes we can embed a piece of <b> c </b> and can get input for that by using &quot $ &quot 
+</p>
+<p>
+One interesting thing to note is that using pipe &quot | &quot we can join codes together. For example,
+the following piece of code uses both sed and awk.
+</p>
+<pre>
+&gt cat file.txt | sed -n s/hot/cool/p | awk '{printf(&quot %s\n&quot,$3)}' 
+</pre>
+
+
+<h2> <a name="perl"> perl </a> </h2>
+
+<p>
+<b> perl </b> is a very flexible scripting language. It can be used to manipulate strings, accommodates
+many features of <b> c </b> programming, and by mixing linux commands and using external executable 
+can do amazing things. The &quot hello world &quot of perl is as follows:
+</p>
+
+<pre>
+#!/usr/bin/perl
+
+print "Hello World ! \n";
+
+</pre>
+
+<p>
+write the above program in a file and name it something.pl (hello.pl) and run it as follows:
+</p>
+
+<pre>
+&gt perl hello.pl 
+</pre>
+<p>
+if it prints &quot Hello World ! &quot on terminal you are successful otherwise check that
+weather perl is properly installed on your computer or not.
+</p>
+<p>
+Every perl program must start with &quot #!/usr/bin/perl & . Apart from the above way,
+we can run a perl program by making it executable.
+</p>
+<pre>
+&gt  chmod a+x hello.pl <br>
+&gt ./hello.pl 
+</pre>
+
+
+
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+<br><br><br>
+
+<hr>
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

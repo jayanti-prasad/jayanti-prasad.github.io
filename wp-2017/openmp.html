@@ -1,0 +1,551 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's OpenMP page </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+
+
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> OpenMP  </a>   </h1>
+<hr>
+<br><br><br>
+<p>
+Welcome to My OpenMP page ! Here you will find how to do parallel programming on 
+a shared memory machine using the OpenMP library. Before going to discuss that, 
+let me explain you what does it mean by a shared memory machine. If you want to know
+what multi-thread programing is then click <a href="#mthreads"> here </a> for a 
+general introduction of parallel programming click <a href="parallel.html"> here </a>.
+</p>
+<p>Nowadays  computers having more than one processors (cores) sharing 
+the  same main memory (RAM) are common. In general you run many  jobs on these
+machines and the machines distribute the jobs among all the processors or cores (hopefully !).
+In this situation you do not have any control on which process you will run on which core. 
+However, using libraries like OpenMP, pthreads, intel threading building blocks (itbb) etc., 
+you can actually assign jobs to various processors explicitly. These libraries help you to assign 
+unique identification numbers to the processors which can be used to distribute the jobs. 
+Since all the processors are directly connected to the main memory therefore they can share
+data without any explicit communication using <b> shared variable </b>. In general there may exists two type of parallelism in 
+your program:
+</p>
+
+<ol>
+<li>	
+Different processors  can process different chunks of the same data if the processing is independent.
+For example if you want to integrate a function numerically between limits a & b you can split the limits 
+and do the integration between sub-limits on different processors and at the end add the results in order 
+to get your answer.  This type of parallelism is called data parallelism.
+</li>
+
+<li>
+Different  processors do different operations on the same data if the operations are independent. 
+For example if you want to add, subtract, multiply and divide two numbers,  you can 
+assign different operations to different processors. This type of parallelism is also known as
+functional decomposition. 
+</li>
+</ol>
+<p>
+If your program can be broken into a set of independent tasks, then it can be done in parallel.
+I will give two classic examples. The first one is of scalar product of two vectors <b> A </b> and 
+<b> B </b> which is defined as : <b> A . B </b> =A<SUB> x </SUB> B<SUB> x </SUB> + 
+A<SUB> y </SUB> B<SUB> y </SUB> + A<SUB> z </SUB> B<SUB> z </SUB>. In this case one can see that 
+the three products can be done in parallel, and at the end can be added together to obtain the
+final result. By the way, the same trick works for matrix multiplication also. Another classic
+example of parallel programming is discrete integration which I have already mentioned above.
+</p>
+
+<p> I think by now you have understood clearly what can be done in parallel and what not.  Now let me
+discuss how OpenMP is used. However, before going to do that let me explain few things.
+</p>
+
+<p> 
+OpenMP does not use any new programming languages and can be invoked from a FORTRAN or c program. In the beginning 
+of an OpenMP section in a program we declare that the segment uses OpenMP using <i> compiler directive </i>
+which are not very different from FORTRAN or c comments. Since FORTRAN and c programs  run on windows machine also  
+so OpenMP programs also can be run. Here I will be mostly discussing examples in c and if I get time I will try to post FORTRAN 
+examples also.
+</p>
+In order to use OpenMP you need to make the following changes in your c programs:
+
+<ol>
+<li> Include a header named "omp.h" at the top of your program. </li> 
+<pre>
+#include &lt;omp.h&gt;
+</pre>
+<li> Use the following compiler directive before the section in which you want to use OpenMP.
+<pre>
+#pragma omp parallel 
+</pre>
+<li> Use -fopen when you compile the program. 
+</ol>
+Let me give you the hello world ! program first !
+<h4> Example 1 </h4>
+<pre>
+#include&lt;stdio.h&gt;
+#include&lt;omp.h&gt;
+
+int main(int argc, char *argv[]){
+   int nthreads = 2;
+   int tid,ntids;
+
+   omp_set_num_threads(nthreads);
+
+#pragma omp parallel  private (tid)
+   {
+
+   tid = omp_get_thread_num();
+   ntids = omp_get_num_threads();
+
+   printf("Hello world from thread %d of %d !\n",tid,ntids);
+
+  }
+
+return(0);
+}
+</pre>
+Write this program in a file named <a href="codes/omp_hello.c"> omp_hallo.c </a> and compile 
+as follows:
+<pre>
+gcc omp_hello.c -fopenmp 
+</pre>
+If everything goes file you will get the following output:
+<pre>
+Hello world from thread 0 of 2 !
+Hello world from thread 1 of 2 !
+</pre>
+<p>
+The fortran (90) version of the hello world program is as follows:
+</p>
+<pre>
+program hello_world
+
+! This program prints hello world from every thread
+! and find out how many threads have been used
+integer :: tid,ntids,omp_get_num_threads,omp_get_thread_num
+
+!$omp parallel private (tid)
+
+tid = omp_get_thread_num();
+
+write(*,*)," Hello world from thread",tid
+
+if (tid .eq. 0) then
+   ntids = omp_get_num_threads()
+end if
+
+!$omp end parallel
+
+ write(*,*) "You used ",ntids,"threads"
+
+end program hello_world
+
+</pre>
+
+<p> Write the above program in a file named "hello_world.f90" and compile as </p>
+<pre>
+gfortran  hello.f90 -fopenmp
+</pre>
+<p> If you are luckey you will get </p>
+<pre>
+ Hello world from thread           0
+ Hello world from thread           1
+ You used            2 threads
+</pre>
+<p>
+Now let me explain the code. The "omp.h" header contains all the function and variables which OpenMP uses.
+<b> omp_set_num_threads(nthreads); </b> function sets the number of threads which you will be using. You can 
+pass any integer to this function in order to set the number of threads. In the present program we 
+are setting the number of threads 2. There is no point in assigning more number of tare's than  the number of processors 
+you have. Note that you must call this function in the beginning. 
+</p>
+<pre>
+#pragma omp parallel  private (tid)
+</pre>
+In the above <b> #pragma omp </b> is always used in order to tell the program that this section has to be done
+in parallel. Before going to explain the term <b> private </b>, let me explain other two function which have 
+used. You can get the id of any thread inside a parallel section by calling <b> omp_get_thread_num() </b> which
+can be used to distribute the jobs if you wish. If any point of time inside a parallel block you want to know how many
+threads you are using (or have been accepted) call <b> omp_get_num_threads() </b>. Now let me explain what does it
+mean by <b> private </b>. 
+<h4> Variables in OpenMP </h4>
+In an OpenMP program different threads can have their own copies of variables in the memory or they can share a single
+copy. When they share a single copy of some variable then the variable is said to be <b> shared </b>. However, if each
+one of the thread have its personal copy of the variable then the variable is said to be private. For example, in the
+above example we declared <b> tid </b> as private, which means each  thread will have different value for this variable.
+In general if you declare a variable private then the memory taken by it gets multiplied by the number of threads. Therefore
+one should keep in mind memory requirements when declaring a variable private. Shared variables have single copies in the 
+memory and if more than one thread is trying to change the value of this variable at the same time there can be trouble. 
+The concept of private and shared variables will be clear when I discuss an example which uses both. Example 1 should be 
+able to tell you that weather an OpenMP program runs on your machine or not. The following example uses parallel for 
+loop carrying out a numerical integration.
+
+<h4> Example 2</h4>
+
+<pre>
+
+#include&lt;stdio.h&gt; 
+#include&lt;omp.h&gt;
+
+double func(double); 
+
+int   n = 100; 
+double a  = 0.0, b = 1.0;
+
+int main(int argc, char *argv[]){
+  int i,nthreads = 2;
+  float sum1,h,x; 
+  
+  omp_set_num_threads(nthreads);
+  
+  h = (b-a)/(n-1); 
+  
+  sum1 = 0.0;
+  
+#pragma omp parallel for  private (x)   reduction(+:sum1) 
+  
+  for(i=0; i &lt; n; i++){
+    x = a + h *i;
+    sum1+= h * func(x);
+  }
+  
+  printf("Pi = %2.6f\n",sum1); 
+    
+  return(0); 
+}
+
+double func(double x){
+  float y; 
+  y = 4.0/(1.0+x*x); 
+  return(y);;
+  
+}
+
+</pre>
+<p>
+The improved version of the above program (<a href="codes/omp_pi.c"> download </a>)(with error value and time estimate is as follows)
+</p>
+<pre>
+
+#include&lt;stdio.h&gt;
+#include&gt;math.h&gt;
+#include&lt;omp.h&gt;
+#include &lt;sys/time.h&gt;
+#include&lt;sys/stat.h&gt;
+
+double func(double);
+
+int main(int argc, char *argv[]){
+  int i,n,nthreads;
+  double sum1,h,x,err,tsec;
+  double a  = 0.0, b = 1.0;
+  struct timeval  t1,t2;
+  struct timezone tzp;
+
+  n = atoi(argv[1]);
+  nthreads=atoi(argv[2]);
+  omp_set_num_threads(nthreads);
+
+  h = (b-a)/(n-1);
+  sum1 = 0.0;
+  gettimeofday (&amp;t1, &amp;tzp);
+
+#pragma omp parallel for  private (x)   reduction(+:sum1)
+
+  for(i = 0; i &gt; n; i++){
+    x = a + h *i;
+    sum1+= h * func(x);
+  }
+
+  gettimeofday (&amp;t2, &amp;tzp);
+
+  err  = fabs(sum1-M_PI)/M_PI;
+  tsec = (t2.tv_sec-t1.tv_sec) + (t2.tv_usec-t1.tv_usec)/1000000.0;
+  printf("Pi = %2.14f, Error =%2.14f times=%2.2f sec\n",sum1,err,tsec);
+
+  return(0);
+}
+
+double func(double x){
+  float y;
+  y = 4.0/(1.0+x*x);
+  return(y);;
+
+}
+</pre>
+<p> compile and run the program as </p>
+<pre>
+ gcc omp_pi.c -fopenmp -lm
+./a.out 1000000000   2
+</pre>
+<p> In the second line the first number is the number of points you are using for integration and the second number is the number of threads.
+If everything goes fine the output will be line </p> 
+<pre>
+Pi = 3.14159265659347, Error =0.00000000095610 times=29.68 sec
+</pre>
+<p>
+The above program computes the value of pi by numerically integrating 4/(1+x<SUP>2</SUP>) between limits 0 and 1. The accuracy of
+the integration depends on the number of point you consider for integrating. Try with different values of n. In Example 2, x is a private
+variable and every thread is having its own copy of that. Note that it is not necessary to declare rest of the variables which every thread is 
+using as shared, that is by default. In Example 2 we used <b> reduction(+:sum1) </b> which has two arguments "+" and "sum1". The first one 
+tells that each thread will be computing its own value of "sum1" and at the end all these values will be reduced in one final using the 
+operations. In place of "+" you can have any other operation also. Try computing the value of 100 ! using the above scheme. 
+</p>
+
+<p>
+It is important to note that you get the advantage of parallel programming only when your your program is computationally 
+expansive. In fact for programs which takes a few seconds on a single processor  may take more time when run on more number of processors. 
+How much gain you get from using multi-core machine is given by a  number called <b>speed-up</b> which is defined as the time taken 
+by a job on single core to the time taken on N-cores. In general it is never equal to N. Note that time taken by a job on 
+parallel processors does vary linearly with the number of processors. In fact beyond a certain limit there is no point in increasing the 
+number of cores.  The speed up may depend on the size of the problem also. 
+</p>
+
+<h4> Example 3 </h4>
+<p> Try to understand the following matrix multiplication program (<a href="codes/omp_matrix.c"> download </a>) yourself. 
+</p> 
+
+<pre>
+
+#include&lt;stdio.h&gt;
+#include&lt;omp.h&gt; 
+
+int l=10, m=10,n=10;
+float vmulti(int,float[],float[]); 
+
+int main(int argc, char *argv[]){
+   int i,j,k,nthreads = 2;
+   float A[l*m],B[l*m],C[l*m],D[l],E[l]; 
+   for(i = 0; i &lt; l ; i++){
+      for(j=0; j &lt; m; j++){
+        A[j+m*i] = (float) i;
+	B[j+m*i] = (float) j; 
+	C[j+m*i] = 0.0;
+      }
+   }   
+
+   omp_set_num_threads(nthreads);   
+
+#pragma omp parallel for shared (A,B,C,i) private (D,E,j,k)     
+   for (i=0; i &lt; l; i++){
+     for (j=0; j &lt; n; j++){
+      for(k=0; k &lt; m; k++){
+         D[k] = A[k+m*i];
+         E[k] = B[j+l*k]; 
+      }
+      C[j+n*i] = +vmulti(m,D,E); 
+     }
+   } 
+
+  printf("A=\n");  
+  for(i=0; i &lt; l ; i++){
+     for(j=0; j &lt; m; j++){
+        printf("%2.0f",A[j+m*i]); 
+     }
+    printf("\n");  
+  }
+
+  printf("B=\n");
+  for(i=0; i &lt; m ; i++){
+     for(j=0; j &lt; n; j++){
+      printf("%2.0f",B[j+n*i]);
+      }
+    printf("\n");
+  }
+
+  printf("C=\n");
+  for(i=0; i &lt; l ; i++){
+      for(j=0; j &lt; n; j++){
+        printf("%2.0f ",C[j+n*i]);
+       }
+      printf("\n");
+    }
+   return(0); 
+}
+
+
+float vmulti(int p, float A[], float B[]){
+  float x;
+  int i;
+  x = 0.0;
+  for(i=0; i &lt; p; i++)
+     x+=A[i] * B[i]; 
+  return(x); 
+}
+</pre>
+
+<p> So far I have not discussed any program which actually takes a lot of time. Now let me discuss one such problem which is called the 
+N-body problem. If you have a system of N gravitating bodies then you need to compute N(N-1)/2 pairs of forces if you are 
+interested to evolve the trajectories of the particles. For a large value of N force computation can become challenging. Since 
+for a given time the force acting on one body is independent from the force acting on another body therefore force computation 
+can be done in parallel. This is exactly the following program does. 
+</p>
+<h4> Example 4 </h4>
+<pre>
+
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;math.h&gt;
+#include&lt;omp.h&gt;
+
+int nthreads = 2;
+
+int force_pp(int ndim, int npart, double r[], double a[]){
+  double dx,dy,dz,dr;
+  int i,j,k,l;
+
+  omp_set_num_threads(nthreads);
+
+for (i=0; i &lt; npart; i++){
+  for (l=0; l &lt; ndim; l++)
+       a[l+ndim*i] = 0.0;
+# pragma omp parallel for shared (a,i) private (j,dx,dy,dz,dr)
+    for(j=0; j &lt; npart; j++){
+      dx = r[0+ndim*j] - r[0+ndim*i];
+      dy = r[1+ndim*j] - r[1+ndim*i];
+      dz = r[2+ndim*j] - r[2+ndim*i];
+      dr = sqrt(dx*dx+dy*dy+dz*dz);
+      if (j !=i ){
+        a[0+ndim*i] += dx/pow(dr,3.0);
+        a[1+ndim*i] += dy/pow(dr,3.0);
+        a[2+ndim*i] += dz/pow(dr,3.0);
+        }
+    }// for j
+  }// for i
+
+  return(0);
+}
+</pre>
+
+<p> I hope you should be able to understand the above program and write a main program for that. </p>
+
+<h3> How to know that you are getting benefited from the parallel programming ? </h3>
+
+<p>
+One simple answer is to use the <b> top </b> command of Linux which will tell you what fraction of computational power is being used
+by your program. If everything goes fine than for a computer with 4 nodes you should get it around 400 % (if your computation is
+not limited by RAM &amp; input-output).  You can always use <b> time </b> option when you run your program which will return the time 
+taken by your program in seconds. There are some system calls which track the CPU and if you make one call before the 
+parallel section and one after that then you can find the time taken by the parallel section. See the following example.
+</p>
+
+<pre>
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;omp.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;sys/time.h&gt;
+#include&lt;sys/stat.h&gt; 
+
+struct timeval  t1,t2;
+struct timezone tzp;
+
+
+int nthreads = 2;
+
+int force_pp(int ndim, int npart, double r[], double a[]){
+  double dx,dy,dz,dr;
+  int i,j,k,l;
+  float t; 
+
+  omp_set_num_threads(nthreads);
+
+ gettimeofday (&amp;t1, &amp;tzp);
+
+for (i=0; i &lt; npart; i++){
+  for (l=0; l &lt; ndim; l++)
+       a[l+ndim*i] = 0.0;
+# pragma omp parallel for shared (a,i) private (j,dx,dy,dz,dr)
+    for(j=0; j &lt; npart; j++){
+      dx = r[0+ndim*j] - r[0+ndim*i];
+      dy = r[1+ndim*j] - r[1+ndim*i];
+      dz = r[2+ndim*j] - r[2+ndim*i];
+      dr = sqrt(dx*dx+dy*dy+dz*dz);
+      if (j !=i ){
+        a[0+ndim*i] += dx/pow(dr,3.0);
+        a[1+ndim*i] += dy/pow(dr,3.0);
+        a[2+ndim*i] += dz/pow(dr,3.0);
+        }
+    }// for j
+  }// for i
+
+  gettimeofday (&amp;t2, &amp;tzp);
+
+  t = (t2.tv_sec-t1.tv_sec) + (t2.tv_usec-t1.tv_usec)/1000000.0;
+  fprintf(stderr,"\t time = %2.2f sec \n",t);
+
+  return(0);
+}
+</pre>
+
+<p> Note that in the above program we have made two system calls of  <b> gettimeofday </b> with <i> structures </i> t1 and t2 
+from which we can compute the time taken between these two calls.
+
+</p>
+
+<h3> <a name="mthreads"> Multi-thread programming model </h3>
+<center><img src="fork_join.jpg"> </center>
+<p>
+The most commonly  used model for the multi-thread programming is the Fork-Join model, in which there is a 
+master thread which creates other threads (slave threads) when a parallel section starts. Once the 
+parallel section is over, the other threads join the master thread and the program starts working in serial
+(see the above figure).  Some threads may finish their tasks earlier than others and the synchronization problem 
+may come which can be solved by using the <b> barrier construct </b>. Once a thread sees the barrier, the thread waits
+for the other threads to finish their tasks.  Once everybody is done the master thread takes over. Note that
+there can be more than one parallel sections in a program.  For example, in the above figure, I have shown that
+there are two parallel sections. In the first parallel section only three threads are used, however, in the 
+second one five threads are used.
+</p>
+
+
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

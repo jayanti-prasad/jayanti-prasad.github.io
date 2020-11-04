@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> IUCAA-HPC Informal Training Program  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> IUCAA-HPC Informal Training  Program  </a> </h1>
+<ul id="mb3">
+<li> <a href="#session1"> Session 1 </a> </li>
+<li> <a href="#session2">  Session 2 </a> </li>
+<li> <a href="#session3">  Session 3 </a> </li>
+</ul>
+<hr>
+<br>
+<p> I am planning to carry out a small informal training program in IUCAA on High Performance Computing (HPC)
+or Parallel Computation. I have not fully worked out the program but tentatively the first session will be 
+on November 11, 2011 (may be at 4PM in Bhaskara 2).</p>
+
+<p>
+The program will have a set of 3-4 lectures and demonstrations by me and some hands on sessions. I expect, hands on sessions 
+can be done in parallel with lectures and demonstrations. However, it may make the session longer (around 1.30 to 2.0 hours). 
+After the first session, I will expect everybody to bring the laptop for the hands on sessions.  
+</p>
+
+<p> The first lecture will be just an overview of parallel computation (basically I will discuss few more things than 
+what I discussed <a href="docs/parallel-computation.pdf" target="dynamic"> here </a>. Apart from the first session,
+other sessions will be in the form of modules and every module will have exercises. </p>
+
+<p> If you are an IUCAA member and have not signed in for the activity you can do that <a href="hpc/hpc_form.html"> here </a> 
+so that I can add you in my mailing list . For time being you can browse my hpc pages from the main page of my webpage,
+just to have a feel of hpc :). </p>
+
+<h2> The tentative list of topics to be covered </h2>
+<ol>
+<li> An overview of High Performance Computing - Why Parallel Computation, Parallel Problems, Models of parallel computation, Parallel Platforms.
+<li> Static and dynamic libraries, Profiling, Optimization, Compiler flags, Debugging </li>
+<li> Shared Memory Programing - OpenMP, pthreads, ITBB etc., </li>
+<li> Distributed Memory Programming - MPI, PVM (may be) </li>  
+<li> GPU and Heterogeneous computing - CUDA and OpenCl</li>
+</ol>
+
+<h3><a name="session1">  Session -1 : An overview of parallel Computation </a> </h3>
+<b> Novemeber 11, 2011,  4.00PM, Bhaskara 2, IUCAA </b>  
+
+<p> Download the presentation <a href="hpc/session1-overview.pdf" target="dynamic"> here </a> </p>
+
+
+<p>
+This will be an overview of parallel computing. Basically, I will discuss about the need of parallel computation, models of parallel computation,
+parallel problems and platforms available. There will be no discussion on programming syntax in this session. 
+I will also explain uni-processors, multi-core processors, multi-processors and cluster systems, General Purpose Graphical 
+Processing Units (GP-GPU)  and Accelerated Processing Units (APUs). There will be only lecture  and questions and answers in this 
+session and no background of any programming language will be expected. This is may of general interest to everybody.
+</p>
+
+<p> Some of the participants have told me that they are very much interested in HPC but have forgotten the ABC of programming !
+In order to help them I have decided to have one extra session (which will be in place of tutorial of the session -1 and will be of 30 min).
+Roughly I will explain the following things and people who are already familiar with these things may leave after 1 hour. </p>
+
+<ul>
+<li> Writing and compiling a FORTRAN and C program.
+<li> Variable (data) type in FORTRAN and C - integer, real, double, character, strings
+<li> Dynamical Memory Allocation
+<li> Derived data type and structures in FORTRAN and C.
+<li> Array in FORTRAN and C.
+<li> Basic mathematical operations.
+<li> Subroutines, functions and modules in Fortran and C.
+<li> Compiling, Debugging and linking libraries.
+<li> Files in FORTRAN/C.
+</ul>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+<b>Fortran and C References </b>
+<ul>
+<Li><a href="http://aelinik.free.fr/c/index.html" target="dynamic"> Teach Yourself C in 24 Hours !</a> </li>
+
+<li><a href="http://www.stanford.edu/class/me200c/tutorial_90/" target="dynamic"> FORTRAN90@STANDFORD </a></li>
+<li><A href="http://www.iu.hio.no/~mark/CTutorial/CTutorial.html" target="dynamic"> C programming </a></li>
+<li><a href="http://www.cs.rpi.edu/~szymansk/oof90.html" target="dynamic"> Object Oriented Fortran 90 </a></li>
+<Li><a href="http://aelinik.free.fr/c/index.html" target="dynamic"> Teach Yourself C in 24 Hours !</a> </li> 
+</ul>
+
+<b> Some interesting Videos from intel </b>
+
+<ul>
+<li>What is inside the PC?  </li>
+
+<center>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/_Dqb8RShTO4" frameborder="0" allowfullscreen></iframe>
+</center>
+
+<li> All about the processor  </li> 
+<center>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/QOvNcBz6mfc" frameborder="0" allowfullscreen></iframe>
+</center>
+</ul>
+
+
+<h3> <a name="session2"> Session -2 : Shared Memory Programming with OpenMP </a> </h3>
+<b> Novemeber 15, 2011, 4.00PM, Bhaskara 2, IUCAA  </b>  
+
+<p>
+Download the presentation from <a href="hpc/session2-shared-memory-programming-omp.pdf" target="dynamic"> here </a>.
+</p>
+<h4> OpenMP Examples Programs (for download )</h4>
+<ol>
+<li> <a href="hpc/programs/omp/hello_world_omp.c" target="dynamic"> hello_world_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/scalar_product_omp.c" target="dynamic">scalar_product_omp.c</a> </li>
+<li> <a href="hpc/programs/omp/matrix_vector_omp.c" target="dynamic">matrix_vector_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/compute_pi_omp.c" target="dynamic"> compute_pi_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/prime_number_omp.c" target="dynamic">prime_number_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/schedule_omp.c" target="dynamic"> schedule_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/nbody_kernal_omp.c" target="dynamic"> nbody_kernal_omp.c</a> </li>
+<li> <a href="hpc/programs/omp/first_private_omp.c" target="dynamic"> first_private_omp.c</a> </li>
+<li> <a href="hpc/programs/omp/last_private_omp.c" target="dynamic"> last_private_omp.c</a> </li>
+<li> <a href="hpc/programs/omp/barrier_omp.c" target="dynamic"> barrier_omp.c </a> </li>
+<li> <a href="hpc/programs/omp/critical_omp.c" target="dynamic"> critical_omp.c </a> </li>
+</ol>
+
+<p>
+Get all the files (including the missing ones) and Makefile from <a href="hpc/programs/open-examples-jp.tar"> here </a>.
+</p>
+<p> <a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a> </p>
+
+
+<h3> <a name="session3"> Session -3 : Shared Memory Programming with <i> pthreads </i> </a> </h3>
+<b> February  01, 2012,  4.00PM, Bhaskara 2, IUCAA  </b>
+<p>
+Shared and distributed memory programming are two main paradigms of parallel programming. The fist one is useful when we
+have a system in which multiple processing units (eg. cores) share the same main memory (RAM). The second one is useful
+when we have a large number or workstations networked (clusters). On the basis of the paradigm we are following  i.e.,
+shared memory or distributed memory, there are different Application Programming Interfaces (API)
+available.  The most common API  for distributed programming has been Message Passing Interacce (MPI). For shared
+memory programing the common APIs are Posix Threads (pthreads), OpenMp, Intel-Threading Building Blocks (ITBB) etc.
+<p>
+
+<p>
+In my last session I discussed about OpenMP (slides and example  programs of that  are available on my web page). In the
+present session I plan to explain the posix threads with giving examples in 'C'. Learning Posix threads is not only
+important from the point of view of shared memory programming, it is useful for GPU and hybrid programming (CPU-GPU)
+also,  since it shares  many patterns with those.  Apart from explaining a few advanced concepts of 'C' programing like
+pointers and structures (for those who are not familiar with these),  I will cover the following topics:
+</p>
+<ul>
+<li> Linux threads and processes.
+<li> Fork-Join model of multi-thread programming.
+<li> Creating and joining pthreads.
+<li> Passing data and function to pthreads.
+<li> Synchronization using mutex locks.
+<li> Performance issues.
+<li> Examples and exercise.
+</ul>
+<p>
+You can download the slides of my presentation <a href="hpc/session3-shared-memory-programming-pthreads.pdf" target="dynamic"> here </a>
+</p>
+<p> <a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a> </p>
+<h4> <i> pthreads </i>  Examples Programs (for download) </h4>
+<ol>
+<li><a href="hpc/programs/pthreads/hello_world1_pthreads.c"> hello_world1_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/hello_world2_pthreads.c"> hello_world2_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/return_pthreads.c"> return_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/summation1_pthreads.c">summation1_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/summation2_pthreads.c">summation2_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/mutex1_pthreads.c">mutex1_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/mutex2_pthreads.c">mutex2_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/create_fork.c">create_fork.c </a>
+<li><a href="hpc/programs/pthreads/create_pthreads.c">create_pthreads.c</a>
+<li><a href="hpc/programs/pthreads/stack_pthreads.c">stack_pthreads.c</a>
+<li><a href="hpc/programs/pthreads/scalar_prod_pthreads.c">scalar_prod_pthreads.c</a>
+<li><a href="hpc/programs/pthreads/compute_pi_pthreads.c">compute_pi_pthreads.c </a>
+<li><a href="hpc/programs/pthreads/nbody_kernal_pthreads.c">nbody_kernal_pthreads.c</a>
+</ol>
+
+<h4> Some interesting stuff on <i> pthreads </i> </h4>
+<ul>
+<li><a href="http://www.thinkingparallel.com/2007/04/11/ten-questions-with-david-butenhof-about-parallel-programming-and-posix-threads/">
+David Butenhof's Interview about <i> pthreads </i> </a> 
+<li> <a href="http://www.ibm.com/developerworks/linux/library/l-posix1/index.html"> POSIX threads explained </a>
+<li><a href="http://math.arizona.edu/~swig/documentation/pthreads/"> POSIX Threads Tutorial
+    </a>
+</ul>
+
+<p> <a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a> </p>
+<div class="fb-like" data-href="http://www.iucaa.ernet.in/~jayanti/hpc.html" data-send="true" data-width="450" data-show-faces="true"></div>
+
+</div>
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

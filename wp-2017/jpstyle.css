@@ -1,0 +1,76 @@
+/*
+Style sheet created by jayanti prasad for http://www.ncra.tifr.res.in/~jayanti 
+*/
+
+body{
+background-color:black;
+background-image:url('images/hudf.jpg');
+font-family:  Verdana;
+font-weight: 600;
+font-variant: normal;
+font-weight: normal;
+font-size: 12pt;
+}
+h1{
+font-family:  "New Century Schoolbook", Times, serif ;
+font-variant: small-caps;
+font-weight: normal;
+font-size: 25pt;
+}
+
+h2{
+font-family: Times, serif; 
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+h3{
+font-family:'Lucida Casual', 'Comic Sans MS';
+font-style: bold;
+font-variant: normal;
+font-size: 15pt;
+}
+
+p{
+margin-top: 1em;
+margin-right: 5em;
+margin-bottom: 0em;
+margin-left: 2em;        /* copied from opposite side (right) */
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+margin-right:11px;
+}
+.container{
+ background:white;
+ color:black; 
+ margin-left:100px;
+ margin-right:100px;
+ margin-bottom:10px;
+ margin-top:0px;
+}	
+
+.top{
+margin-right:10px;
+margin-left:900px;
+position:absolute;
+width:20px;
+height:20px;
+}
+a:link {
+color: blue;
+}
+a:hover {
+color: green;
+}
+a:visited {
+color: red;
+}
+
+
+
+
+

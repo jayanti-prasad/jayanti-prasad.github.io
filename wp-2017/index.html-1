@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's New webpage ! </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link rel="stylesheet" href="jpstyle.css">
+<SCRIPT type="text/javascript" language="JavaScript"  SRC="js/popone.js"></SCRIPT>
+<script type="text/javascript" src="basiccalendar.js"></script>
+
+<style type="text/css">
+.address  {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size:10pt;  
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+}
+</style>
+<SCRIPT TYPE="text/javascript" LANGUAGE="javascript">
+
+<!-- PreLoad Wait - Script -->
+<!-- This script and more from http://www.rainbow.arch.scriptmania.com 
+
+function waitPreloadPage() { //DOM
+if (document.getElementById){
+document.getElementById('prepage').style.visibility='hidden';
+}else{
+if (document.layers){ //NS4
+document.prepage.visibility = 'hidden';
+}
+else { //IE4
+document.all.prepage.style.visibility = 'hidden';
+}
+}
+}
+// End -->
+</SCRIPT>
+
+
+</head>
+
+<body onload="mbSet('mb2', 'mbh');waitPreloadPage();">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));</script>
+<DIV id="prepage" style="position:absolute; font-family:arial; font-size:16; background-color:white; layer-background-color:white; height:100%; width:100%;"> 
+<center><TABLE width=100%><TR><TD><B><img src="wait.gif" align="center"></B></TD></TR></TABLE></center>
+</DIV>
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script> 
+<img src="images/iucaa.JPG" align="right">
+<h1> Welcome ! </h1>
+<table>
+<tr>
+<td>
+<img src="images/me.jpg" width="100" alt="me"> 
+</td>
+<td>
+<div class="address">
+  Jayanti Prasad <br>
+  System Administrator (Project) <br>
+  LIGO Data Centre <br>
+  Inter-University Centre for Astronomy (IUCAA) <br>
+  Pune University Campus <br>
+  Pune - 411007 <br>
+  Phone: +91-(20)2560-4306  (Off) <br>
+  Email: jayanti [AT] iucaa.in<br>
+  prasad dot jayanti [AT]  gmail dot com
+</div>
+</td>
+<td></td><td></td>
+</tr>
+</table>
+<p>
+Welcome to Jayanti Prasad's homepage hosted at the 
+<a href="http://www.iucaa.ernet.in/"> Inter-University Centre for Astronomy (IUCAA)
+ Pune, India </a>.
+After working at the Centre for Modeling and Simulations (CMS), Savitribai Phune Pune 
+University (SPPU) for one year as  a DST-SERB (Young Scientist) Fellow, I moved to IUCAA 
+as a system administrator for the LIGO Data Centre in July 2016. Before CMS,  I was 
+a post doc at IUCAA for five years (2010-2015). 
+After my Ph.D in Astronomy & Astrophyics from the Harish-Chandra Research Institute (HRI)
+Allahabad in 2009, I  also did two years  post-doc at the National Centre for Astronomy & Astrophysics (NCRA)
+Pune. 
+</p>
+<p>
+Apart from having research interests in  Cosmology (Large Scale Structure, Galaxy formation,
+Cosmic Microwave Background or CMB), Radio Astronomy and Gravitational, I am also interested in 
+High-Performance Computing (HPC), High-Throughput Computing (HTC), Grid Computing, 
+Artificial Intelligence and setting up and Managing Linux Clusters. 
+</p>
+<p>
+I have also developed a code named <b> FLAGCAL </b>  for automaticaly Flagging and Calibrating
+Radio-Interferrometric Data from the Giant Meterwave Radio Telescope (GMRT) and you can find 
+the paper describing the code <a href="https://arxiv.org/abs/1111.6415" target="dynamic"> here </a>.
+I have also implimented an Artificial Intelligence Inspired Algorithm named Partcile Swarm 
+optimization for Cosmological Parameters estimation from CMB data. You can find the paper 
+describing this work <a href="https://arxiv.org/abs/1108.5600" target="dynamic"> here </a>. 
+If you are interested in Cosmological Parameter Estimation you may want to check <a href="https://arxiv.org/abs/1412.3298"
+this </a> also. 
+</p>
+<p>
+Apart from describing my research work, this page will also have links links for the codes
+I have written and tutorial on Linux, HPC, and astronomical data analysis.
+In particular you may want to check my <a href="docs/aips.pdf" target="dynamic"> AIPS tutorial </a>
+and <a href="linux.html"> Linux Page</a>.  
+
+
+</p>
+
+<br>
+<div class="fb-like" data-href="http://cms.unipune.ac.in/~jayanti/" data-send="true" data-width="450" data-show-faces="true"></div>
+</div>
+
+<div class="container">
+<p>
+ <a href="http://validator.w3.org/check?uri=referer" target="dynamic"><img
+      src="http://www.w3.org/Icons/valid-html401"
+      alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p><script type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+
+</p>
+<p>
+The background image is of the NASA's <a href="http://www.nasa.gov/vision/universe/starsgalaxies/hubble_UDF.html" target="dynamic"> Hubble Ultra Deep Field </a>. 
+</p>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

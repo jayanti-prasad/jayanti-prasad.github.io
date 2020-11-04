@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's New webpage ! </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link rel="stylesheet" href="jpstyle.css">
+<script type="text/javascript" src="basiccalendar.js"></script>
+<script type="text/javascript">
+  <!--
+      function alertUserRight(){
+      alert("You are right !");
+      }
+      function alertUserWrong(){
+      alert("You are Wrong !");
+      }
+      
+      function displaymessage(message){
+      alert(message);
+      }
+ // -->
+ </script>
+
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+</head>
+<body onload="mbSet('mb2', 'mbh');">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> Fun Science !  </a>   </h1>
+<br>
+<hr>
+<h2> Fun articles </h2>
+Here are some of my unpublished articles on various topics.  
+<ol>
+<li> <a href="docs/e_is_equal_mc2.pdf"> An article on Einstein's famous equation E=mc<sup>2</sup> <a></li> 
+<li> <a href="docs/cosmo_rev_v2.pdf"> A popular article on cosmology </a></li>
+<li> <a href="docs/how_to_give_a_presenation.pdf"> How to give a successful presenation </a> </li>
+<Li><a href="docs/brahamand_v3.pdf" target="dynamic"> A popular cosmology artilce in Hindi ! </a> </li> 
+</ol>
+
+<h2> 1. Science of Coin Tossing </h2>
+
+<p>
+  In general, it is believed that the outcome of a coin tossing experiment  is uncertain
+  although there is no factor of  uncertainty (quantum, statistical etc.) in the equation of
+  motion of the coin. In what follows, I will show that it is the very high sensitivity of
+  the final state (H & T) on the initial conditions (initial linear and angular speeds) 
+  which makes the prediction of the coin tossing experiment difficult but not impossible !
+  In fact the coin tossing experiment belongs to a large class of problems in 
+  non-linear physics in which a small change in the initial conditions can lead a very large 
+  change in the final outcome.  I will also show that in the case of coin tossing the two 
+  dimensional space of the controlling parameters (the initial linear velocity 'u' 
+  and angular velocity 'w' of the coin) gets fragmented into two different type of basins 
+  (leading  to H or T) separated by fractal boundaries.  Before going into detail let me 
+  tell what are the interesting things in this exercise.
+</p>
+<p>
+  <ul>
+    <li> This experiment can be used to understand a class of non-linear problems. 
+    <li> This experiment can be easily simulated on a computer.
+    <li> Splittings of the space of initial conditions shows very beautiful 
+      fractal patterns.
+    <li> This experiment can be generalized for many other real life problems.	
+  </ul> 	
+</p>
+
+<center>
+<embed SRC="mov/movie.flv" width="700" height="500"  autostart="false" loop="true"> </embed>  
+</center>
+<a href="mov/movie.flv"> download </a>
+
+
+<p> 
+  Whether a coin will end up with head (H) or tail (T) up  depends on the velocities of
+  angular motion 'w'  (about an axis parallel to horizontal) and linear motion 'u' 
+  (along the vertical direction).  This is the angular motion which can change 
+  the state of the coin and this is the linear motion which  provides time for the state to change.  
+  The total time available for motion is 2u/g,  where 'g' is the 
+  gravitational acceleration.  The final orientation of the coin (theta) is the 
+  product of 2u/g and w.  On the basis of whether theta is between 0 and 180 degree 
+  or between 180 degree and 360 degree we can call the final state H or T.
+</p>
+<p>
+  The motion of the coin can be easily simulated on a computer with the help of
+  a small program in which the  angular and linear positions  of the coin are evolved 
+  with time.  Since the computational load is very small,  the simulation can be 
+  carried out in real time, in the sense the motion of the coin can be shown on a screen 
+  for every integration time step.
+</p>
+
+<p>  <b> Space of controlling parameters u and w </b> </p> 
+
+<center>
+<table border=1>
+  <tr>
+    <td>
+      <img src="jpg/coin_toss/frac01.png" width=400>
+    </td>
+    <td>
+      <img src="jpg/coin_toss/frac02.png" width=400>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <img src="jpg/coin_toss/frac03.png" width=400>
+    </td>
+    <td>
+      <img src="jpg/coin_toss/frac04.png" width=400>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="jpg/coin_toss/frac05.png" width=400>
+    </td>
+    <td>
+      <img src="jpg/coin_toss/frac06.png" width=400>
+    </td>
+  </tr>
+</table> 
+</center>
+</p>
+<p> Fig 1: In these figures the position of a pixel represents a set of 
+  linear velocity (u) and angular velocity (w) and its color shows  either the set  
+  will lead head or tail. In every figure different range of u and w and different number 
+  of pixels are used.  
+</p>
+<p>
+  If you want to know more about this experiment please let me know.  
+</p>
+
+<h2> Problems ! </h2>
+<p> If you have understood the problem and are ready for a quick test 
+  click on the right answers </p>
+<ol>
+  <li> Whether we will get a head (H) or tail (T)  depends upon:
+    <p>
+      <input type="button" name="OneButton"  value="A"
+	     onclick='displaymessage("Wrong ! Without linear motion the coin will not get time for angular motion.")'>
+      Only on the initial angular velocity. <br>
+      <input type="button" name="OneButton"  value="B"
+	     onclick='displaymessage("Wrong ! In order to change the state the coin has to rotate.")'>
+      Only on the  initial linear velocity.  <br>
+      <input type="button" name="OneButton"  value="C" onclick='displaymessage(" You are right !")'>
+      On both type of velocities.<br>
+      <input type="button" name="OneButton"  value="D" onclick='displaymessage("That is not right")'>
+      The mass and size of the coin.
+    </p>
+    
+  <li>In the above figures the white area represents the head (H) and the black
+    area represent tail. For a biased coin which has more probability of getting head  
+    than tail  
+    <p>
+      <input type="button" name="OneButton"  value="A" onclick='displaymessage("You are right !")'>
+	The white area will increase. <br>
+	<input type="button" name="OneButton"  value="B" onclick="alertUserWrong()">
+	The white  are will shrink.  <br>
+	<input type="button" name="OneButton"  value="C" onclick="alertUserWrong()">
+	The pattern will become finer. <br>
+	<input type="button" name="OneButton"  value="D" onclick="alertUserWrong()">
+	None will happen.
+      </p>
+      
+    <li> For a thick coin which has the possibility of landing on edge also (can be represented 
+      by grey area in Figure 1) 
+      <p>
+	<input type="button" name="OneButton"  value="A" onclick="alertUserWrong()">
+	The white area will increase. <br>
+	<input type="button" name="OneButton"  value="B" onclick="alertUserWrong()">
+	The white  are will shrink.  <br>
+	<input type="button" name="OneButton"  value="C" onclick="alertUserRight()">
+	Both areas will shrink. <br>
+	<input type="button" name="OneButton"  value="D" onclick="alertUserWrong()">
+	Nothing will  happen.
+      </p>
+      
+    <li> If we increase the number of pixels in the figure in the first row and second column 
+      <p>
+	<input type="button" name="OneButton"  value="A" onclick="alertUserRight()">
+	The boundaries will become smoother. <br>
+	<input type="button" name="OneButton"  value="B" onclick="alertUserWrong()">
+	We will get more number of big boxes (which are 9 at present).  <br>
+	<input type="button" name="OneButton"  value="C" onclick="alertUserWrong()">
+	We will get less number of big boxes. <br>
+	<input type="button" name="OneButton"  value="D" onclick="alertUserWrong()">
+	Nothing will  happen.
+      </p>
+</ol>
+
+
+<h2> Game of Life </h2>
+<p>
+I will be adding my notes very shown. However, for time being read it <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life"> here </a>
+</p>
+
+<center>
+<embed SRC="mov/gol.flv" width="700" height="500"  autostart="false" loop="true"> </embed>
+
+<br>
+A simulation of game of life (100 X 100 for 100 iterations) 
+
+</center>
+<a href="mov/gol.flv"> download </a>
+
+
+
+</div>
+
+<div class="container">
+  <p>
+ <a href="http://validator.w3.org/check?uri=referer" target="dynamic"><img
+      src="http://www.w3.org/Icons/valid-html401"
+      alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p><script type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+</body>
+</html>
+
+
+
+
+

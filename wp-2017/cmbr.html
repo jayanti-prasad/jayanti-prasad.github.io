@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's CMBR Page ! </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+  ul  {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+ }
+  ul li {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+ }
+.pix{
+  margin-right:300px;
+margin-left:300px;
+position:relative;
+width:400px;
+height:400px;
+}
+</style>
+</head>
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1><a name="top_page"> Cosmic Microwave Background Radiation (CMBR)   </a></h1> 
+<ul id="mb3">
+<li> <a href="#current"> Current Research</a> </li>
+<li> <a href="docs/mynotes.pdf" target="dyanmic"> My Notes </a> </li>
+<li> <a href="#talks"> My Talks  </a> </li>
+<li> <a href="#publications"> My Publications </a> </li> 
+<li> <a href="#help"> HELP </a> </li> 
+</ul>
+<hr>
+<br><br><br>
+<h2> Cosmological Parameter Estimation from CMBR data sets</h2>  
+<p>
+Estimating cosmological parameters from CMBR data is an important exercise in current cosmological research. The aim is to 
+find that which theoretical model fits best to the data, which is most commonly done using Markov-Chain Monte Carlo (MCMC)
+in which the likelihood (probability of obtaining a data set given a theoretical model) function is sampled at discrete points
+in the multi-dimensional parameters space. From the MCMC points probability distribution of parameters are obtained to get 
+the best fit value of the parameters. We have demonstrated that an another method called Particle Swarm Optimization or PSO 
+also can be used for this purpose.
+</p>
+<br><br><br> 
+<h2><a name="publications"> My Publications </a> </h2> 
+<ul>
+<li>
+Jayanti Prasad, Tarun Souradeep  (2012) <br><a href="http://prd.aps.org/abstract/PRD/v85/i12/e123008" target="dynamic">
+Phys. Rev. D 85, 123008 (2012) </a>,<a href="http://arxiv.org/abs/1108.5600" target="dynamic">[arXiv:1108.5600v2 </a>] <br>
+<i> Cosmological parameter estimation using Particle Swarm Optimization (PSO). </i>
+<li>
+Gaurav Goswami, Jayanti Prasad (2013)<br><a href="http://prd.aps.org/abstract/PRD/v88/i2/e023522" target="dynamic">
+ Phys. Rev. D 88, 023522 (2013)</a>, <a href="http://arxiv.org/abs/1303.4747" target="dynamic">[arXiv:1303.4747v1 [astro-ph.CO]] </a>
+<br> <i> Maximum entropy deconvolution of primordial power spectrum.</i>
+<li>
+Jayanti Prasad (2014) <br>
+<a href="http://arxiv.org/abs/1412.3298" target="dynamic">[arXiv:1412.3298 [astro-ph.CO]] </a> <br> 
+<i> Revisiting Cosmological parameter estimation .</i> 
+<li> 
+Suratna Das, Gaurav Goswami, Jayanti Prasad, Raghavan Rangarajan (2014) <br>
+<a href="http://iopscience.iop.org/1475-7516/2015/06/001/" targe="dynamic">  JCAP (2015) <b> 06 </b>001 </a>, 
+<a href="http://arxiv.org/abs/1412.7093" target="dynamic">[arXiv:1412.7093 [astro-ph.CO]] </a> <br> 
+<i> Revisiting a pre-inflationary radiation era and its effect on the CMB power spectrum .</i>
+<li>
+Asif Iqbal, Jayanti Prasad, Tarun Souradeep, Manzoor A. Malik (2015) <br>
+<a href="http://iopscience.iop.org/1475-7516/2015/06/014/" targe="dynamic"> JCAP (2015) <b> 06 </b> 014 </a>, 
+<a href="http://arxiv.org/abs/1501.02647" target="dynamic"> [arXiv:1501.02647 [astro-ph.CO]] </a><br>
+<i> Joint Planck and WMAP Assessment of Low CMB Multipoles. </i>
+<li>
+Suratna Das, Gaurav Goswami, Jayanti Prasad, Raghavan Rangarajan (2015) <br>
+<a href="http://arxiv.org/abs/1506.04808" target="dynamic"> [ 	arXiv:1506.04808 [hep-ph]] </a><br>
+<i>Constraints on just enough inflation preceded by a thermal era</i>
+</li>
+</ul>
+<br>
+
+
+<h2><a name="talks"> My Talks </a> </h2>
+<ul>
+<li> <a href="docs/cmb-part1.pdf"> CMB Part 1 </a> (Lecture course I gave BITS Pilani) <br>
+<a href="https://www.youtube.com/watch?v=cWFa168OVoE"> Video </a>
+<li> <a href="docs/cmb-part2.pdf"> CMB Part 2 </a> (Lecture course I gave BITS Pilani) <br>
+<a href="https://www.youtube.com/watch?v=IqJRmp0vT68"> Video </a>
+<li><a href="docs/iagrg-jayanti.pdf"> IAGRG 2013 </A>
+</ul>
+
+
+
+<h2><a name="help"> Qucik Help to common CMB software packages </a>: </h2>
+<ul>
+<li><a href="http://camb.info/" target="dynamic">CAMB </a>
+<p> Here I do not want to repeat what is already there on the official page of the CAMB. I just want to list few useful tips.</p>
+<ol>
+<li> CAMB is parallelized using OpenMP so do not forget to use the '-fopenmp' flag when compiling the code. </p>
+<li> CAMB uses FORTRAN derived data type to pass variables arround. If you do not know what derived data types are just check
+<a href="http://research.physics.illinois.edu/ElectronicStructure/498-s97/comp_info/derived.html" target="dynamic"> here. </a> </li>
+<li> There are three main derived data type used in CAMB. The first one is 'CAMBparams' and is defined in the program 'modules.f90'.
+The 'CAMBparams' type not only contains the values of the cosmological parameters like omegab, omegac, omegav and H0, it contains
+few other derived data type (like more boxes inside a box !). </li>
+<li> Some of the derived data type inside 'CAMBparams' are 'InitialPowerParams', 'ReionizationParams', 'RecombinationParams' and 'TransferParams'. </li>
+<li> All the parameters needed to specify the initial power spectrum are "packed" in the type 'InitialPowerParams' which is defined in 
+the program 'power_tilt.f90' and the parameters needed to characterize the reionization are "packed" in the type 'ReionizationParams' which 
+is defined in the program 'reionization.f90'. The parameters for recombination are put into 'RecombinationParams'  type which is defined in 
+'recfast.f90'. 
+<li> The main program of CAMB is 'inidriver.F90' which first reads the input parameter file and then computes Cls and once everything is done 
+writes the Cls in the respective output files. </li>
+<li>I do not know why CAMB has facility to use 5 scalar and tesnor power spetra ! although I have never seen more than one being used in any case. 
+You can check the CAMB input parameter file where only one power spectrum for each type (scalar and tensor) is used. </li> 
+</li>
+<li> If you want to use any other power spectrum than the 'power law' modify the 'ScalarPower(k,in)' function inside the 'power_tilt.f90'.
+By the way do not forget to check the minium and maximum values of 'k' which are used by the power law model (and normalization also) 
+and make sure whatever model you use for the initial power spectrum does have the sensible values for the k values used by CAMB. </li> 
+<li> The main "engine" of CAMB is the program 'CAMB_GetResults()' which passes all the parameters through a  
+a variable of derived data type 'CAMBparams'  and puts back the results in 'Cls' </li> 
+<li> If you want to use CAMB in your own pipeline try to find out how you can use the program 'CAMB_GetResults'.  </a>
+</ol>
+<li><a href="http://cosmologist.info/cosmomc/" target="dynamic">COSMOMC </a>
+<p> Read at the official page of COSMOMC about what it is,  what it does, and how it does. Here, I just want to share few quick tips. </p>   
+<ol>
+<li>COSMOMC has three main parts. The first one passes cosmological parameters to CAMB and gets the 'theoretical Cls'. The 
+second one passes the theoretical Cls to the WMAP likelihood code which computes the likelihood from the theoretical Cls and 
+WMAP data. The last part of the COSMOMC finds a new set of cosmological parameters on the basis of the likelihood of the old set
+using the Markov Chain Monte Carlo random walk.</li>
+<li>
+The step size in for markov chain is controlled by the covariace matrix which need to be given as an input. There are few 
+example covariance matrices supplied with COSMOMC.  If you want to try out a completely new model then you must have a covariance matrix
+avaliable for that which can be quite tricky !
+</li>
+<li>
+The final product of COSMOMC is set of samples points in the parameter space with their likelihood values (chain files!).
+For computing the 'statistics' from the sample points (chains) in the job of another program called 'getdist' which is also 
+supplied with COSMOC. </li>
+<li>
+One can easily visulaize the results of COSMOMC by plotting the chains files in GNUPLOT, however, if you want publication 
+quality resultes used getdist or load the chain files in the MATLAB program 
+<a href="http://www.sarahbridle.net/cosmologui/readme_cosmologui.html" target="dynamic">'COSMOLGUI'</a> which can plot 
+one dimensional probability distribution, two dimensional probability distribution (contours) etc. </li> 
+<li> Most people who use COSMOMC generally wants to do one of the three things. (1) Modify/change  the power spetrum 
+(Cls) computing module (2) Modify/change the likelihood module or (3) the sampling scheme or Markov Chain Monte Carlo.
+In our work (reference <a href="http://arxiv.org/abs/1108.5600" target="dynamic"> here </a>) we have done (3).
+</li>
+Download a Makefile for cosmoc <a href="http://www.iucaa.ernet.in/~jayanti/codes/Makefile_COSMOMC" target="dynamic"> here </a>. 
+
+
+</ol>
+<li> <a href="http://healpix.jpl.nasa.gov/" target="dyanamic"> Healpix </a> </li>
+</ul>
+</div>
+<div class="container">
+ <p>
+ <a href="http://validator.w3.org/check?uri=referer"><img
+  src="http://www.w3.org/Icons/valid-html401"
+  alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p>
+<script type="text/javascript">
+ document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+

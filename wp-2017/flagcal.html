@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> FLAGCAL  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+
+</style>
+</head>
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1> <a name="top_page"> Flagcal  </a>   </h1>
+<ul id="mb3">
+<li> <a href="#working"> Working </a> </li>
+<li> <a href="#use">  Use  </a> </li>
+<li> <a href="#download"> Download  </a> </li>
+<li> <a href="#screenshots"> Screenshots   </a> </li>
+</ul>
+<hr>
+<h2>  </h2>
+<br><br>
+You can download the pdf version of the draft <a href="docs/flagcal.pdf" target="dynamic">here </a> or 
+dowenload from here : 
+<p>
+Jayanti Prasad and Jayaram Chengalur (2011) <br> <a href="http://www.springerlink.com/content/t16w72r356500980/" target="dynamic"> Experimental Astronomy </a> [<a href="http://arxiv.org/abs/1111.6415" target="dynamic">arXiv: 1111.6415 </a>] <br>
+<i> FLAGCAL:A flagging and calibration package for radio interferometric data</i>
+</p>
+<p>
+<a href="flagcal/flagcal-1.0.tar.gz"> Download Code </a>
+</p>
+<hr>
+<br><br><br>
+<p>
+FLAGging and CALlibraion (FLAGCAL) is a software pipeline developed by me 
+(with help from Prof. Jayaram Chengalur) for automatic flagging and calibration of the GMRT
+data. Although this pipeline was developed keeping in mind some particular tasks, however, it can 
+be used for preprocessing (before importing the data in AIPS) any other interferromteric 
+data also (given that the data file is in FITS format and contains multiple channels & scans).
+</p>
+
+<p>
+Apart from the main pipeline, I also developed few GUI based tools which can be used for
+quick visualization of the data. Before descring these tools, let me first explain how
+FLAGCAL works and how it should be used.
+</p>
+
+
+<a name="working"> <h3> How FLAGCAL works ? </h3> </a>
+In order to identify the bad data, FLAGCAL makes the use of following considerations.
+<ol>
+<li> Any data point (visibility amplitude) which has very high value is flagged (ordinary clipping).
+<li> Representative numbers are computed for the visibility amplitude for every source and points 
+far away from these values are flagged (global mad filtering).
+<li> Representative numbers are computed for the visibility amplitude for every scan  and points 
+far away from these values are flagged (pre mad filtering). Note that this is done only for
+calibrator sources. 
+<li> On the basis of the fluctuations in the phase of visibility (of calibrator sources only) we 
+identify bad antennas, bad baselines and bad channels and this information is exported for
+traget (science sources) also (ABC flagging).
+<li> Once some flagging is done antenna based complex gains are computed for the calibrators and
+the exported to the target source.
+<li> After calibarting, reprsentative numbers for visibility amplitude are computed for
+every channles, stokes and scan and "outliers" are thrown out (post mad-filtering).
+<li>
+The last of flagging is done by removing "peaks in time" and "peaks in frequency" by iterative
+smooth-threshold method.
+<li>
+At the end output FITS file is written for user specified sources and channels.
+</ol>
+
+
+<center> <img src="flagcal/flagcal.png"> </center>
+<center> Flow chart of FLAGCAL </center>
+
+
+<center> <img src="flagcal/img.png"> </center>
+<center> Image made using AIPS after pre-processing from  FLAGCAL </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+
+<a name="use"> <h3> How to use FLAGCAL  ? </h3> </a>
+In order to use FLAGCAL you need the following libraries:
+<ol>
+<li><a href="http://heasarc.nasa.gov/fitsio/"> cfitsio </a> 
+<li><a href="http://openmp.org/wp/"> OpenMP </a> (optional but recommended, is there on every GNU-Linux system)
+<li><a href="http://www.astro.caltech.edu/~tjp/pgplot/"> PGPLOT </a> (optional, if you want GUI tools)
+<li><a href="www.gnu.org/software/gsl"> GSL </a> (as present not needed)
+</ol>
+<p>
+At present FLAGCAL is under testing and development so I have not made it completely open. However, it 
+is available in the following form.
+</p>
+<ol>
+<li> 64-bit libraries with all other libraries like cfitsio included (recommended)
+<li> Full source code (provided only for those who want to test it and help me to improve and fix bugs) 
+</ol>
+
+<p>
+In both the cases, the package is provided in the form of password protected files (if you do not
+know the password ask me, praasd.jayanti@gmail.com)
+</p>
+
+<p>
+You can get help from my <a href="flagcal/README"> README </a> file. There is draft inside the doc directory which 
+exmplain FLAGCAL in detail. </p>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+<a name="download"> <h3> Download  </h3> </a>
+<ol>
+<li> <a href="flagcal/flagcal-1.0.tar.gz"> Full source code </a>
+</ol>
+<p> please ask me for a password if you want to use the code </p>
+
+
+<a name="screenshots"> <h3> Screenshots </h3> </a>
+
+<h4> This shows the badness of Antennas (less is better) </h4>
+<center><img src="flagcal/Screenshot.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+
+<h4> This shows the badness of channels  (less is better) </h4>
+<center><img src="flagcal/Screenshot-1.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+
+<h4> This shows the badness of baselines (less is better) </h4>
+<center><img src="flagcal/Screenshot-2.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h4> Anteen gains computed using FLAGCAL  </h4>
+<center><img src="flagcal/Screenshot-3.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+
+<h4> Anteen gains computed using FLAGCAL  </h4>
+<center><img src="flagcal/Screenshot-3.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h4> Gray plot showing flagging done using FLAGCAL  </h4>
+<center><img src="flagcal/Screenshot-4.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h4> Gray plot showing flagging done using FLAGCAL  </h4>
+<center><img src="flagcal/Screenshot-4.png"> </center>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h4> Visibility amplitude  showing flagging done using FLAGCAL  </h4>
+<center><img src="flagcal/Screenshot-5.png"> </center>
+</div>
+
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

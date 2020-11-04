@@ -1,0 +1,365 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Linux page  </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<style type="text/css">
+.code{
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+ pre {
+color: blue;
+background:#FFF8C6 ;
+margin-left:24px;
+font-family: monospace;
+font-style: normal;
+font-variant: normal;
+font-size: 10pt;
+}
+li{
+color:black;
+position:relative;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+font-style:normal;
+text-align:justify;
+}
+</style>
+
+<body onload="mbSet('mb2', 'mbh');">
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> Linux  </a>   </h1>
+<hr>
+This page is under development. For a printable version of my old linux notes click <a href="docs/linux.pdf"> here </a>. 
+<br><br><br>
+<p>
+There are operating systems which you love when you use them and there are operating systems which 
+you may love ONLY  when you do not use them ! Linux is an example of the first and Windows is of the second.
+In this short introduction to Linux, I plan to discuss things which are of  practical or direct use. 
+If you are interested in  history, geography or philosophy of Linux google that. 
+</p>
+<p>
+In this tutorial I will discuss some common Linux commands which 
+are in general used for the following  tasks:
+<ol>
+<li>
+To monitor  various hardware resources like CPU, RAM, Hard disk etc.
+</li>
+<li>
+To manage files and directories i.e., create, delete, move etc. 
+<li>
+To manipulate ASCII data files using editors like <b>vi, pico, xemacs </b> and scripting languages
+like <b> sed </b> and <b> awk</b>. 
+<li>
+To run programs in <b>c, fortran </b> and some other languages.
+</li>
+</li>
+<li>
+To access a remote computer. 
+</li> 
+</ol>
+</p>
+<p>
+In the end of the tutorial I will also  include  a test which has different levels of 
+difficulties i.e., Level I and Level II. 
+</p>
+<h3> Linux Commands </h3>
+<h4>1.  Linux shells </h4>
+<p>
+In general,  on  a Linux system tasks are accomplished by typing  <b>commands</b>  on a <b> shell </b> and
+the shell translates these commands into instructions which computers can understand. 
+Typically there are more than one type of shells on a linux system. Some of
+the common shells are the <b>  bash, csh</b> and <b> tcsh</b>.
+Apart from interpretation  commands, shells have their own languages  also 
+(called shell scripts)  which can be used to do  various type of complex tasks 
+related to system management etc.  In order to see which shell you are using type  
+</p>
+<pre>
+&gt; echo $SHELL    
+</pre>
+<p>
+A shell remembers all the commands it interprets  and allows short-cuts also.
+For example, if you type <b> acro </b> on a bash shell and press the TAB key then the 
+shell automatically completes the command which starts from </b> acro</b>.  
+If there is just  one command which starts from <b> acro</b> otherwise it gives a list 
+of all commands which start from <b>  acro</b>.  
+ Note that you can also configure the look and feel of a shell according to your taste.
+If your default shell is <b>bash</b> and you want to use <b>csh</b> shell,  use the 
+following command
+</p>
+<pre>
+&gt; csh
+</pre>
+<p>
+When you type a command, the shell looks for that command (executable) in some familiar places 
+(directories) which are shown by 
+</p>
+<pre>
+&gt;   echo $PATH  
+</pre>
+<p>
+If the command is not found in any of these places than the error message is returned.
+If we want to add any other command (executable) in the list of the commands 
+which a shell can interpret,  you can add the path of that command in the existing path  
+</p>
+<pre>
+ &gt; PATH=$PATH:PATHOFCOMMAND  
+</pre>
+<p>where <b> PATHOFCOMMAND </b> is the path of that command. </p> 
+</p>
+<p>
+Note that the binary executable for all the commands which are available for the user on a Linux
+system are kept mainly in the directory "/bin" which you can see using: 
+</p>
+<pre>
+&gt; ls /bin
+</pre>
+<p>
+For every command there is a man page and a help page available which you can see using:
+</p>
+<pre>
+&gt; man command
+</pre>
+<p>and</p>
+<pre>
+&gt; command --help
+</pre>
+
+<h4>2. Login, password and IP address </h4>
+<p>
+In general, a <i>username</i> and <i>password </i> is given to every user on a Linux system. If the user
+knows the IP address also (which acts as an "identity")  of the computer, the user can login
+into that computer remotely and can exchange files with the remote computer,  if they are
+connected over the network. In order to remotely login a machine the following command is
+used:
+</p>
+<pre>
+&gt;ssh -X username@hostname
+</pre>
+<p>
+where "hostname"  can be the IP address or "name" of the remote computer.
+</p>
+<p>
+In order to transfer files, the following command is used:
+</p>
+<pre>
+&gt; scp filename username@hostname:dir
+</pre>
+<p>
+where "dir" (see the next section) is the directory in which the file will be transferred on the
+remote computer.  
+</p>
+<p>
+In order to copy a directory the following command is used:
+</p>
+<pre>
+&gt; scp -r direname username@hostname:dir
+</pre>
+<p>
+<b>scp</b>  command can be used to transfer files or directories from a remote computer to the local
+computer also using:
+</p>
+<pre>
+&gt; scp username@hostname:filename .
+</pre>
+<p>
+Here dot (.) says that the remote file will be copied in the current directory. In order to check
+if the remote computer is up and is connected to the network, the following command is used:
+</p>
+<pre>
+&gt; ping hostname
+</pre>
+
+<h4>3.  Monitoring  processes and resources </h4>
+<p>
+At any point of time many processes are running on a Linux system simultaneously. Some of
+these processes are necessary for the system to work and others are optional. Some of the
+optional processes are generally started by users. Every process contributes some amount of
+CPU and RAM use which can be checked by using the following command:
+</p>
+<pre>
+&gt; top
+</pre>
+<p>
+This command gives the information about the user who started the process (owner), the CPU
+and RAM use , the time for which the process is running etc. In place of top the following
+command also can be used:
+</p>
+<pre>
+&gt; ps -ef
+</pre>
+<p>
+The second column of the output of the above command gives the PID (process ID) of the
+process which can be used to terminate the process using:
+</p>
+<pre>
+&gt; kill -9 PID
+</pre>
+<p>
+If you wish to terminate every process running on the system use:
+&gt; kill -9 1
+</pre>
+<p>
+In order to see the use of the hard disk (HDD) the following command is used:
+</p>
+<pre>
+&gt; df -h
+</pre>
+<p>
+This gives the free space on various partition of a hard disk. In order to see the disk space
+taken by a file or directory in mega bytes (MB) the following command is used:
+</p>
+<pre>
+&gt; du -m filename
+</pre>
+<p>
+The total use of the hard disk by a user is given by:
+</p>
+<pre>
+&gt; du -ms 
+</pre>
+<p>
+In order to see which Linux the computer is running the following command is used:
+</p>
+<pre>
+&gt; uname --a
+</pre>
+<p>
+The above also can be used to know the type of processor (32 bit/64 bit) and operating system being used.
+</p>
+<p>
+Some of the important parameters of the Linux setting are shown by:
+</p>
+<pre>
+&gt; env
+</pre>
+<h4>4. Making your own command AKA alias </h4>
+<p>
+Any executable can be considered as a "command" if it is in in the "path". You can also make
+an executable a "command" my liking that in a file called ".bashrc" which stays in the home
+directory. If it does not exists, you can create that. Not only that you can make short form of
+many commands using ".bashrc". For example, I have an executable named "devnag" in the
+directory "/data/software/velthuis/bin/linux/i386" and I want to make it as a command then
+I can write in ".bashrc"
+</p>
+<pre>
+alias devnag='/home/jayanti/software/velthuis/bin/linux/i386/devnag'
+</pre>
+
+<h4>5. Permissions </h4>
+<p>
+Every file and directory in a Linux system has three type of permissions, 
+named read(r), write(w) and execute (x) associated with. The permissions 
+can be changed by either by the "owner" of the file or directory or by the "root". 
+You can see the permission and ownership of a file/directory using:
+</p>
+<pre>
+&gt; ls -l filename
+</pre>
+<p>
+where "filename" is the name of the file or directory. For example if I run 
+this command on one of my files named "linu.html"
+</p>
+<pre>
+&gt; ls -l linux.html 
+</pre>
+<p>
+I get the following output </p>
+<pre>
+<u>-rw-r--r--</u> 1 jayanti jayanti 8875 2010-07-02 11:42 linux.html
+</pre>
+<p>
+In the above line there are ten characters in the first column (underlined part) which represent
+read (r), write (w) and execute (x) (starting from the second character) permissions for the owner, 
+users belonging to owner's <i> group </i> and rest of everybody. If the first character is "d"
+then the given entity is a directory. The third and fourth represent the name of the owner.
+The owner can give or take various permissions for all or groups. The read, write and 
+execute permissions are represented in the following way: 
+</p>
+<p>
+<center>
+<table border="2">
+<tr> <td> Permission </td> <td> Symbol </td> <td> Numerical Value </td> </tr>
+<tr> <td> Read       </td> <td>  r     </td> <td>  1              </td> </tr>
+<tr> <td> Write      </td> <td>  w     </td> <td>  2              </td> </tr>
+<tr> <td> Execute    </td> <td>  x     </td> <td>  4              </td> </tr>
+</table>
+</center>
+</p>
+<p> The command which is used for changing permission is <b> chmod </b> which is used in the following way </p>
+<pre>
+chmod  A B C filename  
+</pre>
+<p>
+where A,B and C are integers which are between 1 and 7 and represent the permissions for the owner,
+the group and everybody respectively. If you want to give only read permission use 1 and for all use 7.
+For example if you want to give all the permissions and read and execute permission to all others for
+a filename "myfile" then use the following:
+</p>
+<pre>
+chmod 755 myfile 
+</pre>
+<p>
+If you want to apply these  permissions to all files inside a directory "mydir" then use:
+</p>
+<pre>
+chmod 755 -R mydir  
+</pre>
+<p>
+using various combinations you can give or take permissions to other. 
+</p>
+<p>
+Apart from using number one can use "+/-" and "r,w,x" for changing permissions. For example if 
+you want to give read and execute permissions to everybody (a) for a file name "myfile" use the 
+following:
+</p>
+<pre>
+chmod a+rx myfile 
+</pre>
+<p>
+in the above "+" means giving. Using "-" you can take away permissions also. For example if want 
+to take away all the permissions for the file "myfile" from everybody excluding you, use the following:
+</p>
+<pre>
+chmod 700 myfile
+</pre>
+<p>
+You can change the ownership of a file (if you are the owner) named "myfile" use the following:
+</p>
+<pre>
+chown newowner.newowner myfile
+</pre>
+<p>
+where "newowner" is the login id of the new owner. If you you want to apply this for all the
+files inside a directory use "-R" option. 
+</p>
+<p>
+do not forget to check the new permissions using "ls -l" after every change otherwise you may be 
+in serious trouble !
+</p>
+</div>
+
+<div class="container">
+ <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+
+<p><script language="javascript" type="text/javascript">
+document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+
+</div>
+
+</body>
+</html>

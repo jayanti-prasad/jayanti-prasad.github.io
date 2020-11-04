@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> N-Body Codes  ! </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+
+<style type="text/css">
+  ul  {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+ }
+  ul li {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+ }
+.pix{
+  margin-right:300px;
+margin-left:300px;
+position:relative;
+width:400px;
+height:400px;
+}
+</style>
+
+
+</head>
+
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3','mbh')">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<br>
+<h1><a name="top_page"> N-Body Codes  </a> </h1>
+<ul id="mb3">
+<li><a href="#pm"> PM </a>  </li>
+<li><a href="#treepm"> TreePM </a>  </li>
+<li><a href="#gadget2"> Gadget 2 </a> </li>
+</ul>
+<hr>
+<br><br><br> 
+
+<h3> <a name="pm"> Particle Mesh (PM) Code   </a> </h3>
+<p>
+
+
+</p>
+<h3><a name="treepm"> TreePM code  </a> </h3> 
+
+<h3> <a name="gadget2"> Gadget2 </a> </h2>
+
+<p>
+Gadget 2 is Nbody codes which can take into account the dynamics of dark matter particle as well as gas
+using N-Body gravity solver and Smoothed Particle Hydrodynamics. In this code gravitaional force on 
+particles is computed hybrid Tree-Partcile-Mesh (TreePM) algorithm. This code was developed by Volker Springel
+and you can find more about the code <a href="http://www.mpa-garching.mpg.de/gadget/" target="dynamic"> here </a>.
+</p>
+
+<p>
+A very good introduction about how to run Gadget2 is given in <a href="www.mpa-garching.mpg.de/gadget/users-guide.pdf" target="dynamic">
+user guide </a> and there are many other tutorials avaliable online. Here my aim is just to help you to make Gadget2 run on
+your Linux cluster and have a quick look at the output for the simplest case. 
+</p>
+
+<p>
+In this tutorial I will discuss the four main steps which are needed to run Gadget2 and have a look at the out put. 
+</p>
+<ol>
+<li> Install the following packages:  (1) GSL (2) FFTW2 (3) MPI (4) HDF5 .
+<P> In order to see which packages are used see the following section of the Makefile of the Gadget2 </P>
+
+<pre>
+CC       =  /opt/hpmpi/bin/mpicc
+OPTIMIZE =  -O3
+GSL_INCL =  -I/data1/pdf/cjayanti/Software/gsl/include
+GSL_LIBS =  -L/data1/pdf/cjayanti/Software/gsl/lib
+FFTW_INCL=  -I/data1/pdf/cjayanti/Software/fftw2/include
+FFTW_LIBS=  -L/data1/pdf/cjayanti/Software/fftw2/lib
+MPICHLIB =  -I/opt/hpmpi/include/include  -L/opt/hpmpi/lib/linux_amd64/  -lmpi
+HDF5INCL =  -I/data1/pdf/cjayanti/Software/hdf5/hdf5-1.8.5-linux-static/include
+HDF5LIB  =  -L/data1/pdf/cjayanti/Software/hdf5/hdf5-1.8.5-linux-static/lib -static -lhdf5 -lz
+</p>
+<li> Create initial condition files </li>
+<p> Download the <a href="http://www.mpa-garching.mpg.de/gadget/n-genic.tar.gz"> NGenIC </a> package and edit its Makefile
+and input parameter file both of which have have enough comments. This package also need the same software which are needed 
+by Gadget2 - in particular FFTW2 (which has MPI support but it is quite hard to install !). For my 256 cube dark matter partcile in 512 cube
+box I have the following input parameter file</p>
+
+<pre>
+Nmesh            512       % This is the size of the FFT grid used to
+                           % compute the displacement field. One
+                           % should have Nmesh >= Nsample.
+
+Nsample          256       % sets the maximum k that the code uses,
+                           % i.e. this effectively determines the
+                           % Nyquist frequency that the code assumes,
+                           % k_Nyquist = 2*PI/Box * Nsample/2
+                           % Normally, one chooses Nsample such that 
+                           % Ntot =  Nsample^3, where Ntot is the
+                           % total number of particles
+
+
+Box              150000.0  % Periodic box size of simulation
+
+FileBase         ics256    % Base-filename of output files 
+OutputDir        ./ics256/ % Directory for output
+
+GlassFile        dummy_glass.dat  % File with unperturbed glass or
+                                  % Cartesian grid
+
+TileFac          16               % Number of times the glass file is
+                                  % tiled in each dimension (must be
+                                  % an integer)  Nsample/TileFac=16 
+
+
+Omega            0.227       % Total matter density  (at z=0)
+OmegaLambda      0.728       % Cosmological constant (at z=0)
+OmegaBaryon      0.045       % Baryon density        (at z=0)
+HubbleParam      70.2        % Hubble paramater (may be used for power spec parameterization)
+
+Redshift         63          % Starting redshift
+
+Sigma8           0.807       % power spectrum normalization
+
+
+
+SphereMode       1         % if "1" only modes with |k| < k_Nyquist are
+                           % used (i.e. a sphere in k-space), otherwise modes with
+                           % |k_x|,|k_y|,|k_z| < k_Nyquist are used
+                           % (i.e. a cube in k-space)
+
+
+WhichSpectrum    0         % "1" selects Eisenstein & Hu spectrum,
+                           % "2" selects a tabulated power spectrum in
+                           % the file 'FileWithInputSpectrum'
+                           % otherwise, Efstathiou parametrization is used
+
+FileWithInputSpectrum   input_spectrum.txt  % filename of tabulated input
+                                            % spectrum (if used)
+InputSpectrum_UnitLength_in_cm  3.085678e24 % defines length unit of tabulated
+                                            % input spectrum in cm/h.
+                                            % Note: This can be chosen different from UnitLength_in_cm
+
+ReNormalizeInputSpectrum   1                % if set to zero, the
+                                            % tabulated spectrum is
+                                            % assumed to be normalized
+                                            % already in its amplitude to
+                                            % the starting redshift,
+                                            % otherwise this is recomputed
+                                            % based on the specified sigma8
+
+
+ShapeGamma       0.21      % only needed for Efstathiou power spectrum
+PrimordialIndex  1.0       % may be used to tilt the primordial index,
+                           % primordial spectrum is k^PrimordialIndex
+
+
+Seed             123456    %  seed for IC-generator
+
+
+NumFilesWrittenInParallel 16 % limits the number of files that are
+                            % written in parallel when outputting
+
+
+UnitLength_in_cm          3.085678e21   % defines length unit of output (in cm/h)
+UnitMass_in_g             1.989e43      % defines mass unit of output (in g/cm)
+UnitVelocity_in_cm_per_s  1e5           % defines velocity unit of output (in cm/sec)
+</pre>
+<p> Note that the number of particles along one dimension divided by 'TileFac' should be 16 
+and the file 'dummy_glass.dat' which is provided with the code is only for 'little endian' (linux box).
+'FileBase' parameter is used for the prefix for the output file which are written in the directory
+'OutputDir'. 
+</p>  
+<p>
+On IUCAA Cray CX1 this code can be run as: 
+<pre>
+/opt/platform_mpi/bin/mpirun  -np 32 -hostlist \
+ "compute-00-00,compute-00-01,compute-00-02,compute-00-03,compute-00-04" ./N-GenIC   ics.param
+</pre>
+and on IUCAA Cetus:
+<pre>
+bsub -n32 -J N-GenIC  -o N-GenIC_%J.out -e N-GenIC_2%J.err \
+-ext "SLURM[nodes=4]" mpirun -srun ./N-GenIC  ics.param
+</pre>
+</p>
+<li> Running Gadget2 </li>
+<p> Edit the Makefile according to your setting and give the full paths for the input and output files.
+My parameter file looks like : </p>
+<pre>
+%  Relevant files
+
+InitCondFile       ../N-GenIC/ics256/ics256 % note the full path and prefix ! by jayanti
+OutputDir          output_256cube/
+
+EnergyFile         energy.txt
+InfoFile           info.txt
+TimingsFile        timings.txt
+CpuFile            cpu.txt
+
+RestartFile        restart
+SnapshotFileBase   snapshot
+
+OutputListFilename outputs_lcdm_gas.txt
+
+% CPU time -limit
+
+TimeLimitCPU      1440000  % = 400 hours
+ResubmitOn        0
+ResubmitCommand   my-scriptfile
+
+
+% Code options
+
+
+ICFormat                 1
+SnapFormat               1
+ComovingIntegrationOn    1
+
+TypeOfTimestepCriterion  0
+OutputListOn             1
+PeriodicBoundariesOn     1
+
+%  Caracteristics of run
+
+TimeBegin           0.015625  % z=63, Begin of the simulation
+TimeMax             8.0
+
+Omega0                0.227
+OmegaLambda           0.728
+OmegaBaryon           0.045
+HubbleParam           0.702
+BoxSize               150000.0 % kpc
+ Output frequency
+
+ TimeBetSnapshot        0.125
+ TimeOfFirstSnapshot    0
+
+ CpuTimeBetRestartFile     36000.0    ; here in seconds
+ TimeBetStatistics         0.05
+
+ NumFilesPerSnapshot       1
+ NumFilesWrittenInParallel 1
+
+
+ % Accuracy of time integration
+
+ ErrTolIntAccuracy      0.025
+
+ MaxRMSDisplacementFac  0.2
+
+ CourantFac             0.15
+
+ MaxSizeTimestep       0.03
+ MinSizeTimestep       0.0
+
+
+
+
+ % Tree algorithm, force accuracy, domain update frequency
+
+ ErrTolTheta            0.5
+ TypeOfOpeningCriterion 1
+ ErrTolForceAcc         0.005
+
+
+ TreeDomainUpdateFrequency    0.1
+
+
+ %  Further parameters of SPH
+
+ DesNumNgb              33
+ MaxNumNgbDeviation     2
+ ArtBulkViscConst       0.8
+nitGasTemp            1000.0        % always ignored if set to 0
+MinGasTemp             50.0
+
+
+% Memory allocation
+
+PartAllocFactor       1.6
+TreeAllocFactor       1.4
+BufferSize            30          % in MByte
+
+
+% System of units
+
+UnitLength_in_cm         3.085678e21        ;  1.0 kpc
+UnitMass_in_g            1.989e43           ;  1.0e10 solar masses
+UnitVelocity_in_cm_per_s 1e5                ;  1 km/sec
+GravityConstantInternal  0
+
+
+% Softening lengths
+
+MinGasHsmlFractional 0.25
+
+SofteningGas       0.0
+SofteningHalo      16.0
+SofteningDisk      0
+SofteningBulge     0
+SofteningStars     0
+SofteningBndry     0
+
+SofteningGasMaxPhys       0.0
+SofteningHaloMaxPhys      3.0
+SofteningDiskMaxPhys      0
+SofteningBulgeMaxPhys     0
+SofteningStarsMaxPhys     0
+SofteningBndryMaxPhys     0
+
+
+</pre>
+
+</ol>
+
+
+
+
+
+</div>
+<div class="container">
+  <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p><script type="text/javascript">
+ document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+</body>
+</html>
+

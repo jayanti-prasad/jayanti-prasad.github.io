@@ -1,0 +1,10 @@
+This folders contains :
+
+0. Makefile to comoile the program. Set the path for FFTW installtion.
+1. create_data.c : A program to create input data for the 1,2 and 3 dimensional Fourier programs
+2. example_dft_1d.c : example for one 1-dimension discrete fourier transformation 
+3. example_dft_2d.c : example for one 2-dimension discrete fourier transformation
+4. example_dft_3d.c : example for one 3-dimension discrete fourier transformation
+5. modes.c          : For computing the frequncy spectrum for FFT, see Numerical Recepies 
+
+Commnets & suggestions : prasad.jayanti@gmail.com 

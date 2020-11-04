@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jayanti Prasad's Calculators  ! </title>
+<link rel="stylesheet" href="mb.css">
+<script type="text/javascript" src="mb.js"></script>
+<script type="text/javascript" src="menu_bar.js"></script>
+<link   rel="stylesheet" href="jpstyle.css">
+<SCRIPT type="text/javascript" language="JavaScript"  SRC="js/popone.js"></SCRIPT>
+<script type="text/javascript" src="js/econvert.js"></script>
+<script type="text/javascript" src="js/dmdelay.js"></script>
+<script type="text/javascript" src="js/angres.js"></script>
+
+<style type="text/css">
+select{
+background-color:#FFF8C6;
+color:black;
+width:150px;
+height:30px;
+font:12pt;
+}
+.input{
+background-color:#CFECEC;
+color:black;
+width:150px;
+height:30px;
+font:12pt;
+}
+.output{
+background-color:#EBDDE2;
+color:black;
+width:150px;
+height:30px;
+font:12pt;
+}
+
+.submit{
+width:150px;
+height:30px;
+background-color:#4E9258; 
+color:white;
+}
+.clear{
+width:150px;
+height:30px;
+background-color:#98AFC7; 
+color:white;
+}
+.calname{
+color:red;
+margin-top:10px;
+margin-botton:10px;
+margin-left:250px;
+font-family:"sans-serif",Fixed;
+font-style: normal;
+font-variant: normal;
+font-size: 21pt;
+}
+.calbox{
+width:750px;
+height:180px;	
+background-color:#FFEFD5;
+}
+
+</style>
+</head>
+
+<body onload="mbSet('mb2', 'mbh');mbSet('mb3', 'mbh') ">
+
+<div class="container">
+<script type="text/javascript"> menu_bar(); </script>
+<h1> <a name="top_page"> Calculators </a>   </h1>
+
+<ul id="mb3">
+<li> <a href="#eConvert"> eConvertor  </a> 
+<li> <a href="#aResolve"> aResolve    </a> 
+<li> <a href="#dDelay">   dDelay </a> 
+</ul>
+<hr>
+<br><br><br> 
+
+<h3><a name="eConvert"> Universal Energy converter  </a> </h3>
+
+<div class="calbox">
+<div class="calname"> JP's<sup> &copy; </sup> Universal Energy Converter </div> 
+
+<center> 
+ <form name="econverter" onfocus="value=''">
+ <table>
+  <tr>
+  <td> <input type=text name=input id="input"  value="1" class="input"> </td>
+  <td>
+  <select name=first id="first" value="J" size=1>
+  <option value="J">  Jule
+  <option value="K">  Kelvin
+  <option value="eV"> eV
+  <option value="Hz"> Hz
+  <option value="Kg"> Kg
+  </select>
+  </td>
+  </tr>
+  <tr>
+   <td> 
+   <input type=text name=output id="output" value="" class="output"> 
+   </td>
+   <td>
+  <select name=second id="second" value="eV" size=1>
+  <option value="J">  Jule
+  <option value="K">  Kelvin
+  <option value="eV"> eV
+  <option value="Hz"> Hz
+  <option value="Kg"> Kg
+  </select>
+  </td>
+ </tr>
+<tr>
+<td><input  type="reset" class="clear"  value="Reset"></td>
+<td> 
+<input type=button name=button1 value="Submit" class="submit" onClick="javascript:eConvert()"> 
+</td>
+</tr>
+ </table>
+ </form>
+ </center>
+</div>
+
+
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h3> <a name="aResolve"> Angular Resolution Calculator </a> </h3>
+
+<p>
+The angular resolution of a radio interferometric array depends 
+on the length of the baseline and the frequency or the wavelength being 
+used. The following calculator calculates the angular resolution in arc seconds
+for a given set of baseline and frequency/wavelength.
+</p>
+
+<div class="calbox">
+<div class="calname"> JP's<sup> &copy; </sup> Angular Resolution Calculator </div>
+<form method=post name="angres" action="">
+<table>
+<tr>
+<td> Baseline (Mt)</td>
+<td><select name=wave size=1>
+<option value="mt"> Wavelength (Mt)
+<option value="yt"> Freq (MHz)
+</select>
+</td> 
+<td> Arc sec </td>
+</tr>
+<tr>
+<td><input  type=text  name=baseline value="25000"> </td>
+<td><input  type=text  name=lambda value="1"> </td>
+<td> <input type=text  name=total > </td>
+</tr>
+<tr>
+<td></td>
+<td><input  type="reset" class="clear"  value="Reset"></td>
+<td><input type=button class="submit" name=button1 value="Submit" onClick="javascript:AngRes()"></td>
+</tr>
+</table>
+</form>
+</div>
+
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+<h3> <a name="dDelay"> Pulsar Dedispersion delay Calculator  </a> </h3>
+
+<p> The following calculator  calculates the time delay (in milli seconds) between 
+the signals received  at the frequency  f<SUB>1</SUB> (in MHz) and f<SUB>2</SUB>. 
+</p>
+
+<div class="calbox">
+<div class="calname">  JP's<sup> &copy; </sup> Dedispersion Delay Calculator </div>
+<form method=post name="dmdelay" action="">
+<table>
+<tr>
+<td> f<SUB>1</SUB>(MHz)</td> 
+<td> f<SUB>2</SUB>(MHz)</td> 
+<td> DM(pc/cc)</td> 
+<td> t(mil sec) </td>
+</tr>
+<tr>
+<td><input type=text value="610" name=low> </td>
+<td><input type=text value="626" name=high> </td>
+<td><input type=text value="1"   name=dm></td>
+<td> <input type=text name=total value="0.00"></td>
+</tr>
+<tr> 
+<td></td><td></td>
+<td><input  type="reset" class="clear"  value="Reset"></td>
+<td> <input type=button  name=button1 value="Submit"  class="submit" onClick="javascript:DmDelay()"></td>
+</tr>
+</table>
+</form>
+</div>
+<p>
+<a href="#top_page"><img class="top" src="icons/top.gif" alt="top"></a>
+</p>
+
+
+
+</div>
+
+<div class="container">
+  <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+  </p>
+<p><script type="text/javascript">
+ document.write("This document was last modified on "+document.lastModified);
+</script>
+</p>
+</div>
+
+
+
+</body>
+</html>
