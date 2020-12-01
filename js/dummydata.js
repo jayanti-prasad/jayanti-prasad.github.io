@@ -275,7 +275,7 @@ var dummyData = {
 +"<li><a href=\"https://docker-curriculum.com/#docker-run\" target=\"dynamic\">A docker tutorial </a></li>"
 +"<li><a href=\"https://dev.mysql.com/doc/refman/5.7/en/tutorial.html\" target=\"dynamic\">MySQL Tutorial </a></li>"
 +"<li><a href=\"https://www.edureka.co/blog/mysql-tutorial/\" target=\"dynamic\">MySQL tutorail [Edureka] </a></li>"
-+"<li><a href=\" \" target=\"dynamic\"> </a></li>"
++"<li><a href=\"https://otexts.com/fpp2/\" target=\"dynamic\">Forecasting: Principles and Practice </a></li>"
 +"<li><a href=\"https://www.datacamp.com/community/tutorials/lstm-python-stock-market\" target=\"dynamic\">Stock Market Predictions with LSTM in Python </a></li>"
 +"<li><a href=\"https://otexts.com/fpp2/index.html\" target=\"dynamic\">Forcasting: Principles and practices  </a></li>"
 +"<li><a href=\"https://www.dwavesys.com/tutorials/background-reading-series/quantum-computing-primer\" target=\"dynamic\">Quantum Computing Primer (from D-Waves)  </a></li>"
