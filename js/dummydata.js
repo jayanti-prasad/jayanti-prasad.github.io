@@ -279,6 +279,7 @@ var dummyData = {
 +"<li><a href=\"https://www.datacamp.com/community/tutorials/lstm-python-stock-market\" target=\"dynamic\">Stock Market Predictions with LSTM in Python </a></li>"
 +"<li><a href=\"https://otexts.com/fpp2/index.html\" target=\"dynamic\">Forcasting: Principles and practices  </a></li>"
 +"<li><a href=\"https://www.dwavesys.com/tutorials/background-reading-series/quantum-computing-primer\" target=\"dynamic\">Quantum Computing Primer (from D-Waves)  </a></li>"
++"<li><a href=\"https://hdsr.mitpress.mit.edu/pub/wot7mkc1/release/9\" target=\"dynamic\"> Artificial Intelligence—The Revolution Hasn’t Happened Yet </a></li>"
 +"</ol>"
 +"<br><br> <hr><br><br><br>"
 
