@@ -1,0 +1,73 @@
+1. Creating a banner:  
+
+convert -size 650x100 -background  transparent -fill blue \
+ -pointsize 64 -gravity center 'label:JP Media & Art Work' logo.png
+
+ This creates a png transparent logo. Parameters can be used to:
+
+ > change the size of the frame.  
+ > size of the text.  
+ > option '-gravity' helps to put the text at center.
+
+If you want to write a full paragraph with line breaks, do the following:
+
+convert -size 600x180 -background  transparent -fill blue \
+ -pointsize 32 -gravity center  caption:'Sometime sky becomes
+  so dark\n  I cannot see  stars and lose track \n  when you  
+  recognize me \n I know I have not gone too far' poem1.png
+
+note that option '\n' provides the line break. Again this is for transparent. 
+If you want  color, do the following:
+
+convert -size 650x100 -background  gray  -fill blue  -pointsize \
+   64 -gravity center 'label:JP Media & Art Work'  logo.png
+
+ note that you can control the color of the background as well as that of the text.
+
+
+2. Handling fonts: 
+ 
+To know what are the fonts avaliable type the following:
+
+convert  -list font
+
+which may give like:
+
+Font: Times-Italic
+    family: Times
+    style: Italic
+    stretch: Normal
+    weight: 400
+    glyphs: /usr/share/fonts/type1/gsfonts/n021023l.pfb
+
+etc.
+
+Now use the file obtained as the option for '-font'
+
+convert -size 650x100 -background  black   -fill red  -pointsize 64  -font \
+  /usr/share/fonts/type1/gsfonts/p052023l.pfb    -gravity center 'label:JP Media & Art Work'  logo.png
+
+3. Positiong a banner on an image :
+
+  convert bg.png  logo.png  -geometry +100+100  -composite tmp1.png
+
+ Note that +100+100 sepecify the location of the banner 'logo.png' and by dynamically
+ changing it using some script, snapshots can be created for a movie.
+
+
+4. Chaging the color or an image :
+
+   convert bg.png   -modulate 60   bg60.png
+
+   smaller the number, darker the image gets.
+
+
+5. Changing the size of an image 
+  convert bg.png   -modulate 60  -resize  1228x1228    bg60.png
+
+
+6.  Shear an image 
+    convert bg.png  -shear 0x30 -resize  1024x1024  -gravity   center bg_shear.png
+    convert bg.png  -shear 0x30 -resize  900x600    -rotate -60  -gravity   center bg_shear.png
+
+ 
