@@ -1,82 +1,298 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title> Jayanti Prasad's personal webpage</title>
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jayanti Prasad, Ph.D.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f5;--panel:#e2e8f0;--ink:#14213d;--mute:#4a5872;--acc:#0f766e;--hi:#b7791f;--line:#c3cddb;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a2e;--panel:#182640;--ink:#e6ebf5;--mute:#9fb0cc;--acc:#4fd1c5;--hi:#f2b84b;--line:#2b3b5c}}
+:root[data-theme="dark"]{--bg:#101a2e;--panel:#182640;--ink:#e6ebf5;--mute:#9fb0cc;--acc:#4fd1c5;--hi:#f2b84b;--line:#2b3b5c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 Literata,Georgia,serif}
+a{color:var(--acc)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+.shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{position:sticky;top:0;align-self:start;height:100vh;padding:2.2rem 1.6rem;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:1.6rem}
+.name{font:700 1.55rem/1.15 "Bricolage Grotesque",Arial,sans-serif;letter-spacing:-.01em}
+.name small{display:block;font:400 .85rem/1.4 Literata,serif;color:var(--mute);margin-top:.4rem}
+nav{display:flex;flex-direction:column;gap:.15rem}
+nav a{font:500 1rem "Bricolage Grotesque",Arial,sans-serif;text-decoration:none;color:var(--mute);padding:.35rem .7rem;border-left:3px solid transparent}
+nav a:hover{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--ink);border-left-color:var(--hi);background:var(--panel)}
+.soc{margin-top:auto;display:flex;flex-direction:column;gap:.3rem;font-size:.9rem}
+main{padding:3rem clamp(1.2rem,5vw,4.5rem) 5rem;max-width:58rem}
+section{display:none}
+section.on{display:block}
+h1,h2,h3{font-family:"Bricolage Grotesque",Arial,sans-serif;line-height:1.15;letter-spacing:-.015em}
+h1{font-size:clamp(2.2rem,5.5vw,3.9rem);margin:0 0 1.6rem;font-weight:700}
+h2{font-size:1.5rem;margin:2.4rem 0 .6rem}
+h3{font-size:1.1rem;margin:1.6rem 0 .3rem;color:var(--acc)}
+p{max-width:68ch}
+.lede{font-size:1.2rem;color:var(--mute)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:2rem 0;border:1px solid var(--line)}
+.three div{padding:1rem 1.2rem;border-right:1px solid var(--line)}
+.three div:last-child{border-right:0}
+.three b{font:700 1.15rem "Bricolage Grotesque",Arial,sans-serif;display:block}
+.three span{color:var(--mute);font-size:.92rem}
+.note{background:var(--panel);border-left:3px solid var(--hi);padding:.8rem 1.1rem;max-width:68ch;font-size:.95rem}
+.tl{border-left:2px solid var(--line);margin:1.5rem 0;padding-left:1.3rem}
+.tl div{margin-bottom:1.1rem;position:relative}
+.tl div:before{content:"";position:absolute;left:-1.72rem;top:.6rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--acc)}
+.tl b{font-family:"Bricolage Grotesque",Arial,sans-serif}
+ul.l{padding-left:1.1rem;max-width:70ch}
+ul.l li{margin:.3rem 0}
+.cols{columns:2 22rem;column-gap:2.5rem}
+.cols>div{break-inside:avoid;margin-bottom:.4rem}
+.cols h3{margin-top:0}
+.cols ul{padding-left:1.1rem;margin:.2rem 0 1rem;font-size:.95rem;line-height:1.55}
+.top{display:none}
+@media(max-width:820px){
+.shell{grid-template-columns:1fr}
+aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:1.2rem 1.2rem .8rem;gap:.8rem}
+nav{flex-direction:row;flex-wrap:wrap;gap:.2rem}
+nav a{border-left:0;border-bottom:3px solid transparent;padding:.25rem .5rem}
+nav a[aria-current="page"]{border-bottom-color:var(--hi)}
+.soc{flex-direction:row;flex-wrap:wrap;gap:1rem;margin-top:0}
+.three{grid-template-columns:1fr}.three div{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(prefers-reduced-motion:no-preference){section.on{animation:in .3s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style>
 </head>
-
 <body>
-
-<div id="wrapper">
-
-<div id="header">
-<h1>Jayanti Prasad Ph. D</h1>
-</div>
-
-<div id="menu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="research.html">Research</a></li>
-<li><a href="aiml.html">AI & ML</a></li>
-<li><a href="downloads.html">Downloads</a></li>
-<li><a href="resources.html">Resources</a></li>
-<li><a href="learn.html">Learning</a></li>
-</ul>
-</div>
-
-<div id="sidebar">
-<ul>
-<li><a href="https://www.linkedin.com/in/jayanti-prasad-ph-d-0869a1136/" target="dynamic">LinkedIn</a></li>
-<li><a href="https://prasad-jayanti.medium.com/" target="dynamic">Medium</a></li>
-<li><a href="https://github.com/jayanti-prasad" target="dynamic">GitHub</a></li>
-<li><a href="https://scholar.google.co.in/citations?user=hdn0Ln0AAAAJ&hl=en" target="dynamic">Google Scholar</a></li>
-</ul>
+<div class="shell">
+<aside>
+ <div class="name">Jayanti Prasad, Ph.D.<small>Astrophysicist turned data scientist</small></div>
+ <nav id="nav" aria-label="Main">
+  <a href="#home">Home</a><a href="#about">About</a><a href="#research">Research</a><a href="#aiml">AI &amp; ML</a><a href="#downloads">Downloads</a><a href="#resources">Resources</a><a href="#learning">Learning</a><a href="#contact">Contact</a>
+ </nav>
+ <div class="soc">
+  <a href="https://www.linkedin.com/in/jayanti-prasad-ph-d-0869a1136/" target="_blank" rel="noopener">LinkedIn</a>
+  <a href="https://prasad-jayanti.medium.com/" target="_blank" rel="noopener">Medium</a>
+  <a href="https://github.com/jayanti-prasad" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://scholar.google.co.in/citations?user=hdn0Ln0AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
  </div>
+</aside>
+<main>
 
-<div id="content">
-<div class="entry">
-<div class="entry-title"><a href="#">Welcome</a></div>
-<br>
-<p>  
-Life, Computers, and the Universe – these three systems have captured my interest. One might wonder what commonalities exist among them and how they relate to each other. Let me first delve into the connection between computers and the universe.
-</p>
+<section id="home">
+ <h1>Life, computers, and the universe.</h1>
+ <p class="lede">Three systems that have held my attention for two decades, and the ideas that connect them.</p>
+ <div class="three">
+  <div><b>Universe</b><span>Cosmology, simulation, gravitational waves</span></div>
+  <div><b>Computers</b><span>Numerical methods, HPC, data science</span></div>
+  <div><b>Life</b><span>Information, intelligence, entropy</span></div>
+ </div>
+ <p>In the early 2000s I began my Ph.D. in cosmology, the study of the origin and evolution of the universe. I found that the cosmos is vast in time and space, and that a human lifetime is far too short to watch it change. I also found that many of the equations are too complex to solve analytically. In both cases computers were invaluable. They let us simulate clusters of galaxies and stars, and solve equations such as Einstein's General Relativity numerically. Alongside theory, observation and experiment, numerical simulation is now a central way to advance science.</p>
+ <p>Life takes a different turn. From Schrödinger to Freeman Dyson, physicists have been drawn to living systems. Life as we know it has one system for managing energy (mostly proteins built from amino acids) and another for managing information (DNA, built from nucleic acids). The chance of both arising together is very low, but it rises if the two abilities developed independently at different times. Life also runs against the simple picture of the second law of thermodynamics, since disorder does not simply grow with time inside it. Wherever information is at stake, physicists and computer scientists take an interest.</p>
+ <p>At the meeting point of life, information, intelligence and consciousness there is a great deal of active research, mostly centred on human beings. Building a theory from a single example may not be fruitful. Powered flight only took off once people studied the principles of aviation rather than copying birds. Life, intelligence and consciousness may be the same: the goal should be principles that cover far more cases than the ones we know.</p>
+ <p>That brings up Artificial General Intelligence, intelligence superior to ours in every respect. It is a hard target when we still cannot quantify overall human intelligence. Humans, for instance, are far better learners than AI systems in terms of how much training they need.</p>
+ <p>For a semi-popular article about the universe, read <a href="https://jayanti-prasad.github.io/docs/articles/cosmo_rev_v3.pdf" target="_blank" rel="noopener">the English version</a> or <a href="https://jayanti-prasad.github.io/docs/articles/brahamand_v3.pdf" target="_blank" rel="noopener">the Hindi version</a>. If you have questions, or just want to say hi, get in touch.</p>
+</section>
 
-<p>
-  Two decades ago, in the early 2000s, when I commenced my Ph.D. thesis in cosmology, the study of the origin and evolution of the universe, I discovered the vastness of the cosmos in terms of time and space. Human lifetimes, in comparison, are too brief to observe significant changes in the universe. Furthermore, I realized that mathematical equations sometimes become too complex for analytical solutions. In both scenarios, computers proved invaluable. They enable us to simulate systems and processes as immense as clusters of galaxies and stars and solve intricate equations, such as Einstein's General Relativity equation, numerically. My Ph.D. work predominantly involved computational methods, and you can explore my publications on my Google Scholar page. This realization led me to understand that, in addition to theory, observations, and experiments, numerical simulations play a crucial role in advancing science. Since then, computers and the universe have occupied a substantial portion of my cognitive space.
-</p>
+<section id="about">
+ <h1>About</h1>
+ <p class="note">My old IUCAA webpage is still online but no longer maintained: <a href="https://web.iucaa.in/~jayanti/index.html" target="_blank" rel="noopener">visit it here</a>.</p>
+ <p>I was born and raised in a small village in Rudraprayag district, Uttarakhand. I completed my Master's in Physics (specialising in Electronics &amp; Communication) at HNB Garhwal University, Srinagar Garhwal, in 1998. I then taught physics to classes XI and XII at SGRR Public School and earned a Diploma in Education in 2000. After clearing the national JEST and CSIR-UGC (NET) tests, I moved to Harish-Chandra Research Institute, Allahabad (now Prayagraj), in 2001 to pursue a Ph.D. in Astrophysics.</p>
+ <div class="tl">
+  <div><b>2001–2008 · HRI, Allahabad.</b> Ph.D. in Astrophysics under Prof. J. S. Bagla.</div>
+  <div><b>2008 · NCRA-TIFR.</b> First postdoc with Prof. Jayaram Chengalur, working on computational tasks and GMRT data-processing pipelines.</div>
+  <div><b>2010–2018 · IUCAA.</b> Postdoc with Prof. Tarun Souradeep, later Principal Investigator of a project funded by the Department of Science &amp; Technology. Member of the LIGO Scientific Collaboration from 2012 to 2018, and helped set up a 200 TF LIGO Data Grid cluster at IUCAA.</div>
+  <div><b>2018 · Accelere (now Embold) Technologies.</b> Data scientist.</div>
+  <div><b>2020 · DISYS India, Chennai.</b> Data scientist.</div>
+ </div>
+ <p>At IUCAA I became deeply involved in Big Data, high-performance and grid computing. Our work with LIGO was well appreciated, and we were part of the team behind the first detection of a black hole merger in 2015. I have co-authored over 100 publications with LIGO. Some press coverage:</p>
+ <ul class="l">
+  <li><a href="https://www.tribuneindia.com/news/archive/features/rudraprayag-scientist-does-state-proud-202022" target="_blank" rel="noopener">Rudraprayag scientist does state proud</a></li>
+  <li><a href="https://indianexpress.com/article/india/iucaa-researchers-get-special-breakthrough-prize-for-detection-of-gravitational-waves-4410664/" target="_blank" rel="noopener">IUCAA researchers get Special Breakthrough Prize for detection of gravitational waves</a></li>
+  <li><a href="https://timesofindia.indiatimes.com/city/pune/iucaa-scientists-contributed-most-to-countrys-share/articleshow/61113531.cms" target="_blank" rel="noopener">IUCAA scientists contributed most to country's share</a></li>
+  <li><a href="http://publication.iucaa.in/index.php/khagol/article/viewFile/174/155" target="_blank" rel="noopener">Khagol Report</a></li>
+ </ul>
+</section>
 
+<section id="research">
+ <h1>Research</h1>
+ <p>My full <a href="https://jayanti-prasad.github.io/docs/jayanti-publications.pdf" target="_blank" rel="noopener">publication list</a> and a <a href="https://jayanti-prasad.github.io/docs/jayanti_prasad_res.pdf" target="_blank" rel="noopener">longer research summary</a> are available as PDFs.</p>
+ <p>For almost two decades I worked across computational, observational and theoretical astrophysics, and published over 100 papers in peer-reviewed journals. My areas were cosmology (large-scale structure, the cosmic microwave background, the early universe), radio astronomy (transient detection, H21 mapping, software design and data analysis) and gravitational waves. In gravitational waves my role was mostly setting up and managing high-performance grid computing systems and deploying data-analysis pipelines, alongside some scientific contributions.</p>
+ <h2>Large-scale structure of the universe</h2>
+ <p>In the Big Bang model the universe expanded and cooled from a singularity about 13.7 billion years ago. Redshifted light from distant galaxies, the cosmic microwave background, the abundances of light elements and the distribution of galaxies all support it. The energy budget is dominated by dark matter, which does not radiate, and dark energy, which accelerates the expansion.</p>
+ <p>The early universe had no galaxies, only small fluctuations that gravity amplified into the structures we see. This growth is nonlinear and cannot be modelled analytically, so most progress comes from cosmological N-body simulations, which evolve huge numbers of particles in an expanding background. My Ph.D. work covered mode coupling between scales and finite-volume effects in these simulations.</p>
+ <h3>Role of substructure</h3>
+ <p>In cold dark matter models, small scales collapse first. I asked whether small-scale perturbations affect the collapse of larger structures beyond what shows up in the power spectrum.</p>
+ <ul class="l">
+  <li>Bagla, Prasad &amp; Ray, 2005, MNRAS, 360, 194 (<a href="https://arxiv.org/abs/astro-ph/0408429" target="_blank" rel="noopener">astro-ph/0408429</a>). Gravitational collapse in an expanding background and the role of substructure I: Planar collapse.</li>
+  <li>Bagla &amp; Prasad, 2008, MNRAS (<a href="https://arxiv.org/abs/0802.2796" target="_blank" rel="noopener">arXiv:0802.2796</a>). Substructure II: Excess power at small scales and its effect on the collapse of structures at larger scales.</li>
+ </ul>
+ <h3>Finite-volume effects in N-body simulations</h3>
+ <p>Simulations model a finite box and ignore fluctuations larger than it. I studied how measures of gravitational clustering depend on box size.</p>
+ <ul class="l">
+  <li>Bagla &amp; Prasad, 2006, MNRAS, 370, 993 (<a href="https://arxiv.org/abs/astro-ph/0601320" target="_blank" rel="noopener">astro-ph/0601320</a>). Effects of the size of cosmological N-body simulations on physical quantities I: Mass function.</li>
+  <li>Prasad, 2007, J. Astrophys. Astron. 28, 117 (<a href="https://arxiv.org/abs/astro-ph/0702557" target="_blank" rel="noopener">astro-ph/0702557</a>). II: Halo formation and destruction rate.</li>
+  <li>Bagla, Prasad &amp; Khandai, 2009, MNRAS, 395, 2 (<a href="https://arxiv.org/abs/0804.1197" target="_blank" rel="noopener">arXiv:0804.1197</a>). III: Skewness.</li>
+ </ul>
+</section>
 
+<section id="aiml">
+ <h1>Artificial intelligence and machine learning</h1>
+ <p>There have been four industrial revolutions: mechanisation (18th century), electricity (19th), computers and the Internet (20th), and now, in the 21st, AI, machine learning and data science. Data is the new oil. For technical detail, see my Medium, GitHub and LinkedIn pages.</p>
+ <h2>What is intelligence?</h2>
+ <p>This is as hard as asking what life is. The working definition of life is "life as we know it on Earth", a definition drawn from the one example we have. Intelligence is similar: we mostly have human intelligence to go on, so we define it relative to that. Other kinds may exist that we do not know about.</p>
+ <p>AI rests on the premise that human-like intelligence can be built from machines, as Alan Turing proposed around 1950. Language is the simplest and most common way to show intelligence, and any intelligence probably has language at its centre. Turing suggested that a machine able to answer questions like a human could be called intelligent. ChatGPT is an example.</p>
+ <p>A truly intelligent system needs more than language. Russell and Norvig list:</p>
+ <ul class="l"><li>Language (natural language processing)</li><li>Knowledge representation</li><li>Learning from experience (machine learning)</li><li>Sensing and manipulating the environment (robotics)</li></ul>
+ <p>Machine learning is software that learns from data without being explicitly programmed and improves at tasks such as understanding speech, recognising images or making predictions. Siri, Alexa and ChatGPT are built on it. Many different algorithms exist for different tasks, and I write about them on <a href="https://prasad-jayanti.medium.com/" target="_blank" rel="noopener">Medium</a>.</p>
+</section>
 
-<p>
-The case of life takes a different turn. From Schrödinger to Freeman Dyson, numerous physicists have shown a keen interest in living systems. Although Schrödinger's "What is Life?" faced criticism, with claims that the original content was incorrect and the correct ideas weren't his contributions, Dyson's ideas stand out. Life, as we know it, comprises two types of systems: one for managing energy (mostly proteins made of amino acids) and another for managing information (DNA molecules made of nucleic acids). The origin of both amino acids and nucleic acids is highly improbable, and considering their simultaneous emergence makes the probability of life as we know it very low. However, if we consider the independent development of these abilities at different times, the likelihood of life's origin increases slightly. Life, in contrast to the second law of thermodynamics, is a system where disorder or entropy doesn't unilaterally increase with time. For physicists and computer scientists, wherever there's an issue with information, interest naturally follows, making life a natural playground.
-</p>
+<section id="downloads">
+ <h1>Downloads</h1>
+ <p class="note">I could not read the original downloads page, so this list only holds the documents linked from other pages of the site.</p>
+ <ul class="l">
+  <li><a href="https://jayanti-prasad.github.io/docs/jayanti-publications.pdf" target="_blank" rel="noopener">List of publications (PDF)</a></li>
+  <li><a href="https://jayanti-prasad.github.io/docs/jayanti_prasad_res.pdf" target="_blank" rel="noopener">Research summary in astronomy and astrophysics (PDF)</a></li>
+  <li><a href="https://jayanti-prasad.github.io/docs/articles/cosmo_rev_v3.pdf" target="_blank" rel="noopener">Semi-popular article on the universe, English (PDF)</a></li>
+  <li><a href="https://jayanti-prasad.github.io/docs/articles/brahamand_v3.pdf" target="_blank" rel="noopener">Semi-popular article on the universe, Hindi (PDF)</a></li>
+ </ul>
+</section>
 
-<p>
-At the intersection of life, information, intelligence, and consciousness, there is a substantial area of active research, often centered around human beings. It's crucial to note that building a theory or model from a single example might not always be a fruitful approach. Take the case of powered flight – progress only truly began when people focused on the general principles of aviation instead of merely copying birds. The same might hold true for life, intelligence, and consciousness. If we take life on Earth, human intelligence, and human consciousness as templates, we might miss out on broader principles. The ultimate goal should be to understand principles that can cover a much wider array of examples than we currently know.
-</p>
+<section id="resources">
+ <h1>Resources</h1>
+ <p>Tutorials, primers and articles I have found useful.</p>
+ <div class="cols">
+  <div><h3>Artificial intelligence</h3><ul>
+   <li><a href="https://ai100.stanford.edu/workshop" target="_blank" rel="noopener">One Hundred Year Study on AI (AI100)</a></li>
+   <li><a href="https://hdsr.mitpress.mit.edu/pub/wot7mkc1/release/9" target="_blank" rel="noopener">AI: The Revolution Hasn't Happened Yet</a></li></ul></div>
+  <div><h3>Computer science</h3><ul>
+   <li><a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener">Data Structures tutorial</a></li>
+   <li><a href="https://techdevguide.withgoogle.com/paths/data-structures-and-algorithms/" target="_blank" rel="noopener">Data Structures and Algorithms (Google)</a></li>
+   <li><a href="https://www.tutorialspoint.com/data_structures_algorithms/algorithms_basics.htm" target="_blank" rel="noopener">Algorithms basics (Tutorialspoint)</a></li></ul></div>
+  <div><h3>Statistics and mathematics</h3><ul>
+   <li><a href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/" target="_blank" rel="noopener">Statistics at Square One</a></li>
+   <li><a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/" target="_blank" rel="noopener">Probability and Statistics (MIT OpenCourseWare)</a></li>
+   <li><a href="https://www.daniweb.com/programming/computer-science/tutorials/520084/understanding-roc-curves-from-scratch" target="_blank" rel="noopener">Understanding ROC curves from scratch</a></li>
+   <li><a href="https://blogs.oracle.com/datascience/introduction-to-correlation" target="_blank" rel="noopener">Introduction to correlation</a></li>
+   <li><a href="https://mml-book.github.io/" target="_blank" rel="noopener">Mathematics for Machine Learning</a></li></ul></div>
+  <div><h3>Data science and machine learning</h3><ul>
+   <li><a href="https://ischoolonline.berkeley.edu/data-science/what-is-data-science/" target="_blank" rel="noopener">What is data science</a></li>
+   <li><a href="https://developers.google.com/machine-learning/crash-course" target="_blank" rel="noopener">Machine Learning Crash Course (Google)</a></li>
+   <li><a href="https://www.toptal.com/machine-learning/machine-learning-theory-an-introductory-primer" target="_blank" rel="noopener">Machine learning theory primer</a></li>
+   <li><a href="https://adataanalyst.com/machine-learning/comprehensive-guide-feature-engineering/" target="_blank" rel="noopener">Guide to feature engineering</a></li>
+   <li><a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">XGBoost</a></li>
+   <li><a href="https://rdipietro.github.io/friendly-intro-to-cross-entropy-loss/" target="_blank" rel="noopener">A friendly introduction to cross-entropy loss</a></li></ul></div>
+  <div><h3>Deep learning</h3><ul>
+   <li><a href="https://www.asimovinstitute.org/neural-network-zoo/" target="_blank" rel="noopener">Neural Network Zoo</a></li>
+   <li><a href="https://lilianweng.github.io/lil-log/2017/08/20/from-GAN-to-WGAN.html" target="_blank" rel="noopener">From GAN to WGAN</a></li>
+   <li><a href="https://www.oreilly.com/library/view/generative-deep-learning/9781492041931/ch01.html" target="_blank" rel="noopener">Generative Deep Learning (David Foster)</a></li></ul></div>
+  <div><h3>Natural language processing</h3><ul>
+   <li><a href="https://www.nltk.org/book/ch01.html" target="_blank" rel="noopener">Language Processing and Python (NLTK)</a></li>
+   <li><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">Understanding LSTMs</a></li>
+   <li><a href="http://jalammar.github.io/illustrated-word2vec/" target="_blank" rel="noopener">Illustrated Word2Vec</a></li>
+   <li><a href="http://jalammar.github.io/illustrated-bert/" target="_blank" rel="noopener">Illustrated BERT</a></li>
+   <li><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">Illustrated Transformer</a></li>
+   <li><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html" target="_blank" rel="noopener">Attention? Attention!</a></li>
+   <li><a href="https://openai.com/blog/better-language-models/" target="_blank" rel="noopener">Better Language Models (OpenAI)</a></li>
+   <li><a href="https://medium.com/@ageitgey/natural-language-processing-is-fun-9a0bff37854e" target="_blank" rel="noopener">Natural Language Processing is Fun!</a></li></ul></div>
+  <div><h3>Computer vision</h3><ul>
+   <li><a href="https://cs231n.github.io/linear-classify/" target="_blank" rel="noopener">CNNs for visual recognition (CS231n)</a></li>
+   <li><a href="https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/" target="_blank" rel="noopener">Beginner's guide to convolutional neural networks</a></li></ul></div>
+  <div><h3>Time series</h3><ul>
+   <li><a href="https://otexts.com/fpp2/" target="_blank" rel="noopener">Forecasting: Principles and Practice</a></li>
+   <li><a href="https://ourcodingclub.github.io/tutorials/pandas-time-series/" target="_blank" rel="noopener">Time series analysis with Pandas</a></li>
+   <li><a href="https://towardsdatascience.com/stl-decomposition-how-to-do-it-from-scratch-b686711986ec" target="_blank" rel="noopener">STL decomposition from scratch</a></li>
+   <li><a href="https://towardsdatascience.com/anomaly-detection-with-isolation-forest-visualization-23cd75c281e2" target="_blank" rel="noopener">Anomaly detection with Isolation Forest</a></li></ul></div>
+  <div><h3>Quantum computing</h3><ul>
+   <li><a href="https://michaelnielsen.org/" target="_blank" rel="noopener">Michael Nielsen</a></li>
+   <li><a href="https://research.ibm.com/quantum-computing" target="_blank" rel="noopener">IBM Quantum Computing</a></li>
+   <li><a href="https://scienceexchange.caltech.edu/topics/quantum-science-explained/quantum-computing-computers" target="_blank" rel="noopener">What is quantum computing? (Caltech)</a></li>
+   <li><a href="https://www.dwavesys.com/tutorials/background-reading-series/quantum-computing-primer" target="_blank" rel="noopener">Quantum computing primer (D-Wave)</a></li></ul></div>
+  <div><h3>Software engineering</h3><ul>
+   <li><a href="https://www.atlassian.com/git/tutorials/what-is-git" target="_blank" rel="noopener">What is Git?</a></li>
+   <li><a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">What is CI/CD?</a></li>
+   <li><a href="https://www.agilealliance.org/agile101/" target="_blank" rel="noopener">What is Agile?</a></li>
+   <li><a href="https://docker-curriculum.com/#docker-run" target="_blank" rel="noopener">A Docker tutorial</a></li></ul></div>
+  <div><h3>Miscellaneous</h3><ul>
+   <li><a href="https://deepmind.com/blog/article/AlphaFold-Using-AI-for-scientific-discovery" target="_blank" rel="noopener">AlphaFold</a></li>
+   <li><a href="http://people.idsia.ch/~juergen/critique-turing-award-bengio-hinton-lecun.html" target="_blank" rel="noopener">Critique of the 2018 Turing Award</a></li>
+   <li><a href="https://realpython.com/build-recommendation-engine-collaborative-filtering/" target="_blank" rel="noopener">Recommendation engine with collaborative filtering</a></li>
+   <li><a href="https://sites.northwestern.edu/msia/2020/11/30/what-skills-do-data-scientists-need-a-text-analysis-of-job-postings" target="_blank" rel="noopener">What skills do data scientists need?</a></li></ul></div>
+ </div>
+</section>
 
-<p>
-Now, turning to the case of Artificial General Intelligence (AGI) – defined as intelligence superior to human intelligence in every aspect – it poses a significant challenge. We still struggle to quantify overall human intelligence. For instance, humans are notably more adept learners than artificial intelligence systems in terms of the training they require.
-</p>
+<section id="learning">
+ <h1>Learning</h1>
+ <p>Reading is a hobby of mine, across science, society, technology and philosophy. My ten all-time favourites:</p>
+ <ol class="l">
+  <li>Jared Diamond, <i>Guns, Germs and Steel</i></li>
+  <li>Jared Diamond, <i>Collapse</i></li>
+  <li>Thomas L. Friedman, <i>The World Is Flat</i></li>
+  <li>Richard Dawkins, <i>The Selfish Gene</i></li>
+  <li>V. S. Ramachandran, <i>The Tell-Tale Brain</i></li>
+  <li>Siddhartha Mukherjee, <i>The Gene: An Intimate History</i></li>
+  <li>Yuval Noah Harari, <i>Sapiens</i></li>
+  <li>Max Tegmark, <i>Life 3.0</i></li>
+  <li>Ray Dalio, <i>Principles</i></li>
+  <li>Daniel Kahneman, <i>Thinking, Fast and Slow</i></li>
+ </ol>
+ <p>I also teach, train and mentor, and my learning content is spread across platforms. Some of it sits behind a paywall; open-source material is a good alternative.</p>
+ <h2>Structured courses</h2>
+ <ul class="l">
+  <li><a href="https://instats.org/seminar/machine-learning-foundations-and-applic3" target="_blank" rel="noopener">Machine Learning: Foundations and Applications in Python</a></li>
+  <li><a href="https://instats.org/seminar/large-language-models-ai-foundations-an2" target="_blank" rel="noopener">Large Language Models: AI Foundations and Applications in Python</a></li>
+  <li><a href="https://instats.org/seminar/machine-learning-foundations-and-method2" target="_blank" rel="noopener">Premium machine learning course content</a></li>
+ </ul>
+ <h2>Articles on Medium</h2>
+ <ul class="l">
+  <li><a href="https://prasad-jayanti.medium.com/first-step-towards-machine-learning-17f2f51b96d8" target="_blank" rel="noopener">First step towards machine learning</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/first-step-towards-deep-learning-5cd830f2013b" target="_blank" rel="noopener">First step towards deep learning</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/what-all-you-need-to-become-a-data-scientist-1a22018098ac" target="_blank" rel="noopener">What all you need to become a data scientist?</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/machine-learning-for-managers-c5c526cfe8de" target="_blank" rel="noopener">Machine learning for managers</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/some-common-misconceptions-about-deep-learning-88210c2aa116" target="_blank" rel="noopener">Some common misconceptions about deep learning</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/why-wee-need-so-many-performance-metrics-in-hypothesis-testing-9d880458b62" target="_blank" rel="noopener">Why we need so many performance metrics in hypothesis testing</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/image-classification-with-mnist-data-286003b056cb" target="_blank" rel="noopener">Image classification with MNIST data</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/clustering-with-k-means-from-scratch-8fc41b0abd21" target="_blank" rel="noopener">Clustering with K-means from scratch</a></li>
+  <li><a href="https://medium.datadriveninvestor.com/5-machine-learning-classifiers-you-must-know-925655c75e02" target="_blank" rel="noopener">5 machine learning classifiers you must know</a></li>
+  <li><a href="https://medium.com/@prasad-jayanti/time-series-forecasting-with-arima-120146ab4266" target="_blank" rel="noopener">Time series forecasting with ARIMA</a></li>
+  <li><a href="https://medium.com/@prasad-jayanti/what-is-attention-and-how-it-works-eecfe32a43fc" target="_blank" rel="noopener">What is attention and how it works?</a></li>
+  <li><a href="https://medium.com/@prasad-jayanti/what-is-query-key-value-qkv-attention-3b8f9eb15124" target="_blank" rel="noopener">What is Query, Key, Value (QKV) attention?</a></li>
+  <li><a href="https://medium.com/@prasad-jayanti/sequence-to-sequence-model-2c9d0fc4808" target="_blank" rel="noopener">Sequence to sequence model</a></li>
+ </ul>
+ <h2>Video lectures</h2>
+ <ul class="l">
+  <li><a href="https://www.youtube.com/watch?v=L4TfgH_2_0Y" target="_blank" rel="noopener">Lecture 1</a></li>
+  <li><a href="https://www.youtube.com/watch?v=VaARBoqVLL8" target="_blank" rel="noopener">Lecture 2</a></li>
+  <li><a href="https://www.youtube.com/watch?v=GkSpDpkFcqk" target="_blank" rel="noopener">Lecture 3</a></li>
+  <li><a href="https://www.youtube.com/watch?v=FoEzn6IkweY" target="_blank" rel="noopener">Lecture 4</a></li>
+ </ul>
+</section>
 
-<p>
-This brief overview encapsulates my general interest. You can explore relevant sections or follow the provided links to delve deeper into my professional work. For a semi-popular article about the universe visit <a href="docs/articles/cosmo_rev_v3.pdf" target="dynamic"> here </a>, for Hindi version visit <a href="docs/articles/brahamand_v3.pdf" target="dynamic"> here </a>.
-</p>
+<section id="contact">
+ <h1>Contact</h1>
+ <p class="lede">The best way to reach me is through my social pages.</p>
+ <ul class="l">
+  <li><a href="https://www.linkedin.com/in/jayanti-prasad-ph-d-0869a1136/" target="_blank" rel="noopener">LinkedIn</a></li>
+  <li><a href="https://prasad-jayanti.medium.com/" target="_blank" rel="noopener">Medium</a></li>
+  <li><a href="https://github.com/jayanti-prasad" target="_blank" rel="noopener">GitHub</a></li>
+  <li><a href="https://scholar.google.co.in/citations?user=hdn0Ln0AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+ </ul>
+</section>
 
-
-<p>
-Feel free to reach out if you have any questions, queries, or just want to say hi.
-</p> 
-
+</main>
 </div>
-</div>  
-<div id="footer">
-<div id="footer-valid">
-</div>
-</div>
-</div>
-
+<script>
+(function(){
+var secs=document.querySelectorAll('section'),links=document.querySelectorAll('#nav a');
+function show(){
+ var id=(location.hash||'#home').slice(1);
+ if(!document.getElementById(id))id='home';
+ secs.forEach(function(s){s.classList.toggle('on',s.id===id)});
+ links.forEach(function(a){if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+ window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+})();
+</script>
 </body>
 </html>
